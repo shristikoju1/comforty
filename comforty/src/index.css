@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.max-width {
+    @apply max-w-[1100px] px-[100px] mx-auto;
+}
+
+.flex-row{
+    @apply flex items-center justify-center;
+}
+
+.flex-column{
+    @apply flex flex-col items-center justify-center;
+}
+
+.cart-bg{
+    @apply h-[44px] rounded-lg px-[16px] py-[11px] hover:bg-hover-color hover:text-white;
+}
+
+.li-style{
+    @apply text-[#636270] font-inter font-medium text-[14px] leading-[15.4px] hover:text-hover-color;
+}
+.slider {
+    @apply h-[50px] w-[50px] rounded-full flex flex-row text-black hover:bg-hover-color hover:text-white;
+  }
+
+.button {
+    @apply rounded-lg text-white flex-row bg-hover-color py-[14px] px-[24px];
+}
+
+.social-media {
+    @apply text-[#636270] w-[24px] h-[24px] flex justify-start items-center;
+  }
+  
+  .social-media:hover {
+    @apply  w-[30px] h-[30px] rounded-full border border-2 text-hover-color;
+  }
+  
+  
