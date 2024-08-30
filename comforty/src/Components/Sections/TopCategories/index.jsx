@@ -1,11 +1,10 @@
 import React from 'react';
-import SectionHeader from "../SectionHeader";
-import TopCategories1 from "../../assets/images/top_categories1.png";
-import TopCategories2 from "../../assets/images/top_categories2.png";
-import TopCategories3 from "../../assets/images/top_categories3.png";
-import './styles.scss';
+import SectionHeader from "../../Common/SectionHeader";
+import TopCategories1 from "../../../assets/images/top_categories1.png";
+import TopCategories2 from "../../../assets/images/top_categories2.png";
+import TopCategories3 from "../../../assets/images/top_categories3.png";
+import './topcategories.scss';
 
-// Array of top categories
 const topCategoriesData = [
   {
     image: TopCategories1,

@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.social-media-wrapper{
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .social-media {
+        color: #636270;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    
+      
+      &:hover {
+        color: #029FAE;
+      }
+    
+    }
+
+    &:hover{
+        border: 2px solid #029FAE;
+    }
+      
+}
+
+h4{
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 15.4px;
+    color: #9A9CAA;
+    margin-bottom: 20px;
+}
+
+li a{
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17.6px;
+    color: #272343;
+
+    &:hover{
+        color:#029FAE;
+        text-decoration: underline;
+    }
+}
+
+.footer-text{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #9A9CAA;
+
+    span{
+        color: #272343;
+    }
+}

@@ -1,13 +1,14 @@
-import Product1 from '../../assets/images/our_product1.png';
-import Product2 from '../../assets/images/our_product2.png';
-import Product3 from '../../assets/images/our_product3.png';
-import Product4 from '../../assets/images/our_product4.png';
-import Product5 from '../../assets/images/our_product5.png';
-import Product6 from '../../assets/images/our_product6.png';
-import Product7 from '../../assets/images/our_product7.png';
-import Product8 from '../../assets/images/our_product8.png';
-import ProductCard from '../ProductCard';
+import Product1 from '../../../assets/images/our_product1.png';
+import Product2 from '../../../assets/images/our_product2.png';
+import Product3 from '../../../assets/images/our_product3.png';
+import Product4 from '../../../assets/images/our_product4.png';
+import Product5 from '../../../assets/images/our_product5.png';
+import Product6 from '../../../assets/images/our_product6.png';
+import Product7 from '../../../assets/images/our_product7.png';
+import Product8 from '../../../assets/images/our_product8.png';
+import ProductCard from '../../Common/ProductCard';
 import { useState } from 'react';
+import './ourproduct.scss';
 
 const productData = [
   {
@@ -63,12 +64,12 @@ const OurProducts = () => {
     };
   
   return (
-    <div className="mt-12 max-width">
-      <div className="flex flex-column mb-4">
-        <h1 className="font-semibold font-inter text-[32px] text-[#272343] leading-[35.2px]">
+    <div className="mt-20 max-width">
+      <div className="flex mb-10 flex-column">
+        <h1 className="font-semibold font-inter text-[32px] text-blue leading-[35.2px]">
           Our Products
         </h1>
-        <ul className="flex gap-4 mb-4">
+        <ul className="flex gap-4 mt-4">
           <li><a href="#">ALL</a></li>
           <li><a href="#">NEWEST</a></li>
           <li><a href="#">TRENDING</a></li>

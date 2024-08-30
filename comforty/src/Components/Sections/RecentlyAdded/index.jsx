@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import FeaturedProduct1 from '../../assets/images/feature_product1.png';
-import FeaturedProduct2 from '../../assets/images/feature_product2.png';
-import FeaturedProduct3 from '../../assets/images/feature_product3.png';
-import FeaturedProduct4 from '../../assets/images/feature_product4.png';
-import SectionHeader from '../SectionHeader';
-import ProductCard from '.././ProductCard';
+import FeaturedProduct1 from '../../../assets/images/feature_product1.png';
+import FeaturedProduct2 from '../../../assets/images/feature_product2.png';
+import FeaturedProduct3 from '../../../assets/images/feature_product3.png';
+import FeaturedProduct4 from '../../../assets/images/feature_product4.png';
+import SectionHeader from '../../Common/SectionHeader';
+import ProductCard from '../../Common/ProductCard';
 
 const productData = [
   {
@@ -40,7 +40,7 @@ const RecentlyAdded = () => {
 
   return (
     <div>
-      <div className="max-width">
+      <div className="max-width mb-[100px]">
         <SectionHeader title="Recently Added" />
         <div className="flex mt-4 space-x-6">
           {productData.map((product, index) => (

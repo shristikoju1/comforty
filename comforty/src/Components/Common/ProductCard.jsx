@@ -1,7 +1,7 @@
 // src/components/ProductCard.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
-import Cart from './../assets/svg/cart_featureproduct.svg?react';
+import Cart from '../../assets/svg/cart_featureproduct.svg?react';
 
 const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCart }) => {
   return (
@@ -44,7 +44,7 @@ const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCa
 ProductCard.propTypes = {
   product: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
-  activeProductIndex: PropTypes.number.isRequired,
+  activeProductIndex: PropTypes.number,
   hoverColor: PropTypes.string.isRequired,
   onAddToCart: PropTypes.func.isRequired,
 };
