@@ -1,4 +1,3 @@
-// carouselUtils.js
 const CarouselLogic = (images, setImages) => {
     const handleBackward = () => {
       const newImages = images.slice(1).concat(images[0]);

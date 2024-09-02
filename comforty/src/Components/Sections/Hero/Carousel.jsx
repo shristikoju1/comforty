@@ -11,7 +11,7 @@ export default function Carousel({ children: heroData }) {
     return (
         <div className="relative overflow-hidden">
             <div
-                className="flex transition-transform duration-500 ease-out"
+                className="relative z-10 flex transition-transform duration-500 ease-out "
                 style={{ transform: `translateX(-${curr * 100}%)` }}
             >
                 {heroData}
@@ -19,24 +19,25 @@ export default function Carousel({ children: heroData }) {
             <div className="absolute inset-0 flex items-center justify-between p-4">
                 <button
                     onClick={prev}
-                    className="p-1 text-gray-800 bg-white rounded-full shadow-80 hover:bg-white"
+                    className="z-10 p-1 bg-white rounded-full xt-gray-800 shadow-80 hover:bg-white"
                 >
+                    
                     <SliderLeft size={40} />
                 </button>
                 <button
                     onClick={next}
-                    className="p-1 text-gray-800 bg-white rounded-full shadow-80 hover:bg-white"
+                    className="z-10 p-1 text-gray-800 bg-white rounded-full shadow-80 hover:bg-white"
                 >
                     <SliderRight size={40} />
                 </button>
             </div>
 
-            <div className="absolute left-0 right-0 bottom-4">
+            <div className="left-0 right-0 bg-green-500  bottom-4 z-200">
                 <div className="flex items-center justify-center gap-2">
                     {heroData.map((_, i) => (
                         <div
                             key={i}
-                            className={`transition-all w-3 h-3 bg-white rounded-full ${
+                            className={`transition-all w-3 h-3 bg-black rounded-full ${
                                 curr === i ? 'p-2' : 'bg-opacity-50'
                             }`}
                         />

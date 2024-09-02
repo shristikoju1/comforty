@@ -76,13 +76,17 @@ const Navbar = () => {
           <section className="bg-secondary-white">
             <div className="bg-secondary-white flex items-center justify-between max-width py-[5px] h-[68px] mx-auto">
               <LogoStyle />
-              <div className="relative">
+              <div className="relative hidden sm:block">
+                
                 <input
                   type="text"
                   placeholder="Search here..."
                   className="w-full p-2 pl-4 pr-24 border border-gray-100 rounded-md focus:outline-none"
                 />
                 <CiSearch className="absolute transform right-3 top-2/4 -translate-y-2/4 text-primary-black text-[24px]" />
+              </div>
+              <div className="sm:hidden">
+                <CiSearch/>
               </div>
               <div className="flex gap-[10px]">
                 <NavLink to="/cart">
