@@ -1,12 +1,34 @@
 import RightArrow from "../../../assets/svg/arrow-right.svg?react";
 import HeroImg1 from "../../../assets/images/heroimg1.png";
-import SliderLeft from "../../../assets/svg/slider-left.svg?react";
-import SliderRight from "../../../assets/svg/slider-right.svg?react";
+import HeroImg2 from "../../../assets/images/feature_product1.png";
+import HeroImg3 from "../../../assets/images/our_product1.png";
+// import SliderLeft from "../../../assets/svg/slider-left.svg?react";
+// import SliderRight from "../../../assets/svg/slider-right.svg?react";
 import DiscountIcon from "../../../assets/svg/feature1.svg?react";
 import DeliveryIcon from "../../../assets/svg/feature2.svg?react";
 import TimeIcon from "../../../assets/svg/feature3.svg?react";
 import ShieldIcon from "../../../assets/svg/feature4.svg?react";
 import "./hero.scss";
+import Carousel from './Carousel'
+
+const heroData = [
+  {
+    welcomeText: "WELCOME TO CHAIRY",
+    title: "Best Furniture Collection for your interior.",
+    image: HeroImg1,
+  },
+  {
+    welcomeText: "WELCOME TO CHAIRY",
+    title: "Best Furniture Collection for your interior.",
+    image: HeroImg2,
+  },
+  {
+    welcomeText: "WELCOME TO CHAIRY",
+    title: "Best Furniture Collection for your interior.",
+    image: HeroImg3,
+  },
+];
+
 
 const featuresData = [
   {
@@ -34,32 +56,44 @@ const featuresData = [
 const hero = () => {
   return (
     <div className="hero-wrapper">
-      <div className="hero flex-row gap-3 max-w-[1200px] mx-auto bg-secondary-white h-[580px]">
-        <div className="slider">
-          <SliderLeft />
-        </div>
-        <div className="flex-row mx-auto max-width">
-          <div className="w-[500px] ">
-            <p className="font-inter font-normal text-[14px] leading-[14px] text-blue">
-              WELCOME TO CHAIRY
-            </p>
-            <h1 className="font-inter font-bold text-[68px] leading-[74.8px] mt-[8px] mb-[24px]">
-              Best Furniture Collection for your interior.
-            </h1>
-            <button className="gap-[20px] button">
-              <a href="#">Show Now</a>
-              <RightArrow />
-            </button>
+      <div className="hero-container">
+      <Carousel>
+        {heroData.map((item, index) => (
+        <div key={index} className="hero flex-row gap-3 max-w-[1200px] mx-auto bg-secondary-white h-[580px]">
+          {/* <div className="slider">
+            <SliderLeft />
+          </div> */}
+          <div className="flex-row mx-auto max-width">
+            <div className="w-[500px] ">
+              <p className="font-inter font-normal text-[14px] leading-[14px] text-blue">
+                {item.welcomeText}
+              </p>
+              <h1 className="font-inter font-bold text-[68px] leading-[74.8px] mt-[8px] mb-[24px]">
+                {item.title}
+              </h1>
+              <button className="gap-[20px] button">
+                <a href="#">Show Now</a>
+                <RightArrow />
+              </button>
+            </div>
+            <div>
+              <div className="circle w-[500px] h-[500px] rounded-full bg-[#E1E3E5]"></div>
+              <img
+                src={item.image}
+                alt={`heroimg${index + 1}`}
+                className="hero-img w-[320px]"
+              />
+            </div>
           </div>
-          <div>
-            <div className="circle w-[500px] h-[500px] rounded-full bg-[#E1E3E5]"></div>
-            <img src={HeroImg1} alt="heroimg" className="hero-img w-[320px]" />
-          </div>
+          {/* <div className="slider">
+            <SliderRight />
+          </div> */}
         </div>
-        <div className="slider">
-          <SliderRight />
-        </div>
-      </div>
+      ))}
+        </Carousel>
+  
+    </div>
+
       <div className="mx-auto max-width">
         <div className="feature-container flex items-center justify-center gap-2 space-x-5 px-3 py-[50px] border-2 border-gray-100 border-solid rounded-xl h-[150px]">
           {featuresData.map((feature, index) => (
