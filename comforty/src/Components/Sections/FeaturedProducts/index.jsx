@@ -5,6 +5,7 @@ import FeaturedProduct3 from '../../../assets/images/feature_product3.png';
 import FeaturedProduct4 from '../../../assets/images/feature_product4.png';
 import SectionHeader from '../../Common/SectionHeader';
 import ProductCard from '../../Common/ProductCard';
+import CarouselLogic from '../../Common/CarouselLogic'
 
 const productData = [
   {
@@ -60,6 +61,8 @@ const FeaturedProducts = () => {
     
   };
 
+  // console.log(CarouselLogic)
+
   return (
     <div id='shop'>
       <div className="max-width">
@@ -69,7 +72,7 @@ const FeaturedProducts = () => {
           backward={handleBackward}
           forward={handleForward}
         />
-        <div className="flex mt-4 space-x-6 overflow-hidden">
+        <div className="flex mt-4 gap-6 overflow-hidden">
           {getDisplayedProducts().map((product, index) => (
             <ProductCard
               key={index}

@@ -8,6 +8,9 @@ import Product7 from '../../../assets/images/our_product7.png';
 import Product8 from '../../../assets/images/our_product8.png';
 import ProductCard from '../../Common/ProductCard';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from '../../../Store/cartSlice'; 
+
 import './ourproduct.scss';
 
 const productData = [
@@ -56,12 +59,14 @@ const productData = [
 const hoverColor = '#007580';
 
 const OurProducts = () => {
+  const dispatch = useDispatch();
+  const [activeProductIndex, setActiveProductIndex] = useState(null);
 
-    const [activeProductIndex, setActiveProductIndex] = useState(null);
-  
-    const addToCart = (index) => {
-      setActiveProductIndex(index);
-    };
+  const addToCart = (index) => {
+    setActiveProductIndex(index);
+    const product = productData[index];
+    dispatch(addItemToCart(product));
+  };
   
   return (
     <div className="mt-20 max-width" id='product'>

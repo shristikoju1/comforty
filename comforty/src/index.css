@@ -10,7 +10,7 @@
 }
 
 .max-width {
-  @apply max-w-[1100px] px-[100px] mx-auto;
+  @apply max-w-[1200px] px-[100px] mx-auto;
 }
 
 .flex-row {

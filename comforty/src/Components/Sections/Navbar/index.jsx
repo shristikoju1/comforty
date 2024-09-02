@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./navbar.scss";
 import { CiCircleAlert, CiSearch } from "react-icons/ci";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -10,9 +10,13 @@ import Menu from "../../../assets/svg/menu.svg?react";
 import LogoStyle from "../../Common/LogoStyle";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-scroll";
+import { useSelector } from "react-redux"; 
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const cartItems = useSelector((state) => state?.cart?.items);
+  const totalCartItems = cartItems?.length;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,7 +98,7 @@ const Navbar = () => {
                     <Cart />
                     <p>Cart</p>
                     <div className="bg-green w-[20px] h-[20px] rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black">
-                      <span className="text-[12px]">2</span>
+                      <span className="text-[12px]">{totalCartItems}</span>
                     </div>
                   </div>
                 </NavLink>

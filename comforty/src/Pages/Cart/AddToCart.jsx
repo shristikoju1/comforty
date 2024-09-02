@@ -1,7 +1,6 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { removeItemFromCart } from '../../Store/cartSlice';
+import { removeItemFromCart, updateItemQuantity } from '../../Store/cartSlice';
 import './Cart.scss';
 
 const Cart = () => {
@@ -17,12 +16,58 @@ const Cart = () => {
     dispatch(removeItemFromCart(index));
   };
 
+  const handleQuantityChange = (index, newQuantity) => {
+    dispatch(updateItemQuantity({ index, quantity: newQuantity }));
+  };
+
   return (
-    <div className="cart max-width">
-      <div className="cart-items">
-        <div className="cart-items-title">
-          <p>Items</p>
-          <p>Title</p>
+    <div className='cart max-width'>
+      <div className='cart-items'>
+        <table className='cart-items-title cart-items-item'>
+          <thead>
+            <tr className='text-left'>
+              <th>Item</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Reduce Count</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {cartItems.map((item, index) => (
+              <tr key={index}>
+                <td>
+                  <img src={item.image} alt={item.title} />
+                </td>
+                <td>{item.title}</td>
+                <td>{item.price}</td>
+                <td>
+                  <input
+                    type='number'
+                    min={1}
+                    value={item.quantity}
+                    className='border border-[#ccc] p-1.5 rounded w-20'
+                    onChange={(e) =>
+                      handleQuantityChange(index, parseInt(e.target.value))
+                    }
+                  />
+                </td>
+                <td>${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}</td>
+                <td
+                  onClick={() => handleRemoveFromCart(index)}
+                  className='cross'
+                >
+                  x
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {/* <div className='cart-items-title'>
+          <p>Item</p>
           <p>Price</p>
           <p>Quantity</p>
           <p>Total</p>
@@ -50,7 +95,7 @@ const Cart = () => {
             </div>
             <hr />
           </div>
-        ))}
+        ))} */}
       </div>
 
       <div className="cart-bottom">

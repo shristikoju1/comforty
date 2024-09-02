@@ -12,4 +12,4 @@ const CarouselLogic = (images, setImages) => {
     return { handleBackward, handleForward };
   };
   
-  export { CarouselLogic };
+  export default  CarouselLogic;

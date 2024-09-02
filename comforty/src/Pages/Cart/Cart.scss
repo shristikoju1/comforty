@@ -2,11 +2,20 @@
     margin-top: 100px;
 
     .cart-items-title {
-        display: grid;
-        grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
-        align-items: center;
+        // display: grid;
+        // grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+        // align-items: center;
         color: grey;
         font-size: max(1vw, 12px);
+        width: 100%;
+
+        th, td {
+            padding: 12px;
+        }
+
+        thead tr, tbody tr:not(:nth-last-child(1)) {
+            border-bottom: 1px solid #ccc;
+        }
     }
 
     .cart-items-item {
