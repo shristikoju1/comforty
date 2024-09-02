@@ -1,34 +1,25 @@
-// .nav-one{
-//     .container{
-//         display: flex;
-//         justify-content: space-between;
-//         align-items: center;
+.li-style {
+    color: #636270;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15.4px;
+  
+    &:hover {
+      color: #029FAE; // Replace this with the actual hover color value
+    }
+  }
 
-        // .left-container{
-        //     display: flex;
-        //     align-items: center;
-        //     justify-content: flex-start;
-        //     gap: 1px;
-        // }
+  nav {
+    &.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
 
-        // .right-container{
-        //     display: flex;
-        //     align-items: center;
-        //     justify-content: end;
-        //     gap: 22px;
-
-            // button{
-            //     display: flex;
-            //     align-items: center;
-            //     gap: 6px;
-            // }
-
-            // .help{
-            //     display: flex;
-            //     align-items: center;
-            //     gap: 6px;
-            // }
-        // }
-//     }
-
-// }
+  
+  

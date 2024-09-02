@@ -20,7 +20,7 @@ const testimonialsData = [
 
 const Testimonials = () => {
   return (
-    <div className="py-10 mt-20 bg-secondary-white">
+    <div className="py-10 mt-20 bg-secondary-white" id="pages">
       <div className="max-width">
         <SectionHeader title="What client says about us"/>
 

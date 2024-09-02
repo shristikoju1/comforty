@@ -57,11 +57,11 @@ const FeaturedProducts = () => {
   };
 
   const addToCart = (index) => {
-    // Handle add to cart logic here
+    
   };
 
   return (
-    <div>
+    <div id='shop'>
       <div className="max-width">
         <SectionHeader 
           title="Featured Products" 

@@ -1,13 +1,21 @@
-import { useContext, React } from "react";
-import "./Cart.css";
-// import { StoreContext } from "../../context/StoreContext";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { removeItemFromCart } from '../../store/cartSlice';
+import './Cart.scss';
 
 const Cart = () => {
-  // const { cartItems, food_list, removeFromCart, getTotalCartAmount } = useContext(StoreContext);
+  const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // placeOrder maa jana lai react router ko useNavigate hook use gareko
-  // const navigate = useNavigate();
+  const getTotalCartAmount = () => {
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
+  const handleRemoveFromCart = (index) => {
+    dispatch(removeItemFromCart(index));
+  };
 
   return (
     <div className="cart max-width">
@@ -24,35 +32,25 @@ const Cart = () => {
         <br />
         <hr />
 
-        {/* if food item is available in the cart item, then display on the cart page */}
-        {/* {food_list.map((item, index) => {
-          if (cartItems[item._id] > 0) {
-            return (
-              <div>
-                <div className="cart-items-title cart-items-item">
-                  <p>{item.name}</p> 
-                  <img src={item.image} alt="" />
-                  <p>{item.name}</p>
-                  unit price
-                  <p>{item.price}</p>
-                  quantity
-                  <p>{cartItems[item._id]}</p>
-                  total price
-                  <p>{item.price * cartItems[item._id]}</p>
-                  <p
-                    onClick={() => {
-                      removeFromCart(item._id);
-                    }}
-                    className="cross"
-                  >
-                    x
-                  </p>
-                </div>
-                <hr />
-              </div>
-            );
-          }
-        })} */}
+        {cartItems.map((item, index) => (
+          <div key={index}>
+            <div className="cart-items-title cart-items-item">
+              <p>{item.title}</p>
+              <img src={item.image} alt={item.title} />
+              <p>{item.title}</p>
+              <p>{item.price}</p>
+              <p>{item.quantity}</p>
+              <p>{item.price * item.quantity}</p>
+              <p
+                onClick={() => handleRemoveFromCart(index)}
+                className="cross"
+              >
+                x
+              </p>
+            </div>
+            <hr />
+          </div>
+        ))}
       </div>
 
       <div className="cart-bottom">
@@ -62,19 +60,18 @@ const Cart = () => {
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              {/* <p>${getTotalCartAmount()}</p> */}
+              <p>${getTotalCartAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              {/* aba items nai nahuda kheri total amount ni zero hunxa, yesto amount zero huda delivery ni nahunu paryo, so 0 */}
-              {/* <p>${getTotalCartAmount() === 0 ? 0 : 2}</p> */}
+              <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
               <b>
-                {/* ${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2} */}
+                ${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}
               </b>
             </div>
           </div>

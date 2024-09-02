@@ -64,12 +64,12 @@ const OurProducts = () => {
     };
   
   return (
-    <div className="mt-20 max-width">
+    <div className="mt-20 max-width" id='product'>
       <div className="flex mb-10 flex-column">
         <h1 className="font-semibold font-inter text-[32px] text-blue leading-[35.2px]">
           Our Products
         </h1>
-        <ul className="flex gap-4 mt-4">
+        <ul className="flex gap-4 mt-4" id='product-list'>
           <li><a href="#">ALL</a></li>
           <li><a href="#">NEWEST</a></li>
           <li><a href="#">TRENDING</a></li>

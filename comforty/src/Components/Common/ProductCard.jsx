@@ -1,4 +1,3 @@
-// src/components/ProductCard.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 import Cart from '../../assets/svg/cart_featureproduct.svg?react';
@@ -30,9 +29,9 @@ const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCa
         <div
           className="cart-bg"
           onClick={() => onAddToCart(index)}
-          style={{
-            backgroundColor: activeProductIndex === index ? hoverColor : 'var(--secondary-white)',
-          }}
+          // style={{
+          //   backgroundColor: activeProductIndex === index ? hoverColor : 'var(--secondary-white)',
+          // }}
         >
           <Cart />
         </div>

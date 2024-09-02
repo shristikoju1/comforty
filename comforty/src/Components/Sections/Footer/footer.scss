@@ -30,27 +30,34 @@
       
 }
 
-h4{
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 15.4px;
-    color: #9A9CAA;
-    margin-bottom: 20px;
-}
 
-li a{
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 17.6px;
-    color: #272343;
-
-    &:hover{
-        color:#029FAE;
-        text-decoration: underline;
+.footer-list{
+    .footer-heading{
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 15.4px;
+        color: #9A9CAA;
+        margin-bottom: 20px;
     }
+
+    li a{
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 17.6px;
+        color: #272343;
+    
+        &:hover{
+            color:#029FAE;
+            text-decoration: underline;
+        }
+    }
+
 }
+
+
+
 
 .footer-text{
     font-family: "Poppins", sans-serif;
