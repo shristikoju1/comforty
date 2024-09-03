@@ -4,7 +4,10 @@ import Cart from '../../assets/svg/cart_featureproduct.svg?react';
 import Heart from '../../assets/svg/heart.svg?react';
 import { useState, useEffect } from 'react';
 import { addItemToFav, removeItemFromFav } from '../../Store/favSlice';
+
+
 const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCart }) => {
+  
   const [isLiked, setIsLiked] = useState(false);
   const dispatch = useDispatch();
 

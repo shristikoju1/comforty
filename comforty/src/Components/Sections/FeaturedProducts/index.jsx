@@ -61,7 +61,7 @@ const FeaturedProducts = () => {
     
   };
 
-  // console.log(CarouselLogic)
+
 
   return (
     <div id='shop'>
@@ -72,7 +72,7 @@ const FeaturedProducts = () => {
           backward={handleBackward}
           forward={handleForward}
         />
-        <div className="flex mt-4 gap-6 overflow-hidden">
+        <div className="flex flex-wrap gap-6 mt-4 overflow-hidden">
           {getDisplayedProducts().map((product, index) => (
             <ProductCard
               key={index}

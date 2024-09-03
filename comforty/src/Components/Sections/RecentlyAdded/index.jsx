@@ -42,7 +42,7 @@ const RecentlyAdded = () => {
     <div>
       <div className="max-width mb-[100px]">
         <SectionHeader title="Recently Added" />
-        <div className="flex mt-4 space-x-6">
+        <div className="flex flex-wrap mt-4 space-x-6">
           {productData.map((product, index) => (
             <ProductCard
               key={index}

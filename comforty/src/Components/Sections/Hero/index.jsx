@@ -8,7 +8,9 @@ import DiscountIcon from "../../../assets/svg/feature1.svg?react";
 import DeliveryIcon from "../../../assets/svg/feature2.svg?react";
 import TimeIcon from "../../../assets/svg/feature3.svg?react";
 import ShieldIcon from "../../../assets/svg/feature4.svg?react";
+import Discount from "../../../assets/svg/discount.svg?react";
 import "./hero.scss";
+import "./feature.scss"
 import Carousel from "./Carousel";
 
 const heroData = [
@@ -65,8 +67,8 @@ const hero = () => {
               {/* <div className="slider">
             <SliderLeft />
           </div> */}
-              <div className="flex-row mx-auto max-width">
-                <div className="max-w-[500px] ">
+              <div className="flex flex-col mx-auto max-width md:flex-row">
+                <div className="max-w-[500px] flex flex-col justify-center items-center my-20 ">
                   <p className="font-inter font-normal text-[14px] leading-[14px] text-blue">
                     {item.welcomeText}
                   </p>
@@ -85,6 +87,15 @@ const hero = () => {
                     alt={`heroimg${index + 1}`}
                     className="hero-img w-[320px]"
                   />
+                  <div className="relative">
+                  <Discount/>
+                  <div className="absolute flex flex-col top-8 left-10">
+                  <h2 className="font-bold font-inter text-[36px] leading-[40px] text-center text-[#F05C52]">54%</h2>
+                  <span className="font-semibold font-inter text-[14px] leading-[15.4px] text-center text-[#272343]">Discount</span>
+                  </div>
+                
+                  </div>
+                
                 </div>
               </div>
               {/* <div className="slider">
@@ -95,8 +106,8 @@ const hero = () => {
         </Carousel>
       </div>
 
-      <div className="relative mx-auto max-width z-100">
-        <div className="feature-container flex items-center justify-between max-width py-[50px] border-2 border-gray-100 border-solid rounded-xl max-h-[150px]">
+      <div className="relative mx-auto z-100 max-width">
+        <div className="feature-container flex items-center justify-between max-width py-[50px] border-2 border-gray-100 border-solid rounded-xl flex-wrap gap-5">
           {featuresData.map((feature, index) => (
             <div key={index} className="flex items-center gap-2">
               <feature.icon className="feature-icon" />

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import "./navbar.scss";
 import { CiCircleAlert, CiSearch } from "react-icons/ci";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -13,28 +13,28 @@ import { Link } from "react-scroll";
 import { useSelector } from "react-redux"; 
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  // const [isScrolled, setIsScrolled] = useState(false);
 
   const cartItems = useSelector((state) => state?.cart?.items);
   const totalCartItems = cartItems?.length;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 120);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setIsScrolled(window.scrollY > 120);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   return (
-    <div id="home">
-      {!isScrolled && (
+    <div id="home" className="scroll-smooth">
+      {/* {!isScrolled && ( */}
         <>
-          <section className="nav-one flex items-center text-white bg-blue h-[40px] py-2 md:flex hidden">
+          <section className="nav-one items-center text-white bg-blue h-[40px] py-2 md:flex hidden">
             <div className="container flex justify-between items-center mx-auto max-width h-[45px]">
               <div className="flex items-center justify-start gap-[1px]">
                 <TickMark className="tick-mark text-xs text-blue-600 mr-[1px] flex-row" />
@@ -77,7 +77,7 @@ const Navbar = () => {
               </div>
             </div>
           </section>
-          <section className="bg-secondary-white">
+          <section className=" bg-secondary-white">
             <div className="bg-secondary-white flex items-center justify-between max-width py-[5px] h-[68px] mx-auto">
               <LogoStyle />
               <div className="relative hidden sm:block">
@@ -89,9 +89,9 @@ const Navbar = () => {
                 />
                 <CiSearch className="absolute transform right-3 top-2/4 -translate-y-2/4 text-primary-black text-[24px]" />
               </div>
-              <div className="sm:hidden">
+              {/* <div className="sm:hidden">
                 <CiSearch/>
-              </div>
+              </div> */}
               <div className="flex gap-[10px]">
                 <NavLink to="/cart">
                   <div className="flex cart-bg flex-row gap-[8px] bg-white">
@@ -117,16 +117,17 @@ const Navbar = () => {
             </div>
           </section>
         </>
-      )}
+      {/* )} */}
 
     
       <nav
-        className={`${
-          isScrolled ? "fixed top-0 left-0 w-full z-50 shadow-md" : ""
-        } py-3 bg-white border-b border-gray-300 h-[70px]`}
-      >
-        <div className="flex items-center justify-between mx-auto max-width">
-          <ul className="flex items-center gap-[30px] cursor-pointer">
+      //    className={`${
+      //     isScrolled ? "fixed top-0 left-0 w-full z-50 shadow-md" : ""
+      //   } py-3 bg-white border-b border-gray-300 h-[70px]`}
+      // >
+        className="py-3 bg-white border-b border-gray-300 h-[70px]">
+        <div className="flex flex-col items-center justify-between mx-auto max-width md:flex-row">
+          <ul className="flex items-center gap-[30px] cursor-pointer md:flex-row flex-col">
             <li>
               <button className="px-[24px] py-[12px] flex items-center gap-2 border-2 border-solid rounded-lg border-[#E1E3E5]">
                 <Menu />

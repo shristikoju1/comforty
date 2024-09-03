@@ -65,16 +65,17 @@ const OurProducts = () => {
   const addToCart = (index) => {
     setActiveProductIndex(index);
     const product = productData[index];
+    console.log('Adding to cart:', product); // Debugging line
     dispatch(addItemToCart(product));
   };
   
   return (
-    <div className="mt-20 max-width" id='product'>
+    <div className="mt-20 max-width" id="product">
       <div className="flex mb-10 flex-column">
         <h1 className="font-semibold font-inter text-[32px] text-blue leading-[35.2px]">
           Our Products
         </h1>
-        <ul className="flex gap-4 mt-4" id='product-list'>
+        <ul className="flex gap-4 mt-4" id="product-list">
           <li><a href="#">ALL</a></li>
           <li><a href="#">NEWEST</a></li>
           <li><a href="#">TRENDING</a></li>
@@ -82,17 +83,17 @@ const OurProducts = () => {
           <li><a href="#">FEATURED</a></li>
         </ul>
       </div>
-      <div className="grid grid-cols-4 gap-10">
-          {productData.map((product, index) => (
-            <ProductCard
-              key={index}
-              product={product}
-              index={index}
-              activeProductIndex={activeProductIndex}
-              hoverColor={hoverColor}
-              onAddToCart={addToCart}
-            />
-          ))}
+      <div className="flex flex-wrap gap-10">
+        {productData.map((product, index) => (
+          <ProductCard
+            key={index}
+            product={product}
+            index={index}
+            activeProductIndex={activeProductIndex}
+            hoverColor={hoverColor}
+            onAddToCart={addToCart}
+          />
+        ))}
       </div>
     </div>
   );
