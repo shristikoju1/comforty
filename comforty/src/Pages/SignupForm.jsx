@@ -1,10 +1,17 @@
-import React from "react";
+import { useState } from 'react';
 import NextArrow from "../assets/svg/arrow-right.svg?react";
 import Arrow from "../assets/svg/arrow_short.svg?react";
+import Eye from '../assets/svg/eye.svg?react';
 
 const SignupForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <section className="flex flex-col items-center justify-center mb-20 max-w-[1200px] mx-auto ">
+    <section className="flex flex-col items-center justify-center mb-20 max-w-[1200px] mx-auto">
       <div className="w-full mb-20 rounded-b-xl bg-secondary-white">
         <div className="mx-auto max-width ">
           <div className="flex items-center mt-[50px] gap-4">
@@ -33,27 +40,30 @@ const SignupForm = () => {
             <input
               type="text"
               placeholder="Your email"
-              className="w-full h-[50px] px-3 py-2  text-gray-700 rounded bg-secondary-white font-inter"
+              className="w-full h-[50px] px-3 py-2 text-gray-700 rounded bg-secondary-white font-inter"
             />
           </div>
 
-          <div className="mb-4">
+          <div className="relative mb-4">
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="Your password"
-              className="w-full px-3 py-2  text-gray-700 rounded bg-secondary-white font-inter h-[50px]"
+              className="w-full px-3 py-2 text-gray-700 rounded bg-secondary-white font-inter h-[50px]"
+            />
+            <Eye
+              className='absolute cursor-pointer right-3 top-4'
+              onClick={togglePasswordVisibility}
             />
           </div>
 
           <div className="pt-1 pb-1 mb-12 text-center">
             <button
-              className="mb-3  w-full rounded px-6 pb-2 pt-2.5  bg-[#029FAE] flex justify-center items-center gap-3 h-[52px]"
+              className="mb-3 w-full rounded px-6 pb-2 pt-2.5 bg-[#029FAE] flex justify-center items-center gap-3 h-[52px]"
               type="button"
             >
               <span className="text-base leading-normal text-white">
                 Sign In
               </span>
-
               <NextArrow />
             </button>
 

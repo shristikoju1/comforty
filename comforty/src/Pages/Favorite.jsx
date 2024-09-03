@@ -7,9 +7,9 @@ const Favourite = () => {
   return (
     <div className="flex flex-col items-center justify-between text-center">
       
-      <div className="flex my-10">
+      <div className="flex items-center justify-center my-10">
         <h2 className="text-xl font-bold">Your Favorites</h2>
-        <Heart fill="red" />
+        <Heart fill="black" />
       </div>
       <div className="flex flex-wrap justify-center">
         {favItems.length > 0 ? (
