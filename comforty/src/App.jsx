@@ -4,6 +4,7 @@ import MainLayout from "./Layout/MainLayout";
 import HomePage from "./Pages/HomePage";
 import SignupPage from "./Pages/SignupPage";
 import Cart from './Pages/Cart/AddToCart'
+import Favourite from "./Pages/Favorite";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path='/' element={<HomePage/>}/>
           <Route path='/signup' element={<SignupPage/>}/>
           <Route path="/cart" element={<Cart />} />
+          <Route path="/fav" element={<Favourite />} />
         </Route>
       </Routes>
     </Router>

@@ -96,7 +96,7 @@ const hero = () => {
       </div>
 
       <div className="relative mx-auto max-width z-100">
-        <div className="feature-container flex items-center justify-center gap-2 space-x-5 px-3 py-[50px] border-2 border-gray-100 border-solid rounded-xl h-[150px]">
+        <div className="feature-container flex items-center justify-between max-width py-[50px] border-2 border-gray-100 border-solid rounded-xl max-h-[150px]">
           {featuresData.map((feature, index) => (
             <div key={index} className="flex items-center gap-2">
               <feature.icon className="feature-icon" />

@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Cart from '../../assets/svg/cart_featureproduct.svg?react';
 import Heart from '../../assets/svg/heart.svg?react';
-
+import { useState, useEffect } from 'react';
+import { addItemToFav, removeItemFromFav } from '../../Store/favSlice';
 const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCart }) => {
   const [isLiked, setIsLiked] = useState(false);
+  const dispatch = useDispatch();
 
   const toggleLike = () => {
     setIsLiked(!isLiked);
   };
+
+  useEffect(() => {
+    if (isLiked) {
+      dispatch(addItemToFav(product));
+    } else {
+      dispatch(removeItemFromFav(product));
+    }
+  }, [isLiked, product, dispatch]);
 
   return (
     <div key={index} className="inline-block">
@@ -18,7 +28,7 @@ const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCa
           alt={product.title}
           className="w-auto"
         />
-         <div
+        <div
           className="absolute p-2 cursor-pointer right-1 top-1"
           style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)', borderRadius: '20%' }}
           onClick={toggleLike}
@@ -40,8 +50,7 @@ const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCa
             {product.price}
           </span>
         </div>
-        <div
-          className="cursor-pointer cart-bg"
+        <div className="cursor-pointer cart-bg"
           onClick={() => onAddToCart(index)}
         >
           <Cart />

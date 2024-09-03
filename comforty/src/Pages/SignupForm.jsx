@@ -1,33 +1,30 @@
 import React from "react";
-import NextArrow from '../assets/svg/arrow-right.svg?react'
-import Arrow from '../assets/svg/arrow_short.svg?react'
+import NextArrow from "../assets/svg/arrow-right.svg?react";
+import Arrow from "../assets/svg/arrow_short.svg?react";
 
 const SignupForm = () => {
   return (
     <section className="flex flex-col items-center justify-center mb-20 max-w-[1200px] mx-auto ">
       <div className="w-full mb-20 rounded-b-xl bg-secondary-white">
         <div className="mx-auto max-width ">
-        <div className="flex items-center mt-[50px] gap-4">
-          <span className="flex items-center text-[#636270]">
-            Home    </span>
-            <Arrow className='text-black'/>
-       
-          <span className="flex items-center text-[#636270]">
-            Account
-       
-          </span>
-          <Arrow className='text-black'/>
-          <span>Sign In</span>
-        </div>
-        <h2 className="text-2xl font-semibold font-inter mt-[14px] mb-[50px]">Sign In</h2>
-        </div>
+          <div className="flex items-center mt-[50px] gap-4">
+            <span className="flex items-center text-[#636270]">Home </span>
+            <Arrow className="text-black" />
 
+            <span className="flex items-center text-[#636270]">Account</span>
+            <Arrow className="text-black" />
+            <span>Sign In</span>
+          </div>
+          <h2 className="text-2xl font-semibold font-inter mt-[14px] mb-[50px]">
+            Sign In
+          </h2>
+        </div>
       </div>
       <div className="shadow-custom w-[600px] h-[auto]">
         <div className="text-center">
           <h4 className="pb-1 mt-8 mb-6 text-3xl font-semibold font-inter text-blue">
             Sign In
-            <NextArrow/>
+            <NextArrow />
           </h4>
         </div>
 
@@ -54,21 +51,26 @@ const SignupForm = () => {
               type="button"
             >
               <span className="text-base leading-normal text-white">
-              Sign In 
+                Sign In
               </span>
-          
-              <NextArrow/>
 
+              <NextArrow />
             </button>
 
-              <div  className="flex justify-between">
-                <div className="flex flex-row gap-2">
+            <div className="flex justify-between">
+              <div className="flex flex-row gap-2">
                 <input type="checkbox" name="" id="" />
-                <span className="text-base font-light font-dmSans leading-[15.4px] text-[#636270]">Remember me</span>
-                </div>
-              <a href="#!" className="text-base font-semibold font-dmSans text-[#007580]">Forgot password?</a>
-
+                <span className="text-base font-light font-dmSans leading-[15.4px] text-[#636270]">
+                  Remember me
+                </span>
               </div>
+              <a
+                href="#!"
+                className="text-base font-semibold font-dmSans text-[#007580]"
+              >
+                Forgot password?
+              </a>
+            </div>
           </div>
 
           <div className="flex items-center justify-center pb-6">

@@ -34,7 +34,7 @@ const Navbar = () => {
     <div id="home">
       {!isScrolled && (
         <>
-          <section className="nav-one flex items-center text-white bg-blue h-[40px] py-2 mt-1 md:flex hidden">
+          <section className="nav-one flex items-center text-white bg-blue h-[40px] py-2 md:flex hidden">
             <div className="container flex justify-between items-center mx-auto max-width h-[45px]">
               <div className="flex items-center justify-start gap-[1px]">
                 <TickMark className="tick-mark text-xs text-blue-600 mr-[1px] flex-row" />
@@ -46,7 +46,7 @@ const Navbar = () => {
                     <a href="#">EN</a>
                     <RiArrowDropDownLine />
                   </button>
-                  <div className="absolute left-0 hidden mt-2 text-black bg-white border rounded shadow-lg border-blue group-hover:block">
+                  <div className="absolute left-0 hidden mt-2 text-black bg-white border rounded shadow-lg border-blue group-hover:block z-20000">
                     <ul className="py-1">
                       <li className="px-4 py-2 hover:bg-gray-100">
                         <a href="#">EN</a>
@@ -101,10 +101,13 @@ const Navbar = () => {
                       <span className="text-[12px]">{totalCartItems}</span>
                     </div>
                   </div>
-                </NavLink>
+                </NavLink >
+                <NavLink to="/fav">
                 <div className="bg-white cart-bg">
                   <Heart />
                 </div>
+                </NavLink>
+                
                 <NavLink to="/signup">
                   <div className="bg-white cart-bg">
                     <Profile />

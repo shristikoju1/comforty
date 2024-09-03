@@ -9,7 +9,10 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const getTotalCartAmount = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cartItems.reduce((total, item) => {
+      const price = parseFloat(item.price.replace('$', '')); // Convert price to a number
+      return total + price * item.quantity;
+    }, 0);
   };
 
   const handleRemoveFromCart = (index) => {
@@ -31,7 +34,7 @@ const Cart = () => {
               <th>Price</th>
               <th>Quantity</th>
               <th>Total</th>
-              <th>Reduce Count</th>
+              <th>Remove Item</th>
             </tr>
           </thead>
 
@@ -66,36 +69,7 @@ const Cart = () => {
           </tbody>
         </table>
 
-        {/* <div className='cart-items-title'>
-          <p>Item</p>
-          <p>Price</p>
-          <p>Quantity</p>
-          <p>Total</p>
-          <p>Reduce Count</p>
-        </div>
-
-        <br />
-        <hr />
-
-        {cartItems.map((item, index) => (
-          <div key={index}>
-            <div className="cart-items-title cart-items-item">
-              <p>{item.title}</p>
-              <img src={item.image} alt={item.title} />
-              <p>{item.title}</p>
-              <p>{item.price}</p>
-              <p>{item.quantity}</p>
-              <p>{item.price * item.quantity}</p>
-              <p
-                onClick={() => handleRemoveFromCart(index)}
-                className="cross"
-              >
-                x
-              </p>
-            </div>
-            <hr />
-          </div>
-        ))} */}
+      
       </div>
 
       <div className="cart-bottom">
