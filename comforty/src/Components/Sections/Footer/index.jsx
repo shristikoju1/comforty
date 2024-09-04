@@ -10,10 +10,10 @@ import "./footer.scss";
 const Footer = () => {
   return (
     <div id="about">
-      <div className="mt-[80px]">
+      <div className="mt-[80px] border-t border-b border-gray-500">
         
-        <div className="flex flex-wrap justify-between max-width px-20 py-4 border-t border-b border-gray-100 h-[345px]">
-          <div className="flex flex-col gap-[24px] max-w-[240px] px-8">
+        <div className="flex flex-wrap justify-between px-20 py-20 max-width">
+          <div className="flex flex-col gap-[24px] max-w-[240px]">
             <LogoStyle />
             <p className="text-base font-normal text-blue">
               Vivamus tristique odio sit amet velit semper, eu posuere turpis
@@ -95,7 +95,7 @@ const Footer = () => {
               />
               <button className="button">Subscribe</button>
             </form>
-            <p className="mt-4 max-w-[150px] text-[#272343]">
+            <p className="mt-4 max-w-[320px] text-[#27234394]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
               tincidunt erat enim.
             </p>
@@ -103,7 +103,7 @@ const Footer = () => {
         </div>
         
       </div>
-      <div className="flex items-center justify-between p-2 max-width">
+      <div className="flex items-center justify-between py-5 max-width">
         <p className="footer-text">@ 2021 - Blogy - Designed & Develop by <span>Zakirsoft</span></p>
         <PaymentPartner/>
       </div>

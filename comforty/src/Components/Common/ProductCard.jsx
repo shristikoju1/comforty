@@ -1,42 +1,44 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Cart from '../../assets/svg/cart_featureproduct.svg?react';
 import Heart from '../../assets/svg/heart.svg?react';
-import { useState, useEffect } from 'react';
 import { addItemToFav, removeItemFromFav } from '../../Store/favSlice';
 
-
 const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCart }) => {
-  
-  const [isLiked, setIsLiked] = useState(false);
   const dispatch = useDispatch();
 
+  // added to favourite check
+  const isFavorited = useSelector((state) =>
+    state.fav.items.some((item) => item.id === product.id)
+  );
+
+  // added to cart check
+  const isInCart = useSelector((state) =>
+    state.cart.items.some((item) => item.id === product.id)
+  );
+
   const toggleLike = () => {
-    setIsLiked(!isLiked);
+    if (isFavorited) {
+      dispatch(removeItemFromFav(product));  
+    } else {
+      dispatch(addItemToFav(product)); 
+    }
   };
 
-  useEffect(() => {
-    if (isLiked) {
-      dispatch(addItemToFav(product));
-    } else {
-      dispatch(removeItemFromFav(product));
-    }
-  }, [isLiked, product, dispatch]);
-
   return (
-    <div key={index} className="inline-block">
+    <div key={product.id} className="inline-block">
       <div className="relative">
         <img
           src={product.image}
           alt={product.title}
-          className="w-auto"
+          className="w-[230px]"
         />
         <div
           className="absolute p-2 cursor-pointer right-1 top-1"
           style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)', borderRadius: '20%' }}
           onClick={toggleLike}
         >
-          <Heart fill={isLiked ? 'black' : 'white'} />
+          <Heart fill={isFavorited ? 'black' : 'white'} />
         </div>
       </div>
       <div className="flex justify-between w-full mt-3">
@@ -44,7 +46,7 @@ const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCa
           <p
             className="font-normal text-[15px] leading-[20.8px] font-inter"
             style={{
-              color: activeProductIndex === index ? hoverColor : 'black',
+              color: isInCart ? hoverColor : 'black',
             }}
           >
             {product.title}
@@ -53,7 +55,8 @@ const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCa
             {product.price}
           </span>
         </div>
-        <div className="cursor-pointer cart-bg"
+        <div
+          className={`cursor-pointer ${isInCart ? 'bg-hover-color text-white' : 'white'} cart-bg`}
           onClick={() => onAddToCart(index)}
         >
           <Cart />

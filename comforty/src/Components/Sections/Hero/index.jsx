@@ -67,8 +67,8 @@ const hero = () => {
               {/* <div className="slider">
             <SliderLeft />
           </div> */}
-              <div className="flex flex-col mx-auto max-width md:flex-row">
-                <div className="max-w-[500px] flex flex-col justify-center items-center my-20 ">
+              <div className="flex flex-col mx-auto max-width md:flex-row md:justify-between">
+                <div className="max-w-[500px] flex flex-col justify-center my-20 md:flex-col md:items-start ">
                   <p className="font-inter font-normal text-[14px] leading-[14px] text-blue">
                     {item.welcomeText}
                   </p>
@@ -85,7 +85,7 @@ const hero = () => {
                   <img
                     src={item.image}
                     alt={`heroimg${index + 1}`}
-                    className="hero-img w-[320px]"
+                    className="hero-img w-[320px] flex justify-between items-center top-5"
                   />
                   <div className="relative">
                   <Discount/>

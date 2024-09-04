@@ -15,41 +15,49 @@ import './ourproduct.scss';
 
 const productData = [
   {
+    id: 5,
     image: Product1,
     title: 'Library Stool Chair',
     price: '$20',
   },
   {
+    id: 6,
     image: Product2,
     title: 'Library Stool Chair',
     price: '$35',
   },
   {
+    id: 7,
     image: Product3,
     title: 'Library Stool Chair',
     price: '$45',
   },
   {
+    id: 8,
     image: Product4,
     title: 'Library Stool Chair',
     price: '$55',
   },
   {
+    id: 9,
     image: Product5,
     title: 'Library Stool Chair',
     price: '$20',
   },
   {
+    id: 10,
     image: Product6,
     title: 'Library Stool Chair',
     price: '$35',
   },
   {
+    id: 11,
     image: Product7,
     title: 'Library Stool Chair',
     price: '$45',
   },
   {
+    id: 12,
     image: Product8,
     title: 'Library Stool Chair',
     price: '$55',
@@ -83,7 +91,7 @@ const OurProducts = () => {
           <li><a href="#">FEATURED</a></li>
         </ul>
       </div>
-      <div className="flex flex-wrap gap-10">
+      <div className="flex flex-wrap justify-center gap-6">
         {productData.map((product, index) => (
           <ProductCard
             key={index}
