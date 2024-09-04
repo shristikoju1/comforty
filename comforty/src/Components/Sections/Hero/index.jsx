@@ -106,8 +106,8 @@ const hero = () => {
         </Carousel>
       </div>
 
-      <div className="relative mx-auto z-100 max-width">
-        <div className="feature-container flex items-center justify-between max-width py-[50px] border-2 border-gray-100 border-solid rounded-xl flex-wrap gap-5">
+      <div className="relative mx-10 md:mx-[100px] z-100">
+        <div className="feature-container flex items-center w-full justify-between py-[50px] px-10 border-2 border-gray-100 border-solid rounded-xl flex-wrap gap-5">
           {featuresData.map((feature, index) => (
             <div key={index} className="flex items-center gap-2">
               <feature.icon className="feature-icon" />

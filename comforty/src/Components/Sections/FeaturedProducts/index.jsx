@@ -5,7 +5,6 @@ import FeaturedProduct3 from "../../../assets/images/feature_product3.png";
 import FeaturedProduct4 from "../../../assets/images/feature_product4.png";
 import SectionHeader from "../../Common/SectionHeader";
 import ProductCard from "../../Common/ProductCard";
-import CarouselLogic from "../../Common/CarouselLogic";
 
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../../../Store/cartSlice'; 

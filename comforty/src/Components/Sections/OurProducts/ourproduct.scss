@@ -11,3 +11,20 @@
         }
     }
 }
+
+
+.responsive {
+    @media screen and (min-width: 1154px) {
+        margin-top: 100px;
+    }
+
+    @media screen and (min-width: 622px) {
+        margin-top: 150px;
+    }
+
+    @media screen and (min-width: 573px) {
+        margin-top: 200px;
+    }
+
+    margin-top: 250px;
+}
