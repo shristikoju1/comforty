@@ -1,0 +1,9 @@
+.featuredProducts{
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(14rem, 100%), 1fr)
+ 
+    );
+    gap: 24px;
+  }

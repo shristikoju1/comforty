@@ -20,7 +20,7 @@ const Favourite = () => {
       
       <div className="flex items-center justify-center my-10">
         <h2 className="mr-4 text-4xl font-bold">Your Favorites</h2>
-        <Heart fill="red" className='h-[55px] w-[55px]'/>
+        <Heart fill="red" className='h-[55px] w-[55px] text-red-600'/>
       </div>
       <div className="flex flex-wrap justify-center">
         {favItems.length > 0 ? (

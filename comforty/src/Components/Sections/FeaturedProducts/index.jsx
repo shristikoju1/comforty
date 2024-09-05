@@ -5,6 +5,7 @@ import FeaturedProduct3 from "../../../assets/images/feature_product3.png";
 import FeaturedProduct4 from "../../../assets/images/feature_product4.png";
 import SectionHeader from "../../Common/SectionHeader";
 import ProductCard from "../../Common/ProductCard";
+import './featuredProducts.scss'
 
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../../../Store/cartSlice'; 
@@ -81,7 +82,7 @@ const FeaturedProducts = () => {
           backward={handleBackward}
           forward={handleForward}
         />
-        <div className="flex flex-wrap gap-6 mt-4 overflow-hidden">
+        <div className="featuredProducts">
           {getDisplayedProducts().map((product, index) => (
             <ProductCard
               key={product.id}

@@ -12,7 +12,7 @@ const Footer = () => {
     <div id="about">
       <div className="mt-[80px] border-t border-b border-gray-500">
         
-        <div className="flex flex-wrap justify-between px-20 py-20 max-width">
+        <div className="flex flex-wrap justify-between gap-12 px-20 py-20 md:gap-5 max-width">
           <div className="flex flex-col gap-[24px] max-w-[240px]">
             <LogoStyle />
             <p className="text-base font-normal text-blue">

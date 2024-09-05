@@ -5,6 +5,7 @@ import FeaturedProduct3 from "../../../assets/images/feature_product3.png";
 import FeaturedProduct4 from "../../../assets/images/feature_product4.png";
 import SectionHeader from "../../Common/SectionHeader";
 import ProductCard from "../../Common/ProductCard";
+import './recent.scss';
 
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../../Store/cartSlice";
@@ -45,7 +46,7 @@ const RecentlyAdded = () => {
   const addToCart = (index) => {
     setActiveProductIndex(index);
     const product = productData[index];
-    console.log("Adding to cart:", product); // Debugging line
+    console.log("Adding to cart:", product); 
     dispatch(addItemToCart(product));
   };
 
@@ -53,7 +54,7 @@ const RecentlyAdded = () => {
     <div>
       <div className="max-width mb-[100px]">
         <SectionHeader title="Recently Added" />
-        <div className="flex flex-wrap mt-4 space-x-6">
+        <div className="recent">
           {productData.map((product, index) => (
             <ProductCard
               key={product.id}

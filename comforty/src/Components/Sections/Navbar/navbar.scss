@@ -1,25 +1,62 @@
+nav {
+  .menu-container {
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+
+    &.menu-open {
+      transform: translateX(0);
+    }
+
+    .li-style {
+      margin-bottom: 20px;
+    }
+  }
+
+  .container{
+    @media (max-width:910px){
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .menu-container {
+      position: static;
+      height: auto;
+      width: auto;
+      flex-direction: row;
+      transform: translateX(0);
+    }
+  }
+}
+
 .li-style {
-    color: #636270;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 15.4px;
-  
-    &:hover {
-      color: #029FAE; // Replace this with the actual hover color value
-    }
-  }
+  position: relative; 
+}
 
-  nav {
-    &.fixed {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 50;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-  }
+.li-style a::after {
+  content: ""; 
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0; 
+  height: 2px; 
+  background-color: #00bcd4; 
+  transition: width 0.3s ease; 
+}
 
-  
-  
+.li-style a:hover::after {
+  width: 50%; 
+}
+

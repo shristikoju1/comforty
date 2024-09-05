@@ -91,7 +91,7 @@ const OurProducts = () => {
           <li><a href="#">FEATURED</a></li>
         </ul>
       </div>
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="ourProducts">
         {productData.map((product, index) => (
           <ProductCard
             key={index}

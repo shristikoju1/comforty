@@ -27,9 +27,9 @@ const TopCategories = () => {
   return (
     <div className="mt-14 max-width">
       <SectionHeader title='Top Categories'/>
-      <div className="flex flex-wrap justify-evenly">
+      <div className="categories">
         {topCategoriesData.map((category, index) => (
-          <div key={index} className="flex flex-wrap parent">
+          <div key={index} className="parent">
             <img src={category.image} alt={category.title} className="child-first"/>
             <div className="child-second">
               <h4 className="font-inter font-semibold text-[16px] leading-[22px]">{category.title}</h4>

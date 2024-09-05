@@ -26,12 +26,12 @@ const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCa
   };
 
   return (
-    <div key={product.id} className="inline-block">
+    <div key={product.id} className="">
       <div className="relative">
         <img
           src={product.image}
           alt={product.title}
-          className="w-[230px]"
+          width='100%'
         />
         <div
           className="absolute p-2 cursor-pointer right-1 top-1"

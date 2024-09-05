@@ -1,17 +1,16 @@
-
-
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import cartReducer from './cartSlice';
 import favReducer from './favSlice';
 
+// Redux Persist config
 const persistConfig = {
   key: 'root',
   storage,
 };
 
-// used combine reducer because redux persist expected an reducer and i need a single reducer
+// Combine reducers because redux-persist expects a single reducer
 const rootReducer = combineReducers({
   cart: cartReducer,
   fav: favReducer,
@@ -19,10 +18,19 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+// Create the store with middleware to ignore non-serializable values
 const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        // Ignore non-serializable actions for redux-persist
+        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
+      },
+    }),
 });
 
+// Create the persistor
 const persistor = persistStore(store);
 
 export { store, persistor };

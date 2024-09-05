@@ -9,7 +9,7 @@ export default function Carousel({ children: heroData }) {
     const next = () => setCurr((curr) => (curr === heroData.length - 1 ? 0 : curr + 1));
 
     return (
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden pb-[50px]">
             <div
                 className="relative z-10 flex transition-transform duration-500 ease-out "
                 style={{ transform: `translateX(-${curr * 100}%)` }}
@@ -32,7 +32,7 @@ export default function Carousel({ children: heroData }) {
                 </button>
             </div>
 
-            <div className="left-0 right-0 bg-green-500  bottom-4 z-200">
+            <div className="left-0 right-0 bg-green-500 bottom-4 z-200">
                 <div className="flex items-center justify-center gap-2">
                     {heroData.map((_, i) => (
                         <div
