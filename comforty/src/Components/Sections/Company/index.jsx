@@ -10,7 +10,7 @@ const companyLogos = [Logo1, Logo2, Logo3, Logo4, Logo5, Logo6, Logo7];
 
 const Company = () => {
   return (
-    <div className="grid-layout mx-auto max-width mt-6">
+    <div className="mx-auto mt-6 grid-layout max-width">
       {companyLogos.map((logo, index) => (
         <div key={index}>
           <img src={logo} alt={`Company Logo ${index + 1}`} className="w-auto" />
