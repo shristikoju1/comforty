@@ -1,17 +1,16 @@
-import React from 'react';
-import Logo1 from '../../../assets/company_logo/logo1.png';
-import Logo2 from '../../../assets/company_logo/logo2.png';
-import Logo3 from '../../../assets/company_logo/logo3.png';
-import Logo4 from '../../../assets/company_logo/logo4.png';
-import Logo5 from '../../../assets/company_logo/logo5.png';
-import Logo6 from '../../../assets/company_logo/logo6.png';
-import Logo7 from '../../../assets/company_logo/logo7.png';
+import Logo1 from '../../../assets/company_logo/logo1.svg';
+import Logo2 from '../../../assets/company_logo/logo2.svg';
+import Logo3 from '../../../assets/company_logo/logo3.svg';
+import Logo4 from '../../../assets/company_logo/logo4.svg';
+import Logo5 from '../../../assets/company_logo/logo5.svg';
+import Logo6 from '../../../assets/company_logo/logo6.svg';
+import Logo7 from '../../../assets/company_logo/logo7.svg';
 
 const companyLogos = [Logo1, Logo2, Logo3, Logo4, Logo5, Logo6, Logo7];
 
 const Company = () => {
   return (
-    <div className="flex items-center justify-between mx-auto max-width flex-wrap responsive">
+    <div className="grid-layout mx-auto max-width mt-6">
       {companyLogos.map((logo, index) => (
         <div key={index}>
           <img src={logo} alt={`Company Logo ${index + 1}`} className="w-auto" />

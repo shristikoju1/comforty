@@ -32,7 +32,7 @@ export default function Carousel({ children: heroData }) {
                 </button>
             </div>
 
-            <div className="left-0 right-0 bg-green-500 bottom-4 z-200">
+            <div className="bg-green-500 bottom-4 z-200">
                 <div className="flex items-center justify-center gap-2">
                     {heroData.map((_, i) => (
                         <div

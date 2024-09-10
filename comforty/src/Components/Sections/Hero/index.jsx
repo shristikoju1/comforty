@@ -11,6 +11,7 @@ import Circle from "../../../assets/svg/circle.svg?react";
 import "./hero.scss";
 import "./feature.scss";
 import Carousel from "./Carousel";
+import Swiper from "../../carousel";
 
 const heroData = [
   {
@@ -55,75 +56,82 @@ const featuresData = [
 
 const hero = () => {
   return (
-    <div className="pb-20 hero-wrapper bg-secondary-white max-w-[1200px] mx-auto h-[100vh]">
-      <div className="pb-10 hero-container">
-        <Carousel className="pb-30 ">
-          {heroData.map((item, index) => (
-            <div
-              key={index}
-              className="w-full gap-3 hero shrink-0 bg-secondary-white "
-            >
-              <div className="flex flex-col mx-auto max-width md:flex-row md:justify-between mb-[40px]">
-                <div className="max-w-[500px] flex flex-col justify-center my-20 md:flex-col md:items-start mb-[25px]">
-                  <p className="font-inter font-normal text-[14px] leading-[14px] text-blue">
-                    {item.welcomeText}
-                  </p>
-                  <h1 className="clamp-font-size font-inter mt-[8px] mb-[24px]">
-                    {item.title}
-                  </h1>
-                  <div>
-                    <button className="gap-[20px] button">
-                      Show Now
-                      <RightArrow />
-                    </button>
+    <>
+      <div className='mx-5'>
+        <div className='max-w-[1300px] mx-auto md:h-[700px]'>
+          <Swiper />
+        </div>
+      </div>
+      {/* <div className='pb-24 hero-wrapper bg-secondary-white max-w-[1300px] mx-auto rounded-b-[48px]'>
+        <div className='hero-container'>
+          <Carousel className='pb-30'>
+            {heroData.map((item, index) => (
+              <div
+                key={index}
+                className='w-full gap-3 hero shrink-0 bg-secondary-white '
+              >
+                <div className='flex flex-col mx-auto max-width md:flex-row md:justify-between mb-[100px]'>
+                  <div className='max-w-[500px] flex flex-col justify-center my-20 md:flex-col md:items-start mb-[25px]'>
+                    <p className='font-inter font-normal text-[14px] leading-[14px] text-blue'>
+                      {item.welcomeText}
+                    </p>
+                    <h1 className='clamp-font-size font-inter mt-[8px] mb-[24px]'>
+                      {item.title}
+                    </h1>
+                    <div>
+                      <button className='gap-[20px] button'>
+                        Show Now
+                        <RightArrow />
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="relative clamp-dimensions">
-                  <div className="w-full h-full">
-                    <Circle className="md:h-full md:w-full " />
-                  </div>
-                  <div className="absolute right-[92px] top-[80px]">
-                    <img
-                      src={item.image}
-                      alt={`heroimg${index + 1}`}
-                      className=" w-[320px]"
-                      // width={475}
-                    />
-                  </div>
-                  <div className="absolute right-16 top-12">
-                    <div className="relative">
-                      <Discount className="discount md:w-[120px] w-[80px]" />
-                      <div className="absolute flex flex-col top-8 left-8">
-                        <h2 className="percent font-bold font-inter md:text-[32px] text-[25px] leading-[40px] text-center text-[#F05C52]">
-                          54%
-                        </h2>
-                        <span className="text font-semibold font-inter text-[13px] leading-[15.4px] text-center text-[#272343]">
-                          Discount
-                        </span>
+                  <div className='relative clamp-dimensions'>
+                    <div className='w-full h-full'>
+                      <Circle className='md:h-full md:w-full ' />
+                    </div>
+                    <div className='absolute right-[92px] top-[80px]'>
+                      <img
+                        src={item.image}
+                        alt={`heroimg${index + 1}`}
+                        className=' w-[320px]'
+                        // width={475}
+                      />
+                    </div>
+                    <div className='absolute right-16 top-12'>
+                      <div className='relative'>
+                        <Discount className='discount md:w-[120px] w-[80px]' />
+                        <div className='absolute flex flex-col top-8 left-8'>
+                          <h2 className='percent font-bold font-inter md:text-[32px] text-[25px] leading-[40px] text-center text-[#F05C52]'>
+                            54%
+                          </h2>
+                          <span className='text font-semibold font-inter text-[13px] leading-[15.4px] text-center text-[#272343]'>
+                            Discount
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </Carousel>
-      </div>
+            ))}
+          </Carousel>
+        </div>
+      </div> */}
 
-      <div className="relative mx-10 md:mx-[100px] z-100">
-        <div className="feature-container flex items-center w-full justify-between py-[50px] px-10 border-2 border-gray-100 border-solid rounded-xl flex-wrap gap-5">
+      <div className='relative max-w-[1300px] mx-auto px-[100px] z-100 -mt-20 z-10'>
+        <div className='feature-container flex items-center justify-between w-full py-[50px] px-10 border-2 border-gray-100 border-solid rounded-xl flex-wrap gap-5'>
           {featuresData.map((feature, index) => (
-            <div key={index} className="flex items-center gap-2">
-              <feature.icon className="feature-icon" />
+            <div key={index} className='flex items-center gap-2'>
+              <feature.icon className='feature-icon' />
               <div>
-                <h4 className="text-base font-medium">{feature.title}</h4>
-                <p className="text-xs gray-600 ">{feature.description}</p>
+                <h4 className='text-base font-medium'>{feature.title}</h4>
+                <p className='text-xs gray-600 '>{feature.description}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

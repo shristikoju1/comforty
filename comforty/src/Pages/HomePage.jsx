@@ -9,7 +9,7 @@ import RecentlyAdded from '../Components/Sections/RecentlyAdded'
 
 const HomePage = () => {
   return (
-    <div>
+    <>
         <Hero/>
         <Company/>
         <FeaturedProducts/>
@@ -17,7 +17,7 @@ const HomePage = () => {
         <OurProducts/>
         <Testimonials/>
         <RecentlyAdded/>
-    </div>
+    </>
   )
 }
 
