@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./navbar.scss";
 import { CiCircleAlert, CiSearch } from "react-icons/ci";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -10,23 +10,18 @@ import Menu from "../../../assets/svg/menu.svg?react";
 import LogoStyle from "../../Common/LogoStyle";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FaBars, FaTimes } from "react-icons/fa";
 import { IonIcon } from "@ionic/react";
 import { menuOutline, closeOutline } from "ionicons/icons";
+import { Link } from "react-scroll";
 
-const Navbar = ({container}) => {
+const Navbar = ({ container }) => {
 
-  // const container = true;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    // setIsMenuOpen((prev) => !prev);
+    setIsMenuOpen((prev) => !prev);
   };
 
-  // const closeMenu = () => {
-  //   setIsMenuOpen(false);
-  // };
 
   const cartItems = useSelector((state) => state?.cart?.items);
   const totalCartItems = cartItems?.length;
@@ -34,9 +29,9 @@ const Navbar = ({container}) => {
   return (
     <div id="home" className="scroll-smooth">
       {/* Top Bar */}
-      <section className="nav-one items-center text-white bg-blue h-[40px] py-2 md:flex hidden">
-      <div className={`${container ? 'container' : ''} flex justify-between items-center mx-auto max-width h-[45px]`}>
- 
+      <section className="nav-one items-center text-white bg-blue h-[40px] py-2 lg:flex hidden">
+        <div className={`${container ? 'container' : ''} flex justify-between items-center mx-auto max-width h-[45px]`}>
+
           <div className="flex items-center gap-1">
             <TickMark className="flex-row mr-1 text-xs text-blue-600 tick-mark" />
             <p>Free shipping on all orders over $50</p>
@@ -70,7 +65,7 @@ const Navbar = ({container}) => {
       <section className="bg-secondary-white">
         <div className="flex items-center justify-between max-width py-2 h-[68px] mx-auto">
           <LogoStyle />
-          <div className="relative hidden sm:block w-[300px]">
+          <div className="relative hidden lg:block w-[300px]">
             <input
               type="text"
               placeholder="Search here..."
@@ -80,7 +75,7 @@ const Navbar = ({container}) => {
           </div>
           <div className="flex gap-4">
             <NavLink to="/cart">
-              <div className="flex items-center gap-2 p-2 bg-white rounded-lg">
+              <div className="flex items-center gap-2 p-2 bg-white rounded-lg cart-bg">
                 <Cart />
                 <p>Cart</p>
                 <div className="flex items-center justify-center w-5 h-5 text-xs text-white rounded-full bg-green">
@@ -89,12 +84,12 @@ const Navbar = ({container}) => {
               </div>
             </NavLink>
             <NavLink to="/fav">
-              <div className="p-2 bg-white rounded-lg">
+              <div className="p-2 bg-white rounded-lg cart-bg">
                 <Heart />
               </div>
             </NavLink>
             <NavLink to="/signup">
-              <div className="p-2 bg-white rounded-lg">
+              <div className="p-2 bg-white rounded-lg cart-bg">
                 <Profile />
               </div>
             </NavLink>
@@ -103,7 +98,7 @@ const Navbar = ({container}) => {
       </section>
 
       {/* Second Navbar with Scroll Effect */}
-      <nav className="p-5 transition-all duration-300 bg-white shadow md:flex md:items-center md:justify-between max-width">
+      <nav className="p-5 transition-all duration-300 bg-white shadow lg:flex lg:items-center lg:justify-between max-width">
         <div className="flex items-center justify-between">
           <span className="text-xl cursor-pointer">
             <button className="flex items-center gap-2 px-6 py-3 border-2 border-gray-300 rounded-lg">
@@ -112,80 +107,82 @@ const Navbar = ({container}) => {
             </button>
           </span>
 
-          <span
-            className="block mx-2 text-xl cursor-pointer md:hidden"
+          <button
+            className="block mx-2 text-xl cursor-pointer lg:hidden"
             onClick={toggleMenu}
           >
             <IonIcon icon={isMenuOpen ? closeOutline : menuOutline} className="w-[40px] h-[40px]" />
-          </span>
+          </button>
         </div>
 
         {/* Sidebar */}
         <div
-          className={`${
-            isMenuOpen ? "block" : "hidden"
-          } md:hidden sidebar absolute z-50 top-[178px] left-0 w-full bg-white shadow-md`}
+          className={`${isMenuOpen ? "block" : "hidden"
+            } lg:hidden sidebar absolute z-50 top-[178px] left-0 w-full bg-white shadow-md`}
         >
           <ul className="p-5">
-            <li className="mx-4 my-6 md:my-0 li-style">
-              <a href="#" className="text-lg duration-500 hover:text-cyan-500 md:hidden">
+            <li className="mx-4 my-6 lg:my-0 li-style">
+              <Link to="home" spy={true} smooth={true} offset={-70} duration={500} className="text-lg duration-500 hover:text-cyan-500">
                 Home
-              </a>
+              </Link>
             </li>
-            <li className="mx-4 my-6 md:my-0 li-style">
-              <a href="#" className="text-lg duration-500 hover:text-cyan-500">
+            <li className="mx-4 my-6 lg:my-0 li-style">
+              <Link to="shop" spy={true} smooth={true} offset={-70} duration={500} className="text-lg duration-500 hover:text-cyan-500">
                 Shop
-              </a>
+              </Link>
             </li>
-            <li className="mx-4 my-6 md:my-0 li-style">
-              <a href="#" className="text-lg duration-500 hover:text-cyan-500">
+            <li className="mx-4 my-6 lg:my-0 li-style">
+              <Link to="product" spy={true} smooth={true} offset={-70} duration={500} className="text-lg duration-500 hover:text-cyan-500">
                 Product
-              </a>
+              </Link>
             </li>
-            <li className="mx-4 my-6 md:my-0 li-style">
-              <a href="#" className="text-lg duration-500 hover:text-cyan-500">
+            <li className="mx-4 my-6 lg:my-0 li-style">
+              <Link to="pages" spy={true} smooth={true} offset={40} duration={500} className="text-lg duration-500 hover:text-cyan-500">
                 Pages
-              </a>
+              </Link>
             </li>
-            <li className="mx-4 my-6 md:my-0 li-style">
-              <a href="#" className="text-lg duration-500 hover:text-cyan-500">
+            <li className="mx-4 my-6 lg:my-0 li-style">
+              <Link to="about" spy={true} smooth={true} offset={-70} duration={500} className="text-lg duration-500 hover:text-cyan-500">
                 About
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
 
+
+
         {/* Desktop Menu */}
-        <ul className='hidden md:flex md:items-center md:opacity-100'>
-  <li className="mx-4 my-6 md:my-0 li-style">
-    <a href="#" className="text-lg duration-500 hover:text-cyan-500">
-      Home
-    </a>
-  </li>
-  <li className="mx-4 my-6 md:my-0 li-style">
-    <a href="#" className="text-lg duration-500 hover:text-cyan-500">
-      Shop
-    </a>
-  </li>
-  <li className="mx-4 my-6 md:my-0 li-style">
-    <a href="#" className="text-lg duration-500 hover:text-cyan-500">
-      Product
-    </a>
-  </li>
-  <li className="mx-4 my-6 md:my-0 li-style">
-    <a href="#" className="text-lg duration-500 hover:text-cyan-500">
-      Pages
-    </a>
-  </li>
-  <li className="mx-4 my-6 md:my-0 li-style">
-    <a href="#" className="text-lg duration-500 hover:text-cyan-500">
-      About
-    </a>
-  </li>
-</ul>
+        <ul className='hidden lg:flex lg:items-center lg:opacity-100'>
+          <li className="mx-4 my-6 lg:my-0 li-style">
+            <Link to="home" spy={true} smooth={true} offset={-70} duration={500} className="text-lg duration-500 hover:text-cyan-500">
+              Home
+            </Link>
+          </li>
+          <li className="mx-4 my-6 lg:my-0 li-style">
+            <Link to="shop" spy={true} smooth={true} offset={-70} duration={500} className="text-lg duration-500 hover:text-cyan-500">
+              Shop
+            </Link>
+          </li>
+          <li className="mx-4 my-6 lg:my-0 li-style">
+            <Link to="product" spy={true} smooth={true} offset={-70} duration={500} className="text-lg duration-500 hover:text-cyan-500">
+              Product
+            </Link>
+          </li>
+          <li className="mx-4 my-6 lg:my-0 li-style">
+            <Link to="pages" spy={true} smooth={true} offset={40} duration={500} className="text-lg duration-500 hover:text-cyan-500">
+              Pages
+            </Link>
+          </li>
+          <li className="mx-4 my-6 lg:my-0 li-style">
+            <Link to="about" spy={true} smooth={true} offset={-70} duration={500} className="text-lg duration-500 hover:text-cyan-500">
+              About
+            </Link>
+          </li>
+        </ul>
 
 
-        <div className="mt-4 md:mt-0" container>
+
+        <div className="mt-4 lg:mt-0">
           <p className="text-lg li-style">
             Contact:{" "}
             <span className="font-semibold ext-lg font-inter text-blue">

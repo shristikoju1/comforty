@@ -1,10 +1,10 @@
-import LogoStyle from "../../Common/LogoStyle";
 import Facebook from "../../../assets/svg/facebook.svg?react";
 import Twitter from "../../../assets/svg/twitter.svg?react";
 import Instagram from "../../../assets/svg/instagram.svg?react";
 import Pinterest from "../../../assets/svg/pinterest.svg?react";
 import Youtube from "../../../assets/svg/youtube.svg?react";
 import PaymentPartner from "../../../assets/svg/payment_partner.svg?react";
+import Logo from "../../../assets/svg/logo.svg?react";
 import "./footer.scss";
 
 const Footer = () => {
@@ -14,7 +14,12 @@ const Footer = () => {
         
         <div className="flex flex-wrap justify-between gap-12 px-20 py-20 md:gap-5 max-width">
           <div className="flex flex-col gap-[24px] max-w-[240px]">
-            <LogoStyle />
+          <div className="flex items-center gap-[6px]">
+        <Logo />
+        <p className="font-inter font-medium text-[26px] leading-[31.2px]">
+          Comforty
+        </p>
+    </div>
             <p className="text-base font-normal text-blue">
               Vivamus tristique odio sit amet velit semper, eu posuere turpis
               interdum. Cras egestas purus{" "}
@@ -103,7 +108,7 @@ const Footer = () => {
         </div>
         
       </div>
-      <div className="flex items-center justify-between py-5 max-width">
+      <div className="flex items-center justify-between gap-10 py-5 max-width">
         <p className="footer-text">@ 2021 - Blogy - Designed & Develop by <span>Zakirsoft</span></p>
         <PaymentPartner/>
       </div>

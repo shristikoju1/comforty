@@ -1,28 +1,45 @@
 import SectionHeader from "../../Common/SectionHeader";
 import Client1 from '../../../assets/images/client1.png';
 import Client2 from '../../../assets/images/client2.png';
-import DoubleQuotes from '../../../assets/svg/double_quotes.svg?react';
+import DoubleQuotes from '../../../assets/svg/double_quotes.svg';
+import { useState } from "react";
 
-const testimonialsData = [
-  {
-    description: "“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet mi nec massa tincidunt blandit et eu sem. Maecenas laoreet ultrices diam dignissim posuere. Aenean ultrices dui at ipsum sagittis, pharetra lacinia dui faucibus. In ac bibendum ex. Aenean dolor massa, euismod sit amet suscipit et“",
-    clientImage: Client1,
-    clientName: "Kristin Watson",
-    clientTitle: "Fashion Designer",
-  },
-  {
-    description: "Nullam sapien elit, dignissim eu viverra et, scelerisque et felis. Aliquam egestas dui elit, quis tincidunt lacus aliquam et. Duis nulla velit, dignissim ut odio ac, eleifend luctus leo. Ut ac imperdiet velit. Aliquam semper ex in volutpat rutrum.",
-    clientImage: Client2,
-    clientName: "Esther Howard",
-    clientTitle: "Fashion Designer",
-  },
-];
+
 
 const Testimonials = () => {
+
+  const [testimonialsData, setTestimonialsData] = useState([
+    {
+      description: "“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet mi nec massa tincidunt blandit et eu sem. Maecenas laoreet ultrices diam dignissim posuere. Aenean ultrices dui at ipsum sagittis, pharetra lacinia dui faucibus. In ac bibendum ex. Aenean dolor massa, euismod sit amet suscipit et“",
+      clientImage: Client1,
+      clientName: "Kristin Watson",
+      clientTitle: "Fashion Designer",
+    },
+    {
+      description: "Nullam sapien elit, dignissim eu viverra et, scelerisque et felis. Aliquam egestas dui elit, quis tincidunt lacus aliquam et. Duis nulla velit, dignissim ut odio ac, eleifend luctus leo. Ut ac imperdiet velit. Aliquam semper ex in volutpat rutrum.",
+      clientImage: Client2,
+      clientName: "Esther Howard",
+      clientTitle: "Fashion Designer",
+    },
+  ]);
+
+  const handleBackward = () => {
+    const testimonials = testimonialsData.slice(1).concat(testimonialsData[0]);
+    setTestimonialsData(testimonials);
+  };
+
+  const handleForward = () => {
+    const testimonials =testimonialsData.slice(-1).concat(testimonialsData.slice(0, -1));
+    setTestimonialsData(testimonials);
+  };
+
   return (
     <div className="py-10 mt-20 bg-secondary-white" id="pages">
       <div className="max-width">
-        <SectionHeader title="What client says about us"/>
+        <SectionHeader title="What client says about us"
+        backward={handleBackward}
+        forward={handleForward}
+        />
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {testimonialsData.map((testimonial, index) => (
@@ -43,7 +60,7 @@ const Testimonials = () => {
                   </div>
                 </div>
                 <div className="ml-auto">
-                  <DoubleQuotes />
+                  <img src={DoubleQuotes} alt="double-quotes" />
                 </div>
               </div>
             </div>

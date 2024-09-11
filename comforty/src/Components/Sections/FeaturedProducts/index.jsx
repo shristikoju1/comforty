@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import FeaturedProduct1 from "../../../assets/images/feature_product1.png";
 import FeaturedProduct2 from "../../../assets/images/feature_product2.png";
 import FeaturedProduct3 from "../../../assets/images/feature_product3.png";
@@ -9,6 +8,7 @@ import './featuredProducts.scss'
 
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../../../Store/cartSlice'; 
+import { useState } from "react";
 
 
 const productData = [
@@ -50,7 +50,7 @@ const FeaturedProducts = () => {
   const addToCart = (index) => {
     setActiveProductIndex(index);
     const product = productData[index];
-    console.log('Adding to cart:', product); // Debugging line
+    console.log('Adding to cart:', product); 
     dispatch(addItemToCart(product));
   };
 

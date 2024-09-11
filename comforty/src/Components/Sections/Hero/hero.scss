@@ -86,13 +86,12 @@
     top: 130px;
   
     &[alt='heroimg1'] {
-      right: 80px;
-      // width: 350px;
-      width: clamp(300px, 30vw, 350px);
+      // right: 80px;
+      width: clamp(250px, 30vw, 300px);
     }
   
     &[alt='heroimg2'], &[alt='heroimg3'] {
-      right: 20px;
+      // right: 20px;
       // width: 470px;
       width: clamp(300px, 30vw, 470px);
     }

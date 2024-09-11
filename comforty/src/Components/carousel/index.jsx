@@ -15,6 +15,8 @@ import RightArrow from "../../assets/svg/arrow-right.svg?react";
 import Discount from "../../assets/svg/discount.svg?react";
 import Circle from "../../assets/svg/circle.svg?react";
 
+import './carousel.css';
+
 export default function Carousel() {
   const heroData = [
     {
@@ -35,7 +37,7 @@ export default function Carousel() {
   ];
 
   return (
-    <>
+    <div>
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -49,12 +51,12 @@ export default function Carousel() {
       >
         {heroData.map((item, index) => (
           <SwiperSlide key={index} className='bg-secondary-white'>
-            <div className='flex flex-col mx-auto max-width md:flex-row md:justify-between mb-[100px]'>
-              <div className='flex flex-col justify-center mt-20 md:flex-col md:items-start mb-[25px]'>
-                <p className='font-inter font-normal text-[14px] leading-[14px] text-blue'>
+            <div className='flex flex-col mx-auto max-width md:flex-row md:justify-between mb-[50px] md:mb-[100px]'>
+              <div className='flex flex-col justify-center mt-20 md:flex-col md:items-start mb-[25px] items-center'>
+                <p className='font-inter font-normal text-[14px] leading-[14px] text-blue flex md:items-start items-center text-center'>
                   {item.welcomeText}
                 </p>
-                <h1 className='clamp-font-size leading-10 md:leading-[50px] lg:leading-[60px] xl:leading-[65px] mt-[8px] mb-[24px] text-start text-[#272343]'>
+                <h1 className='clamp-font-size leading-10 md:leading-[50px] lg:leading-[60px] xl:leading-[65px] mt-[8px] mb-[24px] text-[#272343] lg:items-start items-center text-center md:text-left'>
                   {item.title}
                 </h1>
                 <div>
@@ -64,10 +66,14 @@ export default function Carousel() {
                   </button>
                 </div>
               </div>
-              <div className='relative -mt-10'>
-                <Circle className='hero-circle mx-auto' />
-                <img src={item.image} alt={`heroimg${index + 1}`} />
-                <div className='absolute right-10 top-24'>
+              <div className='relative md:-mt-10'>
+                <div className="flex items-center justify-center">
+                <Circle className='mx-auto hero-circle' />
+                <img src={item.image} alt={`heroimg${index + 1}`} 
+            />
+                </div>
+               
+                <div className='absolute md:right-10 top-24 sm:right-20 right-20'>
                   <div className='relative'>
                     <Discount className='discount md:w-[120px] w-[110px]' />
                     <div className='absolute flex flex-col top-8 left-8'>
@@ -85,6 +91,6 @@ export default function Carousel() {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 }

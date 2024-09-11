@@ -10,6 +10,7 @@ import './recent.scss';
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../../Store/cartSlice";
 
+
 const productData = [
   {
     id: 13,
@@ -40,6 +41,10 @@ const productData = [
 const hoverColor = "#007580";
 
 const RecentlyAdded = () => {
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const productsPerPage = 4;
+
   const dispatch = useDispatch();
   const [activeProductIndex, setActiveProductIndex] = useState(null);
 
@@ -50,12 +55,35 @@ const RecentlyAdded = () => {
     dispatch(addItemToCart(product));
   };
 
+  const handleForward = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? productData.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleBackward = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % productData.length);
+  };
+
+  const getDisplayedProducts = () => {
+    const displayedProducts = [];
+    for (let i = 0; i < productsPerPage; i++) {
+      const productIndex = (currentIndex + i) % productData.length;
+      displayedProducts.push(productData[productIndex]);
+    }
+    return displayedProducts;
+  };
+
   return (
     <div>
       <div className="max-width mb-[100px]">
-        <SectionHeader title="Recently Added" />
+        <SectionHeader title="Recently Added"
+         showSliders={true}
+         backward={handleBackward}
+         forward={handleForward}
+        />
         <div className="recent">
-          {productData.map((product, index) => (
+          {getDisplayedProducts().map((product, index) => (
             <ProductCard
               key={product.id}
               product={product}

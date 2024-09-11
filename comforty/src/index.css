@@ -22,18 +22,18 @@
 }
 
 .cart-bg {
-  @apply h-[44px] rounded-lg px-[16px] py-[11px] hover:bg-hover-color hover:text-white;
+  @apply h-[44px] rounded-lg px-[16px] py-[11px] hover:bg-hover-color hover:text-white transition-all duration-300 ease-in-out ;
 }
 
 .li-style {
-  @apply text-[#636270] font-inter font-medium text-[16px] leading-[15.4px] hover:text-hover-color;
+  @apply text-[#636270] font-inter font-medium text-[16px] leading-[15.4px] hover:text-hover-color transition-all duration-300 ease-in-out;
 }
 .slider {
-  @apply h-[50px] w-[50px] rounded-full flex flex-row text-black hover:bg-hover-color hover:text-white;
+  @apply h-[50px] w-[50px] rounded-full flex flex-row text-black hover:bg-hover-color hover:text-white transition-all duration-300 ease-in-out;
 }
 
 .button {
-  @apply rounded-lg text-white flex-row bg-green hover:bg-hover-color duration-200 py-[14px] px-[24px] h-[46px];
+  @apply rounded-lg text-white flex-row bg-green hover:bg-hover-color py-[14px] px-[24px] h-[46px] transition-all duration-300 ease-in-out;
 }
 
 .clamp-font-size {

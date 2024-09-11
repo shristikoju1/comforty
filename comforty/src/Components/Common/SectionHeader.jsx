@@ -9,18 +9,18 @@ const SectionHeader = ({ title, showSliders = true, backward, forward }) => {
       </h2>
       {showSliders && (
         <div className="flex items-center space-x-4">
-          <div
+          <button
             className="slider bg-secondary-white"
             onClick={backward} 
           >
             <SliderLeft />
-          </div>
-          <div
+          </button>
+          <button
             className="slider bg-secondary-white"
             onClick={forward} 
           >
             <SliderRight />
-          </div>
+          </button>
         </div>
       )}
     </div>
