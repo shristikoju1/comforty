@@ -65,8 +65,8 @@
   padding:0 10px !important;
 }
 
-.slick-list{
-  padding:0 -10px !important;
+.slick-slider .slick-list{
+  padding: 0 10px 10px !important;
 }
 
 .custom-rating {

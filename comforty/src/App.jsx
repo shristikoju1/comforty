@@ -9,6 +9,8 @@ import LoginPage from "./Pages/LoginPage";
 
 function App() {
   return (
+    <div>
+
     <Router>
       <Routes>
         <Route path="/" element={<MainLayout />}>
@@ -22,6 +24,8 @@ function App() {
         </Route>
       </Routes>
     </Router>
+    </div>
+
   );
 }
 

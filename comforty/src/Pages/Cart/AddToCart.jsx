@@ -1,7 +1,9 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { removeItemFromCart, updateItemQuantity } from '../../Store/cartSlice';
-import './Cart.scss';
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { removeItemFromCart, updateItemQuantity } from "../../Store/cartSlice";
+import "./Cart.scss";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -10,7 +12,7 @@ const Cart = () => {
 
   const getTotalCartAmount = () => {
     return cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price.replace('$', '')); // Convert price to a number
+      const price = parseFloat(item.price); 
       return total + price * item.quantity;
     }, 0);
   };
@@ -23,59 +25,72 @@ const Cart = () => {
     dispatch(updateItemQuantity({ index, quantity: newQuantity }));
   };
 
+  const handleProceedToCheckout = () => {
+    toast.error("Login is required to proceed to checkout"); 
+    navigate("/login"); 
+    window.scrollTo(0,0);
+
+  };
+
   return (
-    <div className='cart max-width'>
-      <div className='cart-items'>
-        <table className='cart-items-title cart-items-item'>
-          <thead>
-            <tr className='text-left'>
-              <th>Item</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th>Remove Item</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {cartItems.map((item, index) => (
-              <tr key={index}>
-                <td>
-                  <img src={item.image} alt={item.title} />
-                </td>
-                <td>{item.title}</td>
-                <td>{item.price}</td>
-                <td>
-                  <input
-                    type='number'
-                    min={1}
-                    value={item.quantity}
-                    className='border border-[#ccc] p-1.5 rounded w-20'
-                    onChange={(e) =>
-                      handleQuantityChange(index, parseInt(e.target.value))
-                    }
-                  />
-                </td>
-                <td>${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}</td>
-                <td
-                  onClick={() => handleRemoveFromCart(index)}
-                  className='cross'
-                >
-                  x
-                </td>
+    <div className="cart max-width">
+      <div className="cart-items">
+        {cartItems.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          <table className="cart-items-title cart-items-item">
+            <thead>
+              <tr className="text-left">
+                <th>Item</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Remove Item</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-
-      
+            </thead>
+            <tbody>
+              {cartItems.map((item, index) => (
+                <tr key={index}>
+                  <td>
+                    <img 
+                      src={item.thumbnail || item.image} 
+                      alt={item.title} 
+                      className="border border-gray-400 border-solid rounded-sm"
+                    />
+                  </td>
+                  <td>{item.title}</td>
+                  <td>${item.price}</td>
+                  <td>
+                    <input
+                      type="number"
+                      min={1}
+                      value={item.quantity}
+                      className="border border-[#ccc] p-1.5 rounded w-20"
+                      onChange={(e) =>
+                        handleQuantityChange(index, parseInt(e.target.value))
+                      }
+                    />
+                  </td>
+                  <td>
+                    ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                  </td>
+                  <td
+                    onClick={() => handleRemoveFromCart(index)}
+                    className="cross"
+                  >
+                    x
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
 
       <div className="cart-bottom">
         <div className="cart-total">
           <h2>Cart Total:</h2>
-
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
@@ -94,8 +109,7 @@ const Cart = () => {
               </b>
             </div>
           </div>
-
-          <button onClick={() => navigate("/order")}>
+          <button onClick={handleProceedToCheckout}>
             PROCEED TO CHECKOUT
           </button>
         </div>
@@ -110,6 +124,9 @@ const Cart = () => {
           </div>
         </div>
       </div>
+
+      {/* ToastContainer must be rendered */}
+      {/* <ToastContainer /> */}
     </div>
   );
 };

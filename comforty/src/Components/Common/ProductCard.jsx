@@ -4,13 +4,11 @@ import Cart from '../../assets/svg/cart_featureproduct.svg?react';
 import Heart from '../../assets/svg/heart.svg?react';
 import { addItemToFav, removeItemFromFav } from '../../Store/favSlice';
 import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 
 
 const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCart }) => {
   const dispatch = useDispatch();
 
-  const { id } = useParams(); 
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -39,14 +37,18 @@ const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCa
   return (
        <div key={product.id} className="hover:p-2 hover:shadow-md hover:translate-y-1 transition-all 0.3s ease-in-out cursor-pointer">
       <div className="relative "
-      onClick={handleClick}>
-        <img
+     >
+      <button>
+      <img
           src={product.image}
           alt={product.title}
           width={300}
           height={300}
           style={{ border: "1px solid #ddd", borderRadius: "10px", width: "100%" }} 
+          onClick={handleClick}
         />
+      </button>
+    
     
         <button
           className="absolute p-2 cursor-pointer right-1 top-1"
@@ -67,7 +69,7 @@ const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCa
             {product.title}
           </p>
           <span className="font-semibold text-medium font-inter">
-            {product.price}
+            ${product.price}
           </span>
         </div>
         <button
