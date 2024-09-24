@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+#product-list{
+    li {
+        a{
+            font-family: "DM Sans", sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 17.6px;
+            color: #9A9CAA;
+        }
+    }
+}
+
+.ourProducts, .grid-layout {
+    display: grid;
+    gap: 24px;
+}
+
+.ourProducts {
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(14rem, 100%), 1fr)
+ 
+    );
+}
+
+.grid-layout {
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(7rem, 100%), 1fr)
+ 
+    );
+    justify-items: center;
+    align-items: center;
+}

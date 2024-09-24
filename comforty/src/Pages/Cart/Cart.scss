@@ -1,0 +1,127 @@
+.cart {
+    margin-top: 100px;
+
+    .cart-items-title {
+        // display: grid;
+        // grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+        // align-items: center;
+        color: grey;
+        font-size: max(1vw, 12px);
+        width: 100%;
+
+        th, td {
+            padding: 12px;
+        }
+
+        thead tr, tbody tr:not(:nth-last-child(1)) {
+            border-bottom: 1px solid #ccc;
+        }
+    }
+
+    .cart-items-item {
+        margin: 10px 0;
+        color: #000;
+
+        img {
+            width: 50px;
+        }
+
+        .cross {
+            cursor: pointer;
+        }
+    }
+
+    hr {
+        border: none;
+        height: 1px;
+        background: #e2e2e2;
+    }
+
+    .cart-bottom {
+        margin-top: 80px;
+        display: flex;
+        justify-content: space-between;
+        gap: max(12vw, 20px);
+
+        .cart-total {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            h2{
+                font-weight: 700;
+                font-size: 22px;
+            }
+
+            .cart-total-details {
+                display: flex;
+                justify-content: space-between;
+                color: #555;
+
+                b{
+                    font-weight: 600;
+                    font-size: 18px;
+                }
+            }
+
+            hr {
+                margin: 10px 0;
+            }
+
+            button {
+                border: none;
+                color: white;
+                background-color: #029FAE;
+                width: max(20vw, 200px);
+                padding: 12px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        }
+
+        .cart-promocode {
+            flex: 1;
+
+            p {
+                color: #555;
+            }
+
+            .cart-promocode-input {
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 4px;
+                background: #eaeaea;
+
+                input {
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    padding-left: 10px;
+                }
+
+                button {
+                    width: max(10vw, 150px);
+                    padding: 12px 5px;
+                    background: black;
+                    border: none;
+                    color: white;
+                    border-radius: 4px;
+                }
+            }
+        }
+    }
+
+    /* MEDIA QUERIES */
+    @media (max-width: 750px) {
+        .cart-bottom {
+            flex-direction: column-reverse;
+        }
+
+        .cart-promocode {
+            justify-content: start;
+        }
+    }
+}
