@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Rating } from 'react-simple-star-rating';
 import { FaLocationDot } from "react-icons/fa6";
 import { CiDeliveryTruck } from "react-icons/ci";
@@ -101,6 +101,7 @@ const ProductPage = () => {
                   className="border border-solid rounded-sm gallery-image border-black-300"
                   onClick={() => setMainImage(image)}
                 />
+              
               ))}
             </div>
           </div>
@@ -158,7 +159,8 @@ const ProductPage = () => {
                 <h2 className="flex items-center gap-1 text-sm font-normal text-gray-400">
                 <FaLocationDot />
                   Delivery Options</h2>
-                <div className="text-sm">
+                  <Link to={'/map'}>
+                  <div className="text-sm">
                   {location.latitude && location.longitude ? (
                     <p>
                       Your location is approximately Latitude: {location.latitude}, Longitude:{" "}
@@ -168,6 +170,8 @@ const ProductPage = () => {
                     <p>Fetching location...</p>
                   )}
                 </div>
+                  </Link>
+             
               </div>
 
               <div className="mt-2 delivery-time">

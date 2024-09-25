@@ -6,6 +6,7 @@ import Cart from './Pages/Cart/AddToCart'
 import Favourite from "./Pages/Favorite";
 import ProductPage from "./Pages/ProductPage";
 import LoginPage from "./Pages/LoginPage";
+import Leaflet from "./Pages/leaflet";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path="/fav" element={<Favourite />} />
           <Route path="/product-page/:id" element={<ProductPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/map" element={<Leaflet />} />
+          
         </Route>
       </Routes>
     </Router>

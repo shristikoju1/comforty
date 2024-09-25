@@ -12,7 +12,7 @@ const Cart = () => {
 
   const getTotalCartAmount = () => {
     return cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price); 
+      const price = parseFloat(item.price);
       return total + price * item.quantity;
     }, 0);
   };
@@ -26,66 +26,59 @@ const Cart = () => {
   };
 
   const handleProceedToCheckout = () => {
-    toast.error("Login is required to proceed to checkout"); 
-    navigate("/login"); 
-    window.scrollTo(0,0);
-
+    toast.error("Login is required to proceed to checkout");
+    navigate("/login");
+    window.scrollTo(0, 0);
   };
 
   return (
     <div className="cart max-width">
       <div className="cart-items">
-        {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
-          <table className="cart-items-title cart-items-item">
-            <thead>
-              <tr className="text-left">
-                <th>Item</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
-                <th>Remove Item</th>
+        <table className="cart-items-title cart-items-item">
+          <thead>
+            <tr className="text-left">
+              <th>Item</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Remove Item</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cartItems.map((item, index) => (
+              <tr key={index}>
+                <td>
+                  <img
+                    src={item.thumbnail || item.image}
+                    alt={item.title}
+                    className="border border-gray-400 border-solid rounded-sm"
+                  />
+                </td>
+                <td>{item.title}</td>
+                <td>${item.price}</td>
+                <td>
+                  <input
+                    type="number"
+                    min={1}
+                    value={item.quantity}
+                    className="border border-[#ccc] p-1.5 rounded w-20"
+                    onChange={(e) =>
+                      handleQuantityChange(index, parseInt(e.target.value))
+                    }
+                  />
+                </td>
+                <td>${(parseFloat(item.price) * item.quantity).toFixed(2)}</td>
+                <td
+                  onClick={() => handleRemoveFromCart(index)}
+                  className="cross"
+                >
+                  x
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((item, index) => (
-                <tr key={index}>
-                  <td>
-                    <img 
-                      src={item.thumbnail || item.image} 
-                      alt={item.title} 
-                      className="border border-gray-400 border-solid rounded-sm"
-                    />
-                  </td>
-                  <td>{item.title}</td>
-                  <td>${item.price}</td>
-                  <td>
-                    <input
-                      type="number"
-                      min={1}
-                      value={item.quantity}
-                      className="border border-[#ccc] p-1.5 rounded w-20"
-                      onChange={(e) =>
-                        handleQuantityChange(index, parseInt(e.target.value))
-                      }
-                    />
-                  </td>
-                  <td>
-                    ${(parseFloat(item.price) * item.quantity).toFixed(2)}
-                  </td>
-                  <td
-                    onClick={() => handleRemoveFromCart(index)}
-                    className="cross"
-                  >
-                    x
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+            ))}
+          </tbody>
+        </table>
       </div>
 
       <div className="cart-bottom">
@@ -109,9 +102,7 @@ const Cart = () => {
               </b>
             </div>
           </div>
-          <button onClick={handleProceedToCheckout}>
-            PROCEED TO CHECKOUT
-          </button>
+          <button onClick={handleProceedToCheckout}>PROCEED TO CHECKOUT</button>
         </div>
 
         <div className="cart-promocode">
