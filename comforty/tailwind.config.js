@@ -11,12 +11,14 @@ module.exports = {
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
-        dmSans: ["DM Sans", "sans-serif"]
+        dmSans: ["DM Sans", "sans-serif"],
       },
       boxShadow: {
-        custom: "0px 8px 40px 0px rgba(39, 35, 67, 0.08)", // Use RGB equivalent
+        custom: "0px 8px 40px 0px rgba(39, 35, 67, 0.08)", // Custom box-shadow
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }), // Ensure compatibility
+  ],
 };

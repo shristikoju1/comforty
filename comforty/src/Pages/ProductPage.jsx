@@ -67,17 +67,20 @@ const ProductPage = () => {
                 />
               )}
             </div>
-            <div className="flex w-[60px]  cursor-pointer justify-center items-center gap-1 ">
+            <div className="flex items-center justify-center gap-1 cursor-pointer ">
               {product.images.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={`${product.title} image ${index + 1}`}
-                  width={300}
-                  height={300}
-                  className="border border-solid rounded-sm gallery-image border-black-300"
-                  onClick={() => setMainImage(image)}
-                />
+                <div key={index}>
+                  <button
+                    onClick={() => setMainImage(image)}
+                    className="h-[70px] w-[70px]"
+                  >
+                    <img
+                      src={image}
+                      alt={`${product.title}`}
+                      className="w-full h-full border border-solid rounded-sm gallery-image border-black-300"
+                    />
+                  </button>
+                </div>
               ))}
             </div>
           </div>
@@ -85,7 +88,7 @@ const ProductPage = () => {
           <div className="product-details">
             <h1 className="text-2xl font-semibold">{product.title}</h1>
 
-            <div className="my-2 rating">
+            <div className="flex items-center my-2 ">
               <span className="mr-2">Rating:</span>
               <Rating
                 initialValue={rating}
@@ -96,7 +99,7 @@ const ProductPage = () => {
                 emptyColor="#ccc"
                 className="custom-rating"
               />
-              <span className="ml-2">{product.rating}/5</span>
+              <span className="ml-2 mb-[-5px]">{product.rating}/5</span>
             </div>
 
             <p className="text-normal font-normal text-[#029FAE]">
@@ -171,11 +174,11 @@ const ProductPage = () => {
               </h2>
 
               <p className="p-1 ml-4 text-sm text-gray-700">
-                Details about{" "} 
+                Details about{" "}
                 <a href="#" className="underline">
                   return policy
-                </a>{" "} 
-                 and{" "} 
+                </a>{" "}
+                and{" "}
                 <a href="#" className="underline">
                   warranty
                 </a>
