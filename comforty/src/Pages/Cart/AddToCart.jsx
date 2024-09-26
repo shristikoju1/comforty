@@ -26,7 +26,7 @@ const Cart = () => {
   };
 
   const handleProceedToCheckout = () => {
-    toast.error("Login is required to proceed to checkout");
+    toast.error("Login is required to proceed.");
     navigate("/login");
     window.scrollTo(0, 0);
   };

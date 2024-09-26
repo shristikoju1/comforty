@@ -38,7 +38,6 @@ const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCa
        <div key={product.id} className="hover:p-2 hover:shadow-md hover:translate-y-1 transition-all 0.3s ease-in-out cursor-pointer">
       <div className="relative "
      >
-      <button>
       <img
           src={product.image}
           alt={product.title}
@@ -47,7 +46,6 @@ const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCa
           style={{ border: "1px solid #ddd", borderRadius: "10px", width: "100%" }} 
           onClick={handleClick}
         />
-      </button>
     
     
         <button

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Rating } from 'react-simple-star-rating';
+import { useParams } from "react-router-dom";
+import { Rating } from "react-simple-star-rating";
 import { FaLocationDot } from "react-icons/fa6";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { PiKeyReturnFill } from "react-icons/pi";
@@ -12,12 +12,7 @@ const ProductPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [rating, setRating] = useState(0);
-  const [location, setLocation] = useState({ latitude: null, longitude: null });
-  const [mainImage, setMainImage] = useState('');
-
-  const handleRating = (rate) => {
-    setRating(rate);
-  };
+  const [mainImage, setMainImage] = useState("");
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -44,25 +39,8 @@ const ProductPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-
-    function successCallback(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      setLocation({ latitude, longitude });
-    }
-
-    function errorCallback(error) {
-      console.error("Error getting location: ", error.message);
-    }
-  }, []);
-
-  if (loading) return <div className="max-width">Loading product details...</div>;
+  if (loading)
+    return <div className="max-width">Loading product details...</div>;
   if (error) return <div className="max-width">{error}</div>;
 
   return (
@@ -72,23 +50,22 @@ const ProductPage = () => {
           <div className="flex flex-col items-center justify-center gap-2 cursor-pointer product-image">
             <div className="main">
               {mainImage ? (
-                  <img
+                <img
                   src={mainImage}
                   alt={product?.title || "Product"}
                   width={500}
                   height={500}
                   className="border border-solid rounded-md border-black-300"
-                /> 
+                />
               ) : (
                 <img
-                src={product?.thumbnail}
-                alt={product?.title || "Product"}
-                width={500}
-                height={500}
-                className="border border-solid rounded-md border-black-300"
-              /> 
+                  src={product?.thumbnail}
+                  alt={product?.title || "Product"}
+                  width={500}
+                  height={500}
+                  className="border border-solid rounded-md border-black-300"
+                />
               )}
-              
             </div>
             <div className="flex w-[60px]  cursor-pointer justify-center items-center gap-1 ">
               {product.images.map((image, index) => (
@@ -101,7 +78,6 @@ const ProductPage = () => {
                   className="border border-solid rounded-sm gallery-image border-black-300"
                   onClick={() => setMainImage(image)}
                 />
-              
               ))}
             </div>
           </div>
@@ -112,18 +88,23 @@ const ProductPage = () => {
             <div className="my-2 rating">
               <span className="mr-2">Rating:</span>
               <Rating
-                ratingValue={rating * 20}
-                onClick={handleRating}
+                initialValue={rating}
                 readonly
+                size={25}
+                allowFraction={true}
+                fillColor="FF9529"
+                emptyColor="#ccc"
                 className="custom-rating"
               />
               <span className="ml-2">{product.rating}/5</span>
             </div>
 
-            <p className="text-lg font-normal text-[#029FAE]">$ {product.price}</p>
+            <p className="text-normal font-normal text-[#029FAE]">
+              ${product.price}
+            </p>
 
-            <div className="flex items-center gap-2 my-4 quantity-control">
-              Quantity
+            <div className="flex items-center gap-2 my-2 text-normal">
+              Quantity:
               <button
                 onClick={() => handleQuantityChange("decrement")}
                 className="px-2 border"
@@ -157,41 +138,48 @@ const ProductPage = () => {
             <div className="flex flex-col gap-4">
               <div>
                 <h2 className="flex items-center gap-1 text-sm font-normal text-gray-400">
-                <FaLocationDot />
-                  Delivery Options</h2>
-                  <Link to={'/map'}>
-                  <div className="text-sm">
-                  {location.latitude && location.longitude ? (
-                    <p>
-                      Your location is approximately Latitude: {location.latitude}, Longitude:{" "}
-                      {location.longitude}
-                    </p>
-                  ) : (
-                    <p>Fetching location...</p>
-                  )}
+                  <FaLocationDot />
+                  Delivery Options
+                </h2>
+                <div className="p-1 ml-4 text-sm">
+                  <p className="mt-1">
+                    <input
+                      type="text"
+                      placeholder="Enter your location"
+                      className="p-2 border rounded-md border-b-black"
+                    />
+                  </p>
                 </div>
-                  </Link>
-             
               </div>
 
               <div className="mt-2 delivery-time">
                 <p className="flex items-center gap-1 text-sm font-normal text-gray-400">
-                <CiDeliveryTruck />
-
-                  Standard Delivery</p>
-                <p className="text-sm ">Guaranteed by 23-24 Sep</p>
-                <p className="text-sm">Cash on delivery available</p>
+                  <CiDeliveryTruck />
+                  Standard Delivery
+                </p>
+                <div className="p-1 ml-4">
+                  <p className="text-sm ">Guaranteed by 23-24 Sep</p>
+                  <p className="text-sm">Cash on delivery available</p>
+                </div>
               </div>
             </div>
 
             <div className="my-4 return-warranty">
               <h2 className="flex items-center gap-1 text-sm font-normal text-gray-400">
-              <PiKeyReturnFill />
+                <PiKeyReturnFill />
+                Return & Warranty
+              </h2>
 
-                Return & Warranty</h2>
-              <p className="text-sm text-gray-700">
-                Details about <a href="#" className="underline">return policy </a>
-                and <a href="#" className="underline">warranty</a>.
+              <p className="p-1 ml-4 text-sm text-gray-700">
+                Details about{" "} 
+                <a href="#" className="underline">
+                  return policy
+                </a>{" "} 
+                 and{" "} 
+                <a href="#" className="underline">
+                  warranty
+                </a>
+                .
               </p>
             </div>
           </div>

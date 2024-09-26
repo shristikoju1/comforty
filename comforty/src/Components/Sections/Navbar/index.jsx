@@ -176,11 +176,7 @@ const Navbar = ({ container }) => {
             </li>
             <li className="mx-4 my-6 cursor-pointer lg:my-0 li-style">
               <Link
-                to="about"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
+                to={"/map"}
                 className="text-lg duration-500 hover:text-cyan-500"
               >
                 About
@@ -240,16 +236,12 @@ const Navbar = ({ container }) => {
             </Link>
           </li>
           <li className="mx-4 my-6 cursor-pointer lg:my-0 li-style">
-            <Link
-              to="about"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
+            <NavLink
+              to={"/map"}
               className="text-lg duration-500 hover:text-cyan-500"
             >
               About
-            </Link>
+            </NavLink>
           </li>
         </ul>
 
