@@ -1,3 +1,4 @@
+import React, { useRef, useState, useMemo } from "react";
 import {
   MapContainer,
   Marker,
@@ -6,108 +7,124 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import CustomMarkerIcon from "../assets/images/map-marker.png";
-import UserCustomMarkerIcon from "../assets/images/user-location-marker.png";
 import { Icon } from "leaflet";
-import React, { useRef, useEffect } from "react";
+import CustomMarkerIcon from "../assets/images/pin.png";
+import UserCustomMarkerIcon from "../assets/images/pin-user.png";
 
 const Leaflet = () => {
   const mapRef = useRef(null); // UseRef to store map instance
+  const [mapInitialized, setMapInitialized] = useState(false);
+  const [userLocation, setUserLocation] = useState(null); // Store user location
 
-  const markers = [
-    {
-      id: 1,
-      name: "Kathmandu",
-      geocode: [27.7172, 85.324],
-      popUp: (
-        <div>
-          <h4>Kathmandu</h4>
-          <img
-            src="https://www.erikastravelventures.com/wp-content/uploads/2018/12/IMG_4768.jpg"
-            alt="Kathmandu"
-            width="50"
-            height="auto"
-          />
-        </div>
-      ),
-    },
-    {
-      id: 2,
-      name: "Lalitpur",
-      geocode: [27.6683, 85.3188],
-      popUp: (
-        <div>
-          <h4>Lalitpur</h4>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmnVsayEvl2xmocAyLVIVfC3dDH8lCGrPG4g&s"
-            alt="Lalitpur"
-            width="50"
-            height="auto"
-          />
-        </div>
-      ),
-    },
-    {
-      id: 3,
-      name: "Bhaktapur",
-      geocode: [27.6722, 85.4298],
-      popUp: (
-        <div>
-          <h4>Bhaktapur</h4>
-          <img
-            src="https://www.altitudehimalaya.com/media/files/Blog/Travel-Stories/Bhaktapur-DS/Pottery-Square-Bhaktapur.png"
-            alt="Bhaktapur"
-            width="50"
-            height="auto"
-          />
-        </div>
-      ),
-    },
-  ];
+  const customIcons = useMemo(
+    () =>
+      new Icon({
+        iconUrl: CustomMarkerIcon,
+        iconSize: [38, 38],
+      }),
+    []
+  );
 
-  // Custom marker icon
-  const customIcons = new Icon({
-    iconUrl: CustomMarkerIcon,
-    iconSize: [38, 38],
-  });
+  const userCustomIcons = useMemo(
+    () =>
+      new Icon({
+        iconUrl: UserCustomMarkerIcon,
+        iconSize: [38, 38],
+      }),
+    []
+  );
 
-  // User custom marker icon
-  const UserCustomIcons = new Icon({
-    iconUrl: UserCustomMarkerIcon,
-    iconSize: [38, 38],
-  });
-
-  // Get user's current location and add a marker for it
-  const LocationMarker = () => {
-    const [position, setPosition] = React.useState(null);
-
-    const map = useMapEvents({
-      locationfound(e) {
-        setPosition(e.latlng);
-        map.flyTo(e.latlng, map.getZoom());
+  const markers = useMemo(
+    () => [
+      {
+        id: 1,
+        name: "Kathmandu",
+        geocode: [27.7172, 85.324],
+        popUp: (
+          <div>
+            <h4>Kathmandu</h4>
+            <img
+              src="https://www.erikastravelventures.com/wp-content/uploads/2018/12/IMG_4768.jpg"
+              alt="Kathmandu"
+              width="40"
+              height="auto"
+            />
+          </div>
+        ),
       },
-    });
+      {
+        id: 2,
+        name: "Lalitpur",
+        geocode: [27.6683, 85.3188],
+        popUp: (
+          <div>
+            <h4>Lalitpur</h4>
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmnVsayEvl2xmocAyLVIVfC3dDH8lCGrPG4g&s"
+              alt="Lalitpur"
+              width="40"
+              height="auto"
+            />
+          </div>
+        ),
+      },
+      {
+        id: 3,
+        name: "Bhaktapur",
+        geocode: [27.6722, 85.4298],
+        popUp: (
+          <div>
+            <h4>Bhaktapur</h4>
+            <img
+              src="https://www.altitudehimalaya.com/media/files/Blog/Travel-Stories/Bhaktapur-DS/Pottery-Square-Bhaktapur.png"
+              alt="Bhaktapur"
+              width="40"
+              height="auto"
+            />
+          </div>
+        ),
+      },
+    ],
+    []
+  );
 
-    React.useEffect(() => {
-      map.locate();
-    }, [map]);
+ // Get user's current location and add a marker for it
+const LocationMarker = () => {
+  const map = useMapEvents({
+    locationfound(e) {
+      setUserLocation(e.latlng); // Set the user's location when found
+      map.flyTo(e.latlng, map.getZoom()); // Fly to the user's location
+    },
+  });
 
-    return position === null ? null : (
-      <Marker position={position} icon={UserCustomIcons}>
-        <Popup>You are here</Popup>
-      </Marker>
-    );
-  };
+  // When the component mounts, trigger the map's `locate` function to get the user's location
+  React.useEffect(() => {
+    map.locate();
+  }, [map]);
+
+  return userLocation === null ? null : (
+    <Marker position={userLocation} icon={userCustomIcons}>
+      <Popup>You are here</Popup>
+    </Marker>
+  );
+};
 
   // Fly to the clicked location
   const flyToLocation = (geocode) => {
-    const map = mapRef?.current;
-
-    if (map) {
-      map.flyTo(geocode, 13);
-    } else {
-      console.error("Map is not initialized yet.");
+    if (mapInitialized && mapRef.current) {
+      mapRef.current.flyTo(geocode, 13);
     }
+  };
+
+  // Function to get direction using Google Maps
+  const getDirection = (destination) => {
+    if (!userLocation) {
+      console.error("User location is not available.");
+      return;
+    }
+
+    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${destination.geocode[0]},${destination.geocode[1]}`;
+    window.open(googleMapsUrl, "_blank");
   };
 
   return (
@@ -126,17 +143,29 @@ const Leaflet = () => {
               <h2>{marker.name}</h2>
               <p>{marker.name} P.O.Box 8207 Kathmandu, Nepal</p>
               <p>+977 987654321, +977 984567832</p>
-              <span>comforty@{marker.name.toLowerCase()}.np</span>
+              <p>
+                <span>comforty@{marker.name.toLowerCase()}.np</span>
+              </p>
+              <button
+                className="px-4 py-2 font-bold text-white rounded-md text-md bg-green"
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent event bubbling
+                  getDirection(marker);
+                }}
+              >
+                Get Location
+              </button>
             </div>
           ))}
         </div>
 
-        <div className="px-1 my-1 right-section">
+        <div className="my-1 right-section">
           <MapContainer
             center={[27.7172, 85.324]}
             zoom={10}
             whenCreated={(mapInstance) => {
               mapRef.current = mapInstance; // Store map instance when created
+              setMapInitialized(true);
             }}
             style={{ height: "100%", width: "100%" }}
           >
