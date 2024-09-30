@@ -15,49 +15,49 @@ import './ourproduct.scss';
 
 const productData = [
   {
-    id: 5,
+    id: 101,
     image: Product1,
     title: 'Library Stool Chair',
     price: 20,
   },
   {
-    id: 6,
+    id: 102,
     image: Product2,
     title: 'Library Stool Chair',
     price: 35,
   },
   {
-    id: 7,
+    id: 103,
     image: Product3,
     title: 'Library Stool Chair',
     price: 45,
   },
   {
-    id: 8,
+    id: 104,
     image: Product4,
     title: 'Library Stool Chair',
     price: 55,
   },
   {
-    id: 9,
+    id: 105,
     image: Product5,
     title: 'Library Stool Chair',
     price: 20,
   },
   {
-    id: 10,
+    id: 106,
     image: Product6,
     title: 'Library Stool Chair',
     price: 35,
   },
   {
-    id: 11,
+    id: 107,
     image: Product7,
     title: 'Library Stool Chair',
     price: 45,
   },
   {
-    id: 12,
+    id: 108,
     image: Product8,
     title: 'Library Stool Chair',
     price: 55,

@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { FaLocationDot } from "react-icons/fa6";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { PiKeyReturnFill } from "react-icons/pi";
+import { toast } from "react-toastify";
+import { RotatingLines } from 'react-loader-spinner'
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../Store/cartSlice";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -13,6 +17,9 @@ const ProductPage = () => {
   const [error, setError] = useState(null);
   const [rating, setRating] = useState(0);
   const [mainImage, setMainImage] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -39,8 +46,34 @@ const ProductPage = () => {
     }
   };
 
+  const handleBuyNow = () => {
+    navigate("/login");
+    toast.error("Login is required to proceed.");
+
+  }
+
+  const handleAddToCart = () => {
+    if (product) {
+       // Dispatch the addItemToCart action with product details and quantity
+    dispatch(addItemToCart({ ...product, quantity }));
+    toast.success(`${product.title} has been added to your cart!`);
+    }
+  };
+
   if (loading)
-    return <div className="max-width">Loading product details...</div>;
+    return <div className="flex items-center justify-center h-full mt-10 max-width">
+    <RotatingLines
+  visible={true}
+  height="60"
+  width="60"
+  color='#029FAE'
+  strokeWidth="5"
+  animationDuration="2"
+  ariaLabel="rotating-lines-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  />
+    </div>;
   if (error) return <div className="max-width">{error}</div>;
 
   return (
@@ -128,10 +161,14 @@ const ProductPage = () => {
             </p>
 
             <div className="flex gap-5 mt-5">
-              <button className="px-4 py-2 text-white transition border border-blue-600 duration-300 ease-in-out rounded-lg hover:bg-blue-70 bg-[#029FAE] hover:bg-transparent hover:text-black">
+              <button className="px-4 py-2 text-white transition border border-blue-600 duration-300 ease-in-out rounded-lg hover:bg-blue-70 bg-[#029FAE] hover:bg-transparent hover:text-black"
+              onClick={handleBuyNow}
+              >
                 Buy Now
               </button>
-              <button className="px-4 py-2 transition duration-300 ease-in-out bg-blue-300 border border-blue-600 rounded-lg hover:bg-blue-600 hover:bg-[#029fae] hover:text-white">
+              <button className="px-4 py-2 transition duration-300 ease-in-out bg-blue-300 border border-blue-600 rounded-lg hover:bg-blue-600 hover:bg-[#029fae] hover:text-white"
+                onClick={handleAddToCart}
+              >
                 Add to Cart
               </button>
             </div>

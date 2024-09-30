@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../../../Store/cartSlice'; 
 import { useEffect, useRef, useState } from "react";
 import SimpleSlider from "../../Common/Slider";
+import { RotatingLines } from "react-loader-spinner";
 
 const hoverColor = "#007580";
 
@@ -49,7 +50,19 @@ const FeaturedProducts = () => {
   };
 
   if (loading) {
-    return <div>Loading products...</div>;
+    return <div className="items-center justify-center max-width ">
+         <RotatingLines
+  visible={true}
+  height="96"
+  width="96"
+  color="#029FAE"
+  strokeWidth="5"
+  animationDuration="2"
+  ariaLabel="rotating-lines-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  />
+    </div>;
   }
 
   if (error) {

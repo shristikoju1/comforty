@@ -70,12 +70,16 @@ const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCa
             ${product.price}
           </span>
         </div>
+        
         <button
           className={`cursor-pointer ${isInCart ? 'bg-hover-color text-white' : 'white'} cart-bg`}
-          onClick={() => onAddToCart(index)}
+          onClick={() => !isInCart && onAddToCart(index)}
+          disabled = {isInCart}
+          // style={{pointerEvents: isInCart ? 'none' : 'auto'}}
         >
           <Cart />
         </button>
+
       </div>
     </div> 
   );

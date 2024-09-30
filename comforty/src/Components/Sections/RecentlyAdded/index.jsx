@@ -74,7 +74,7 @@ const RecentlyAdded = () => {
                   ...product,
                   image: product.thumbnail, 
                   title: product.title,
-                  price: `$${product.price}`, 
+                  price: `${product.price}`, 
                 }}
                 index={index}
                 activeProductIndex={activeProductIndex}
