@@ -12,7 +12,7 @@ const MainLayout = () => {
         transition={Bounce}
       />
       <main>
-        <Navbar container={true} />
+        <Navbar />
         <Outlet />
         <Footer/>
       </main>

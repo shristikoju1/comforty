@@ -52,22 +52,22 @@ const Footer = () => {
             <ul className="space-y-2">
               <h4 className="footer-heading">CATEGORY</h4>
               <li>
-                <a href="#">Sofa</a>
+                <a href="/sofa">Sofa</a>
               </li>
               <li>
-                <a href="#">Armchair</a>
+                <a href="/armchair">Armchair</a>
               </li>
               <li>
-                <a href="#">Wing Chair</a>
+                <a href="/wing-chair">Wing Chair</a>
               </li>
               <li>
-                <a href="#">Desk Chair</a>
+                <a href="/desk-chair">Desk Chair</a>
               </li>
               <li>
-                <a href="#">Wooden Chair</a>
+                <a href="/wooden-chair">Wooden Chair</a>
               </li>
               <li>
-                <a href="#">Park Bench</a>
+                <a href="/park-bench">Park Bench</a>
               </li>
             </ul>
           </div>
@@ -76,22 +76,22 @@ const Footer = () => {
             <ul className="space-y-2">
               <h4  className="footer-heading">SUPPORT</h4>
               <li>
-                <a href="#">Help & Support</a>
+                <a href="/help-and-support">Help & Support</a>
               </li>
               <li>
-                <a href="#">Terms & Conditions</a>
+                <a href="/terms-and-conditions">Terms & Conditions</a>
               </li>
               <li>
-                <a href="#">Privacy Policy</a>
+                <a href="/privacy-policy">Privacy Policy</a>
               </li>
               <li>
-                <a href="#">Help</a>
+                <a href="/help">Help</a>
               </li>
             </ul>
           </div>
 
           <div className="px-4 ">
-            <h4  className="font-inter font-medium text-sm leading-[15.4px] text-[#9A9CAA] mb-5">NEWSLETTER</h4>
+            <h4  className="font-inter font-medium text-sm leading-[15.4px] text-[/sofa9A9CAA] mb-5">NEWSLETTER</h4>
             <form className="flex gap-1">
               <input
                 type="email"
@@ -100,7 +100,7 @@ const Footer = () => {
               />
               <button className="button">Subscribe</button>
             </form>
-            <p className="mt-4 max-w-[320px] text-[#27234394]">
+            <p className="mt-4 max-w-[320px] text-[/sofa27234394]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
               tincidunt erat enim.
             </p>

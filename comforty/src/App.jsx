@@ -8,6 +8,7 @@ import ProductPage from "./Pages/ProductPage";
 import LoginPage from "./Pages/LoginPage";
 import Leaflet from "./Pages/leaflet";
 import NotFound from "./Pages/NotFound";
+import Categories from "./Pages/Categories";
 
 function App() {
   return (
@@ -23,7 +24,9 @@ function App() {
             <Route path="/product-page/:id" element={<ProductPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/map" element={<Leaflet />} />
+            <Route path="/categories" element={<Categories/>}/>
             <Route path="*" element={<NotFound />} />
+
           </Route>
         </Routes>
       </Router>

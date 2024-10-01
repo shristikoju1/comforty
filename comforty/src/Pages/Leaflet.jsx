@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from "react";
+import React, { useRef, useState, useMemo, useEffect } from "react";
 import {
   MapContainer,
   Marker,
@@ -98,7 +98,7 @@ const LocationMarker = () => {
   });
 
   // When the component mounts, trigger the map's `locate` function to get the user's location
-  React.useEffect(() => {
+  useEffect(() => {
     map.locate();
   }, [map]);
 
@@ -111,9 +111,10 @@ const LocationMarker = () => {
 
   // Fly to the clicked location
   const flyToLocation = (geocode) => {
-    if (mapInitialized && mapRef.current) {
+    if (mapInitialized && mapRef?.current) {
       mapRef.current.flyTo(geocode, 13);
     }
+    console.log("mapRef", mapRef.current)
   };
 
   // Function to get direction using Google Maps
@@ -126,6 +127,8 @@ const LocationMarker = () => {
     const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${destination.geocode[0]},${destination.geocode[1]}`;
     window.open(googleMapsUrl, "_blank");
   };
+  // console.log(mapInitialized)
+
 
   return (
     <div className="my-10 max-width">
@@ -138,7 +141,10 @@ const LocationMarker = () => {
             <div
               key={marker.id}
               className="cursor-pointer left-section"
-              onClick={() => flyToLocation(marker.geocode)}
+          onClick={() => {
+            flyToLocation(marker.geocode)
+            console.log("marker", marker.geocode);
+          }}
             >
               <h2>{marker.name}</h2>
               <p>{marker.name} P.O.Box 8207 Kathmandu, Nepal</p>
@@ -149,7 +155,7 @@ const LocationMarker = () => {
               <button
                 className="px-4 py-2 font-bold text-white rounded-md text-md bg-green"
                 onClick={(e) => {
-                  e.stopPropagation(); // Prevent event bubbling
+                  e.stopPropagation(); 
                   getDirection(marker);
                 }}
               >
@@ -164,11 +170,12 @@ const LocationMarker = () => {
             center={[27.7172, 85.324]}
             zoom={10}
             whenCreated={(mapInstance) => {
-              mapRef.current = mapInstance; // Store map instance when created
               setMapInitialized(true);
+              mapRef.current = mapInstance; // Store map instance when created
             }}
             style={{ height: "100%", width: "100%" }}
           >
+            
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
