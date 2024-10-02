@@ -1,8 +1,8 @@
 import SectionHeader from "../../Common/SectionHeader";
 import ProductCard from "../../Common/ProductCard";
-import './featuredProducts.scss';
-import { useDispatch } from 'react-redux';
-import { addItemToCart } from '../../../Store/cartSlice'; 
+import "./featuredProducts.scss";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../../../Store/cartSlice";
 import { useEffect, useRef, useState } from "react";
 import SimpleSlider from "../../Common/Slider";
 import { RotatingLines } from "react-loader-spinner";
@@ -14,7 +14,6 @@ const FeaturedProducts = () => {
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [error, setError] = useState(null);
-  const productsPerPage = 4;
   const dispatch = useDispatch();
   let sliderRef = useRef(null);
 
@@ -22,9 +21,17 @@ const FeaturedProducts = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch("https://dummyjson.com/products/category/furniture")
+        const response = await fetch(
+          "https://dummyjson.com/products/category/furniture"
+        );
         const data = await response.json();
-        setProductData(data.products);
+        
+        // Adding apiSource to each product
+    const productsWithSource = data.products.map(product => ({
+      ...product,
+      apiSource: "DummyJSON"
+    }));
+        setProductData(productsWithSource);
         setLoading(false);
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -33,7 +40,7 @@ const FeaturedProducts = () => {
       }
     };
     fetchProducts();
-  }, [])
+  }, []);
 
   const addToCart = (index) => {
     const product = productData[index];
@@ -42,27 +49,30 @@ const FeaturedProducts = () => {
 
   const getDisplayedProducts = () => {
     const displayedProducts = [];
-    for (let i = 0; i < productsPerPage; i++) {
+    for (let i = 0; i < productData.length; i++) {
       const productIndex = (currentIndex + i) % productData.length;
       displayedProducts.push(productData[productIndex]);
     }
+    console.log(productData.length);
     return displayedProducts;
   };
 
   if (loading) {
-    return <div className="items-center justify-center max-width ">
-         <RotatingLines
-  visible={true}
-  height="96"
-  width="96"
-  color="#029FAE"
-  strokeWidth="5"
-  animationDuration="2"
-  ariaLabel="rotating-lines-loading"
-  wrapperStyle={{}}
-  wrapperClass=""
-  />
-    </div>;
+    return (
+      <div className="items-center justify-center max-width ">
+        <RotatingLines
+          visible={true}
+          height="96"
+          width="96"
+          color="#029FAE"
+          strokeWidth="5"
+          animationDuration="2"
+          ariaLabel="rotating-lines-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
   }
 
   if (error) {
@@ -72,21 +82,19 @@ const FeaturedProducts = () => {
   return (
     <div id="shop">
       <div className="max-width">
-        <SectionHeader 
-          title="Featured Products"
-          sliderRef={sliderRef}
-        />
+        <SectionHeader title="Featured Products" sliderRef={sliderRef} />
         <div className="featuredProducts">
-          <SimpleSlider sliderRef={sliderRef} >
+          <SimpleSlider sliderRef={sliderRef}>
             {getDisplayedProducts().map((product, index) => (
               <ProductCard
                 key={product.id}
                 product={{
                   ...product,
-                  image: product.thumbnail, 
+                  image: product.thumbnail, // thumbnail as image source
                   title: product.title,
-                  price: product.price, 
-                }}  
+                  price: product.price,
+                  // source: product.brand || "Unknown source", // Adding a source property, example using 'brand'
+                }}
                 index={index}
                 hoverColor={hoverColor}
                 onAddToCart={() => addToCart(currentIndex + index)}

@@ -69,7 +69,10 @@ const NavbarThree = () => {
           {/* Sidebar Header */}
           <div className="sidebar-header">
             <div className="flex-center">
+              <NavLink to={'/signup'}>
               <FaCircleUser className="w-8 h-8" />
+
+              </NavLink>
               <h3 className="text-lg font-semibold">Hello, Sign in</h3>
             </div>
           </div>
@@ -78,10 +81,10 @@ const NavbarThree = () => {
           <div className="sidebar-content">
             <NavLink to={'/categories'}className="sidebar-title">Categories</NavLink>
             <ul className="space-y-2">
-              <li className="sidebar-list-item">Sofas</li>
-              <li className="sidebar-list-item">Chairs</li>
-              <li className="sidebar-list-item">Tables</li>
-              <li className="sidebar-list-item">Beds</li>
+              <li className="sidebar-list-item"><a href="/categories">Sofas</a></li>
+              <li className="sidebar-list-item"><a href="/categories">Chairs</a></li>
+              <li className="sidebar-list-item"><a href="/categories">Tables</a></li>
+              <li className="sidebar-list-item"><a href="/categories">Beds</a></li>
             </ul>
           </div>
 
@@ -270,7 +273,7 @@ const NavbarThree = () => {
       <p className="text-lg li-style">
         Contact:{" "}
         <span className="font-semibold ext-lg font-inter text-blue">
-          (808) 555-0111
+          (+977) 9788765433
         </span>
       </p>
     </div>

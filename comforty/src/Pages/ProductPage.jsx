@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { FaLocationDot } from "react-icons/fa6";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { PiKeyReturnFill } from "react-icons/pi";
 import { toast } from "react-toastify";
-import { RotatingLines } from 'react-loader-spinner'
+import { RotatingLines } from "react-loader-spinner";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../Store/cartSlice";
 
@@ -19,13 +19,15 @@ const ProductPage = () => {
   const [mainImage, setMainImage] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
 
-
+  const { state } = useLocation();
+  const apiUrl = state?.apiUrl;
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`https://dummyjson.com/products/${id}`);
+        const response = await fetch(apiUrl); // Use the passed apiUrl
         const data = await response.json();
         setProduct(data);
         setRating(data.rating);
@@ -35,9 +37,11 @@ const ProductPage = () => {
         setLoading(false);
       }
     };
-    fetchProductDetails();
-  }, [id]);
 
+    if (apiUrl) {
+      fetchProductDetails();
+    }
+  }, [apiUrl]);
   const handleQuantityChange = (type) => {
     if (type === "increment") {
       setQuantity((prev) => prev + 1);
@@ -49,31 +53,32 @@ const ProductPage = () => {
   const handleBuyNow = () => {
     navigate("/login");
     toast.error("Login is required to proceed.");
-
-  }
+  };
 
   const handleAddToCart = () => {
     if (product) {
-       // Dispatch the addItemToCart action with product details and quantity
-    dispatch(addItemToCart({ ...product, quantity }));
-    toast.success(`${product.title} has been added to your cart!`);
+      // Dispatch the addItemToCart action with product details and quantity
+      dispatch(addItemToCart({ ...product, quantity }));
+      toast.success(`${product.title} has been added to your cart!`);
     }
   };
 
   if (loading)
-    return <div className="flex items-center justify-center h-full mt-10 max-width">
-    <RotatingLines
-  visible={true}
-  height="60"
-  width="60"
-  color='#029FAE'
-  strokeWidth="5"
-  animationDuration="2"
-  ariaLabel="rotating-lines-loading"
-  wrapperStyle={{}}
-  wrapperClass=""
-  />
-    </div>;
+    return (
+      <div className="flex items-center justify-center h-full mt-10 max-width">
+        <RotatingLines
+          visible={true}
+          height="60"
+          width="60"
+          color="#029FAE"
+          strokeWidth="5"
+          animationDuration="2"
+          ariaLabel="rotating-lines-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
   if (error) return <div className="max-width">{error}</div>;
 
   return (
@@ -92,7 +97,7 @@ const ProductPage = () => {
                 />
               ) : (
                 <img
-                  src={product?.thumbnail}
+                  src={product?.thumbnail || product?.category.image}
                   alt={product?.title || "Product"}
                   width={500}
                   height={500}
@@ -101,7 +106,7 @@ const ProductPage = () => {
               )}
             </div>
             <div className="flex items-center justify-center gap-1 cursor-pointer ">
-              {product.images.map((image, index) => (
+              {product?.images?.map((image, index) => (
                 <div key={index}>
                   <button
                     onClick={() => setMainImage(image)}
@@ -121,21 +126,23 @@ const ProductPage = () => {
           <div className="product-details">
             <h1 className="text-2xl font-semibold">{product.title}</h1>
 
-            <div className="flex items-center my-2 ">
-              <span className="mr-2">Rating:</span>
-              <Rating
-                initialValue={rating}
-                readonly
-                size={25}
-                allowFraction={true}
-                fillColor="FF9529"
-                emptyColor="#ccc"
-                className="custom-rating"
-              />
-              <span className="ml-2 mb-[-5px]">{product.rating}/5</span>
-            </div>
+            {product.rating && (
+              <div className="flex items-center my-2 ">
+                <span className="mr-2">Rating:</span>
+                <Rating
+                  initialValue={rating}
+                  readonly
+                  size={25}
+                  allowFraction={true}
+                  fillColor="FF9529"
+                  emptyColor="#ccc"
+                  className="custom-rating"
+                />
+                <span className="ml-2 mb-[-5px]">{product.rating}/5</span>
+              </div>
+            )}
 
-            <p className="text-normal font-normal text-[#029FAE]">
+            <p className="text-normal font-normal text-[#029FAE]">Price:
               ${product.price}
             </p>
 
@@ -161,12 +168,14 @@ const ProductPage = () => {
             </p>
 
             <div className="flex gap-5 mt-5">
-              <button className="px-4 py-2 text-white transition border border-blue-600 duration-300 ease-in-out rounded-lg hover:bg-blue-70 bg-[#029FAE] hover:bg-transparent hover:text-black"
-              onClick={handleBuyNow}
+              <button
+                className="px-4 py-2 text-white transition border border-blue-600 duration-300 ease-in-out rounded-lg hover:bg-blue-70 bg-[#029FAE] hover:bg-transparent hover:text-black"
+                onClick={handleBuyNow}
               >
                 Buy Now
               </button>
-              <button className="px-4 py-2 transition duration-300 ease-in-out bg-blue-300 border border-blue-600 rounded-lg hover:bg-blue-600 hover:bg-[#029fae] hover:text-white"
+              <button
+                className="px-4 py-2 transition duration-300 ease-in-out bg-blue-300 border border-blue-600 rounded-lg hover:bg-blue-600 hover:bg-[#029fae] hover:text-white"
                 onClick={handleAddToCart}
               >
                 Add to Cart

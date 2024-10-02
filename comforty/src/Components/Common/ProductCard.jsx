@@ -3,19 +3,34 @@ import PropTypes from 'prop-types';
 import Cart from '../../assets/svg/cart_featureproduct.svg?react';
 import Heart from '../../assets/svg/heart.svg?react';
 import { addItemToFav, removeItemFromFav } from '../../Store/favSlice';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
-const ProductCard = ({ product, index, activeProductIndex, hoverColor, onAddToCart }) => {
+const ProductCard = ({ categories, product, index, activeProductIndex, hoverColor, onAddToCart }) => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClick = () => {
-    navigate(`/product-page/${product.id}`);
-    window.scrollTo(0,0);
-  };
+    let apiUrl;
 
+    // Check the current page and set the appropriate API URL
+    if (location.pathname.includes('/categories')) {
+      apiUrl = `https://api.escuelajs.co/api/v1/products/${product.id}`;
+    } else {
+      apiUrl = `https://dummyjson.com/products/${product.id}`;
+    }
+
+
+    console.log("url:",apiUrl)
+
+    navigate(`/product-page/${product.id}`, {
+      state: { from: location, apiUrl }  // Pass the API URL to the ProductPage
+    });
+    window.scrollTo(0, 0);
+  };
+  
   // added to favourite check
   const isFavorited = useSelector((state) =>
     state.fav.items.some((item) => item.id === product.id)
