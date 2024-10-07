@@ -82,7 +82,7 @@ const ProductPage = () => {
   if (error) return <div className="max-width">{error}</div>;
 
   return (
-    <div className="flex justify-between gap-10 p-4 my-12 product-page max-width">
+    <div className="flex flex-col justify-between gap-10 p-4 my-12 md:gap-12 product-page max-width md:flex-row">
       {product && (
         <>
           <div className="flex flex-col items-center justify-center gap-2 cursor-pointer product-image">

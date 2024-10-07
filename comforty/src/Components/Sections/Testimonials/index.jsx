@@ -2,7 +2,7 @@ import SectionHeader from "../../Common/SectionHeader";
 import Client1 from '../../../assets/images/client1.png';
 import Client2 from '../../../assets/images/client2.png';
 import DoubleQuotes from '../../../assets/svg/double_quotes.svg';
-import SimpleSlider from "../../Common/Slider"; // Import your reusable slider
+import SimpleSlider from "../../Common/Slider"; 
 import { useState, useRef } from "react";
 
 const Testimonials = () => {
@@ -23,35 +23,35 @@ const Testimonials = () => {
     },
   ]);
 
-  // const sliderSettings = {
-  //   slidesToShow: 2,  
-  //   slidesToScroll: 1,
-  //   responsive: [
-  //     {
-  //       breakpoint: 1024,
-  //       settings: {
-  //         slidesToShow: 2,
-  //         slidesToScroll: 1,
-  //         infinite: true,
-  //         dots: false
-  //       }
-  //     },
-  //     {
-  //       breakpoint: 600,  
-  //       settings: {
-  //         slidesToShow: 1,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //   ],
-  // };
+  const sliderSettings = {
+    slidesToShow: 2,  
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 600,  
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <div className="py-10 mt-20 bg-secondary-white" id="pages">
       <div className="max-width">
         <SectionHeader title="What client says about us" sliderRef={sliderRef} />
 
-        <SimpleSlider sliderRef={sliderRef} showSlides={2}>
+        <SimpleSlider sliderRef={sliderRef} showSlides={2} sliderSettings={sliderSettings}>
           {testimonialsData.map((testimonial, index) => (
             <div key={index} className="p-6 bg-white shadow-custom rounded-xl">
               <div>

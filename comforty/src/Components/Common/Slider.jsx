@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default function SimpleSlider({ children, sliderRef,showSlides = 4 }) {
+export default function SimpleSlider({ children, sliderRef,showSlides = 4, sliderSettings }) {
   const defaultSettings = {
     infinite: true,
     speed: 500,
@@ -39,11 +39,11 @@ export default function SimpleSlider({ children, sliderRef,showSlides = 4 }) {
     ]
   };
 
-  // Merge defaultSettings with custom settings
-  const sliderSettings = { ...defaultSettings};
+  // Merge the passed sliderSettings with defaultSettings
+  const mergedSettings = { ...defaultSettings, ...sliderSettings };
   
   return (
-    <Slider {...sliderSettings} ref={sliderRef}>
+    <Slider {...mergedSettings} ref={sliderRef}>
       {children}
     </Slider>
   );

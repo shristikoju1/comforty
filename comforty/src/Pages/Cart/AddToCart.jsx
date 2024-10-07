@@ -50,7 +50,7 @@ const Cart = () => {
               <tr key={index}>
                 <td>
                   <img
-                    src={item.thumbnail || item.image}
+                    src={item.thumbnail || item.image || item.category.image}
                     alt={item.title}
                     className="border border-gray-400 border-solid rounded-sm"
                   />

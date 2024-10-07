@@ -79,12 +79,11 @@ const NavbarThree = () => {
 
           {/* Categories Section */}
           <div className="sidebar-content">
-            <NavLink to={'/categories'}className="sidebar-title">Categories</NavLink>
             <ul className="space-y-2">
-              <li className="sidebar-list-item"><a href="/categories">Sofas</a></li>
-              <li className="sidebar-list-item"><a href="/categories">Chairs</a></li>
-              <li className="sidebar-list-item"><a href="/categories">Tables</a></li>
-              <li className="sidebar-list-item"><a href="/categories">Beds</a></li>
+              <li className="sidebar-list-item"><a href="/categories/Sofas">Sofas</a></li>
+              <li className="sidebar-list-item"><a href="/categories/Chairs">Chairs</a></li>
+              <li className="sidebar-list-item"><a href="/categories/Tables">Tables</a></li>
+              <li className="sidebar-list-item"><a href="/categories/Beds">Beds</a></li>
             </ul>
           </div>
 
