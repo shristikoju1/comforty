@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 const hoverColor = "#007580";
 
 const Categories = () => {
+  const {id} = useParams();
   const [categories, setCategories] = useState([]);
   const dispatch = useDispatch();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,19 +16,19 @@ const Categories = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
+      
       const options = {
         method: "GET",
-        url: "https://api.escuelajs.co/api/v1/products/?categoryId=3", // Fetching products for category 3
+        url: `https://api.escuelajs.co/api/v1/products/?categoryId=${id}&limit=8`, 
       };
 
       try {
         const response = await axios.request(options);
         console.log("Response Data", response.data);
 
-        // Add apiSource to each category item
         const categoriesWithSource = response.data.map((category) => ({
           ...category,
-          apiSource: "EscuelaJS", // Add the source to each product
+          apiSource: "EscuelaJS", 
         }));
 
         setCategories(categoriesWithSource);
@@ -37,7 +38,7 @@ const Categories = () => {
     };
 
     fetchCategories();
-  }, []);
+  }, [id]);
 
   const addToCart = (idx) => {
     const selectedProduct = categories[idx];

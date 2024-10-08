@@ -24,7 +24,7 @@ function App() {
             <Route path="/product-page/:id" element={<ProductPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/map" element={<Leaflet />} />
-            <Route path="/categories/:displayCategory" element={<Categories/>}/>
+            <Route path="/categories/:id" element={<Categories/>}/>
             <Route path="*" element={<NotFound />} />
 
           </Route>

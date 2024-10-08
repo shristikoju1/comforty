@@ -12,6 +12,13 @@ const SignupForm = () => {
     password: "",
     confirmPassword: "",
   });
+  
+  const [formErrors, setFormErrors] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -20,54 +27,46 @@ const SignupForm = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    setFormErrors({ ...formErrors, [name]: "" });
+  };
+
   const isValid = () => {
     let isProceed = true;
-    let errMsg = "Please enter the value in";
+    let errors = {};
 
     if (formData.username === "") {
       isProceed = false;
-      errMsg += " Username";
+      errors.username = "Username is required.";
     }
 
     if (formData.email === "") {
       isProceed = false;
-      errMsg += " Email";
+      errors.email = "Email is required.";
+    } else if (
+      !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)
+    ) {
+      isProceed = false;
+      errors.email = "Please enter a valid email.";
     }
 
     if (formData.password === "") {
       isProceed = false;
-      errMsg += " Password";
+      errors.password = "Password is required.";
     }
 
     if (formData.confirmPassword === "") {
       isProceed = false;
-      errMsg += " Confirm Password";
-    }
-
-    // Check if the passwords match
-    if (formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = "Confirm Password is required.";
+    } else if (formData.password !== formData.confirmPassword) {
       isProceed = false;
-      errMsg = "Passwords do not match!";
+      errors.confirmPassword = "Passwords do not match!";
     }
 
-    if (!isProceed) {
-      toast.warning(errMsg);
-    } else {
-      // Email validation
-      if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)) {
-        // Do nothing
-      } else {
-        isProceed = false;
-        toast.warning("Please enter a valid email");
-      }
-    }
-
+    setFormErrors(errors);
     return isProceed;
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -129,6 +128,7 @@ const SignupForm = () => {
               placeholder="Your username"
               className="w-full h-[50px] px-3 py-2 text-gray-700 rounded bg-secondary-white font-inter"
             />
+            {formErrors.username && <p className="text-red-600">{formErrors.username}</p>}
           </div>
 
           <div className="mb-4">
@@ -140,6 +140,7 @@ const SignupForm = () => {
               placeholder="Your email"
               className="w-full h-[50px] px-3 py-2 text-gray-700 rounded bg-secondary-white font-inter"
             />
+            {formErrors.email && <p className="text-red-600">{formErrors.email}</p>}
           </div>
 
           <div className="relative mb-4">
@@ -155,6 +156,7 @@ const SignupForm = () => {
               className="absolute cursor-pointer right-3 top-4"
               onClick={togglePasswordVisibility}
             />
+            {formErrors.password && <p className="text-red-600">{formErrors.password}</p>}
           </div>
 
           <div className="relative mb-4">
@@ -170,6 +172,7 @@ const SignupForm = () => {
               className="absolute cursor-pointer right-3 top-4"
               onClick={togglePasswordVisibility}
             />
+            {formErrors.confirmPassword && <p className="text-red-600">{formErrors.confirmPassword}</p>}
           </div>
 
           <div className="pt-1 pb-1 mb-12 text-center">

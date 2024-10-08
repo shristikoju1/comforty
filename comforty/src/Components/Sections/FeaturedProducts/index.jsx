@@ -35,8 +35,11 @@ const FeaturedProducts = () => {
         setLoading(false);
       } catch (err) {
         console.error("Error fetching products:", err);
-        setError("Failed to load products");
-        setLoading(false);
+        setError(
+          <div className="text-xl font-bold text-center text-red-500 max-width">
+            Failed to load products, Please check your internet connection.
+          </div>
+        );        setLoading(false);
       }
     };
     fetchProducts();

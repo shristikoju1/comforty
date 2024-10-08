@@ -1,7 +1,7 @@
 import "./navbar.scss";
-import NavbarOne from "./NavbarOne";
-import NavbarTwo from "./NavbarTwo";
-import NavbarThree from "./NavbarThree";
+import LangNavbar from "./LangNavbar";
+import CartNavbar from "./CartNavbar";
+import MainNavbar from "./MainNavbar";
 
 
 const Navbar = () => {
@@ -9,9 +9,9 @@ const Navbar = () => {
 
   return (
     <div id="home" className="scroll-smooth">
-      <NavbarOne/>
-      <NavbarTwo/>
-      <NavbarThree/>
+      <LangNavbar/>
+      <CartNavbar/>
+      <MainNavbar/>
 
       {/* Second Navbar with Scroll Effect */}
     </div>

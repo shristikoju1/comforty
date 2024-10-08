@@ -52,14 +52,14 @@ const NavbarThree = () => {
           onClick={toggleCategoriesSidebar}
         >
           <Menu />
-          All Categories
+          Explore More
         </button>
       </span>
 
       {/* All Categories sidebar */}
       <div>
         {isAllCategoriesMenuOpen && (
-          <div className="fixed inset-0 z-40 bg-black bg-opacity-50 backdrop-blur-sm"></div>
+          <div className="fixed inset-0 z-40 bg-black bg-opacity-50 backdrop-blur-sm" onClick={toggleCategoriesSidebar}></div>
         )}
         <div
           className={`sidebar-container transform ${
@@ -80,10 +80,11 @@ const NavbarThree = () => {
           {/* Categories Section */}
           <div className="sidebar-content">
             <ul className="space-y-2">
-              <li className="sidebar-list-item"><a href="/categories/Sofas">Sofas</a></li>
-              <li className="sidebar-list-item"><a href="/categories/Chairs">Chairs</a></li>
-              <li className="sidebar-list-item"><a href="/categories/Tables">Tables</a></li>
-              <li className="sidebar-list-item"><a href="/categories/Beds">Beds</a></li>
+              <li className="sidebar-list-item"><a href="/categories/1">Clothes</a></li>
+              <li className="sidebar-list-item"><a href="/categories/2">Electronics</a></li>
+              <li className="sidebar-list-item"><a href="/categories/3">Furniture</a></li>
+              <li className="sidebar-list-item"><a href="/categories/4">Shoes</a></li>
+              <li className="sidebar-list-item"><a href="/categories/5">Miscellaneous</a></li>
             </ul>
           </div>
 
