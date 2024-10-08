@@ -6,6 +6,7 @@ import { addItemToCart } from "../../../Store/cartSlice";
 import { useEffect, useRef, useState } from "react";
 import SimpleSlider from "../../Common/Slider";
 import { RotatingLines } from "react-loader-spinner";
+import InternetError from "../../Common/InternetError";
 
 const hoverColor = "#007580";
 
@@ -25,21 +26,19 @@ const FeaturedProducts = () => {
           "https://dummyjson.com/products/category/furniture"
         );
         const data = await response.json();
-        
+
         // Adding apiSource to each product
-    const productsWithSource = data.products.map(product => ({
-      ...product,
-      apiSource: "DummyJSON"
-    }));
+        const productsWithSource = data.products.map(product => ({
+          ...product,
+          apiSource: "DummyJSON"
+        }));
         setProductData(productsWithSource);
         setLoading(false);
       } catch (err) {
         console.error("Error fetching products:", err);
         setError(
-          <div className="text-xl font-bold text-center text-red-500 max-width">
-            Failed to load products, Please check your internet connection.
-          </div>
-        );        setLoading(false);
+          <InternetError/>
+        ); setLoading(false);
       }
     };
     fetchProducts();

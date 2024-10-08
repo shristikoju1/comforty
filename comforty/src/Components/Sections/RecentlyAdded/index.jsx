@@ -5,6 +5,7 @@ import './recent.scss';
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../../Store/cartSlice";
 import SimpleSlider from "../../Common/Slider";
+import InternetError from "../../Common/InternetError";
 
 const hoverColor = "#007580";
 
@@ -30,7 +31,9 @@ const RecentlyAdded = () => {
         setLoading(false);
       } catch (err) {
         console.error("Error fetching products:", err);
-        setError("Failed to load products");
+        setError(
+          <InternetError/>
+        );
         setLoading(false);
       }
     };
