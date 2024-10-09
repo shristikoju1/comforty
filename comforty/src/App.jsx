@@ -9,6 +9,7 @@ import LoginPage from "./Pages/LoginPage";
 import Leaflet from "./Pages/leaflet";
 import NotFound from "./Pages/NotFound";
 import Categories from "./Pages/Categories";
+import SearchPage from "./Pages/SearchPage";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/map" element={<Leaflet />} />
             <Route path="/categories/:id" element={<Categories/>}/>
+            <Route path = "search/:searchKey" element = {<SearchPage />} />
+
             <Route path="*" element={<NotFound />} />
 
           </Route>

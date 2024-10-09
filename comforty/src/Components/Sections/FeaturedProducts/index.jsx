@@ -89,19 +89,19 @@ const FeaturedProducts = () => {
           <SimpleSlider sliderRef={sliderRef}>
             {getDisplayedProducts().map((product, index) => (
               <ProductCard
-                key={product.id}
-                product={{
-                  ...product,
-                  image: product.thumbnail, // thumbnail as image source
-                  title: product.title,
-                  price: product.price,
-                  // source: product.brand || "Unknown source", // Adding a source property, example using 'brand'
-                }}
-                index={index}
-                hoverColor={hoverColor}
-                onAddToCart={() => addToCart(currentIndex + index)}
-              />
-            ))}
+              key={product.id}
+              product={{
+                ...product,
+                image: product.thumbnail, // thumbnail as image source
+                title: product.title,
+                price: product.price,
+                // source: product.brand || "Unknown source", // Adding a source property, example using 'brand'
+              }}
+              index={index}
+              hoverColor={hoverColor}
+              onAddToCart={() => addToCart(currentIndex + index)}
+            />
+          ))}
           </SimpleSlider>
         </div>
       </div>
