@@ -245,6 +245,7 @@
       position: relative;
       display: inline-block;
       font-size: 28px;
+      font-weight: 700;
 
       &::after{
           content: "";

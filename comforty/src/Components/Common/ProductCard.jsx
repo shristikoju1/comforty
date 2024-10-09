@@ -50,9 +50,9 @@ const ProductCard = ({ product, index, hoverColor, onAddToCart }) => {
   return (
     <div
       key={product.id}
-      className="hover:p-2 hover:shadow-md hover:translate-y-1 transition-all 0.3s ease-in-out cursor-pointer"
+      className="hover:p-2 hover:shadow-md hover:translate-y-1 transition-all 0.3s ease-in-out cursor-pointer shadow-md rounded-lg p-2"
     >
-      <div className="relative ">
+      <div className="relative">
         <div onClick={handleClick}>
           <img
             src={product.image}
