@@ -2,10 +2,14 @@ import { BsFillGridFill } from "react-icons/bs";
 import { FaThList } from "react-icons/fa";
 import * as constants from '../constants/constants';
 
-const FilterView = ({ setSortOption }) => {
+const FilterView = ({ setSortOption, setView }) => {
   const handleSortChange = (sortBy) => {
     setSortOption(sortBy);
   };
+
+  const handleViewChange = (view) => {
+    setView(view);
+  }; // Add closing brace here
 
   return (
     <div className='filter-top mb-20'>
@@ -24,10 +28,20 @@ const FilterView = ({ setSortOption }) => {
           </div>
           <div className='filter-top-view flex align-center'>
             <p className='op-07 text-dark fs-13'>View: </p>
-            <button type="button" className="grid-btn ml-2" title="Grid View">
+            <button 
+              type="button" 
+              className="grid-btn ml-2" 
+              title="Grid View" 
+              onClick={() => handleViewChange('grid')}
+            >
               <BsFillGridFill />
             </button>
-            <button type="button" className="list-btn ml-2" title="List View">
+            <button 
+              type="button" 
+              className="list-btn ml-2" 
+              title="List View" 
+              onClick={() => handleViewChange('list')}
+            >
               <FaThList />
             </button>
           </div>

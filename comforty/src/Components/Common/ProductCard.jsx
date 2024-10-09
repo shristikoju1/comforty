@@ -5,8 +5,9 @@ import Heart from "../../assets/svg/heart.svg?react";
 import { addItemToFav, removeItemFromFav } from "../../Store/favSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const ProductCard = ({ product, index, hoverColor, onAddToCart }) => {
+const ProductCard = ({ product, index, hoverColor, onAddToCart, view }) => {
   const dispatch = useDispatch();
+
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -48,10 +49,12 @@ const ProductCard = ({ product, index, hoverColor, onAddToCart }) => {
   };
 
   return (
-    <div
-      key={product.id}
-      className="hover:p-2 hover:shadow-md hover:translate-y-1 transition-all 0.3s ease-in-out cursor-pointer shadow-md rounded-lg p-2"
-    >
+<div
+  key={product.id}
+  className={`hover:p-2 hover:shadow-md hover:translate-y-1 transition-all 0.3s ease-in-out cursor-pointer shadow-md rounded-lg p-2 ${
+    view === 'grid' ? 'grid-class' : 'list-class'
+  }`}
+>
       <div className="relative">
         <div onClick={handleClick}>
           <img

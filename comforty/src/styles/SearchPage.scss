@@ -1,0 +1,26 @@
+.list {
+        display: grid;
+        grid-template-columns: repeat(
+            2,
+            minmax(min(14rem, 100%), 1fr)
+     
+        );
+        // grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+}  
+  
+//   .list .product-card {
+//     display: flex; /* Align items horizontally */
+//     padding: 10px;
+//     border-bottom: 1px solid #ddd; /* Optional: separator for list items */
+//   }
+  
+//   .list .product-card img {
+//     width: 100px; /* Example for image size in list view */
+//     height: auto;
+//   }
+  
+//   .list .product-card .product-details {
+//     margin-left: 10px; /* Space between image and details */
+//   }
+  

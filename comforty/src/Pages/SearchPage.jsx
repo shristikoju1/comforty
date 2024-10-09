@@ -1,16 +1,18 @@
+import '../styles/SearchPage.scss'
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FaHourglassEnd } from "react-icons/fa";
-import { RotatingLines } from "react-loader-spinner";
 import ProductCard from "../Components/Common/ProductCard";
 import FilterView from "../Components/FilterView";
 import * as constants from '../constants/constants';
+import Loader from "../Components/Common/Loader";
 
 const SearchPage = () => {
   const { searchKey } = useParams();
   const [searchResult, setSearchResult] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
   const [sortOption, setSortOption] = useState(constants.BEST_MATCH); // Default to Best Match
+  const [view, setView] = useState('grid');
 
   useEffect(() => {
     const getSearchProducts = async () => {
@@ -40,7 +42,7 @@ const SearchPage = () => {
             sortedResults.sort((a, b) => a.price - b.price);
           } else if (sortOption === constants.HIGH_TO_LOW) {
             sortedResults.sort((a, b) => b.price - a.price);
-          } 
+          }
           // For Best Match, no sorting is needed, the default fetched order will be used
 
           setSearchResult(sortedResults);
@@ -70,21 +72,11 @@ const SearchPage = () => {
           </div>
           <br />
           {searchLoading ? (
-            <div className="items-center justify-center max-width">
-              <RotatingLines
-                visible={true}
-                height="96"
-                width="96"
-                color="#029FAE"
-                strokeWidth="5"
-                animationDuration="2"
-                ariaLabel="rotating-lines-loading"
-              />
-            </div>
+            <Loader />
           ) : (
             <div>
-              <FilterView setSortOption={setSortOption} /> {/* Pass setSortOption */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <FilterView setSortOption={setSortOption} setView={setView} />
+              <div className={view === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4' : 'list'}>
                 {searchResult.length > 0 ? (
                   searchResult.map((product) => (
                     <ProductCard
@@ -95,6 +87,7 @@ const SearchPage = () => {
                         title: product.title,
                         price: product.price,
                       }}
+                      // Pass additional props if needed for styling in list view
                     />
                   ))
                 ) : (
