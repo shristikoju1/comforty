@@ -1,5 +1,5 @@
 import SectionHeader from "../../Common/SectionHeader";
-import Client1 from '../../../assets/images/client1.png';
+import Client1 from '@/assets/images/client1.png';
 import Client2 from '../../../assets/images/client2.png';
 import DoubleQuotes from '../../../assets/svg/double_quotes.svg';
 import SimpleSlider from "../../Common/Slider"; 
@@ -10,13 +10,13 @@ const Testimonials = () => {
   
   const [testimonialsData] = useState([
     {
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet mi nec massa tincidunt blandit et eu sem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet mi nec massa tincidunt blandit et eu sem.",
+      description: "I recently purchased a sectional sofa from Comforty, and I couldn't be happier! The design is sleek, the fabric is incredibly soft, and the level of comfort is unmatched. It's the perfect addition to my living room. The delivery was smooth, and the customer service team was very responsive. Highly recommend Comforty for anyone looking to upgrade their home furniture!",
       clientImage: Client1,
       clientName: "Kristin Watson",
       clientTitle: "Fashion Designer",
     },
     {
-      description: "Nullam sapien elit, dignissim eu viverra et, scelerisque et felis. Aliquam egestas dui elit, quis tincidunt lacus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet mi nec massa tincidunt blandit et eu sem.",
+      description: "Comforty has completely transformed my home! I bought a dining table set, and not only is it beautifully crafted, but it's also extremely durable. The attention to detail and quality of materials is obvious. Plus, the team made the whole process so easy, from order to delivery. If you're looking for furniture that combines style and comfort, Comforty is the place to go!",
       clientImage: Client2,
       clientName: "Esther Howard",
       clientTitle: "Fashion Designer",

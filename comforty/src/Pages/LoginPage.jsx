@@ -54,7 +54,7 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isValid()) {
-      fetch("http://localhost:8000/login", {
+      fetch("https://katydid-neutral-reasonably.ngrok-free.app/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)

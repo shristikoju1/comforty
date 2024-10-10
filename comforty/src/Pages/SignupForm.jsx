@@ -10,14 +10,14 @@ const SignupForm = () => {
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    passwordConfirm: "",
   });
-  
+
   const [formErrors, setFormErrors] = useState({
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    passwordConfirm: "",
   });
 
   const navigate = useNavigate();
@@ -57,12 +57,12 @@ const SignupForm = () => {
       errors.password = "Password is required.";
     }
 
-    if (formData.confirmPassword === "") {
+    if (formData.passwordConfirm === "") {
       isProceed = false;
-      errors.confirmPassword = "Confirm Password is required.";
-    } else if (formData.password !== formData.confirmPassword) {
+      errors.passwordConfirm = "Confirm Password is required.";
+    } else if (formData.password !== formData.passwordConfirm) {
       isProceed = false;
-      errors.confirmPassword = "Passwords do not match!";
+      errors.passwordConfirm = "Passwords do not match!";
     }
 
     setFormErrors(errors);
@@ -72,10 +72,16 @@ const SignupForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isValid()) {
-      fetch("http://localhost:8000/user", {
+      fetch("https://katydid-neutral-reasonably.ngrok-free.app/api/users", {
         method: "POST",
+        // mode: 'no-cors',
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          passwordConfirm: formData.passwordConfirm,
+        }),
       })
         .then((res) => {
           if (res.ok) {
@@ -162,8 +168,8 @@ const SignupForm = () => {
           <div className="relative mb-4">
             <input
               type={showPassword ? "text" : "password"}
-              name="confirmPassword"
-              value={formData.confirmPassword}
+              name="passwordConfirm"
+              value={formData.passwordConfirm}
               onChange={handleChange}
               placeholder="Enter password again"
               className="w-full px-3 py-2 text-gray-700 rounded bg-secondary-white font-inter h-[50px]"
@@ -172,7 +178,7 @@ const SignupForm = () => {
               className="absolute cursor-pointer right-3 top-4"
               onClick={togglePasswordVisibility}
             />
-            {formErrors.confirmPassword && <p className="text-red-600">{formErrors.confirmPassword}</p>}
+            {formErrors.passwordConfirm && <p className="text-red-600">{formErrors.passwordConfirm}</p>}
           </div>
 
           <div className="pt-1 pb-1 mb-12 text-center">

@@ -221,11 +221,11 @@ const ProductPage = () => {
 
               <p className="p-1 ml-4 text-sm text-gray-700">
                 Details about{" "}
-                <a href="#" className="underline">
+                <a href="/policy" className="underline">
                   return policy
                 </a>{" "}
                 and{" "}
-                <a href="#" className="underline">
+                <a href="/warranty" className="underline">
                   warranty
                 </a>
                 .
