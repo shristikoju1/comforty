@@ -1,11 +1,11 @@
-import Facebook from "../../../assets/svg/facebook.svg?react";
-import Twitter from "../../../assets/svg/twitter.svg?react";
-import Instagram from "../../../assets/svg/instagram.svg?react";
-import Pinterest from "../../../assets/svg/pinterest.svg?react";
-import Youtube from "../../../assets/svg/youtube.svg?react";
-import PaymentPartner from "../../../assets/svg/payment_partner.svg?react";
-import Logo from "../../../assets/svg/logo.svg?react";
-import "./footer.scss";
+import Facebook from "@/assets/svg/facebook.svg?react";
+import Twitter from "@/assets/svg/twitter.svg?react";
+import Instagram from "@/assets/svg/instagram.svg?react";
+import Pinterest from "@/assets/svg/pinterest.svg?react";
+import Youtube from "@/assets/svg/youtube.svg?react";
+import PaymentPartner from "@/assets/svg/payment_partner.svg?react";
+import Logo from "@/assets/svg/logo.svg?react";
+import "@/styles/footer.scss";
 
 const Footer = () => {
   return (

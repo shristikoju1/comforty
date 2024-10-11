@@ -1,12 +1,12 @@
-import SectionHeader from "../../Common/SectionHeader";
-import ProductCard from "../../Common/ProductCard";
-import "./featuredProducts.scss";
+import SectionHeader from "../../../Common/SectionHeader";
+import ProductCard from "../../../Common/ProductCard";
+import "@/styles/featuredProducts.scss";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../../Store/cartSlice";
 import { useEffect, useRef, useState } from "react";
-import SimpleSlider from "../../Common/Slider";
+import SimpleSlider from "../../../Common/Slider";
 import { RotatingLines } from "react-loader-spinner";
-import InternetError from "../../Common/InternetError";
+import InternetError from "../../../Common/InternetError";
 
 const hoverColor = "#007580";
 

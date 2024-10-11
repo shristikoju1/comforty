@@ -2,8 +2,8 @@ import DiscountIcon from "../../../assets/svg/feature1.svg?react";
 import DeliveryIcon from "../../../assets/svg/feature2.svg?react";
 import TimeIcon from "../../../assets/svg/feature3.svg?react";
 import ShieldIcon from "../../../assets/svg/feature4.svg?react";
-import "./hero.scss";
-import "./feature.scss";
+import "@/styles/hero.scss";
+import "@/styles/feature.scss";
 import Swiper from "../../carousel";
 
 

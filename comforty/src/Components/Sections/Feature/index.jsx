@@ -3,7 +3,7 @@ import DeliveryIcon from '../../../assets/svg/feature2.svg?react';
 import TimeIcon from '../../../assets/svg/feature3.svg?react';
 import ShieldIcon from '../../../assets/svg/feature4.svg?react';
 
-import './feature.scss';
+import '@/styles/feature.scss';
 
 const featuresData = [
   {

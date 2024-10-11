@@ -2,10 +2,10 @@ import '../styles/SearchPage.scss'
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FaHourglassEnd } from "react-icons/fa";
-import ProductCard from "../Components/Common/ProductCard";
+import ProductCard from "../Common/ProductCard";
 import FilterView from "../Components/FilterView";
 import * as constants from '../constants/constants';
-import Loader from "../Components/Common/Loader";
+import Loader from "../Common/Loader";
 
 const SearchPage = () => {
   const { searchKey } = useParams();

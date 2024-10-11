@@ -1,5 +1,5 @@
-import SliderLeft from "../../assets/svg/slider-left.svg?react";
-import SliderRight from "../../assets/svg/slider-right.svg?react";
+import SliderLeft from "@/assets/svg/slider-left.svg?react";
+import SliderRight from "@/assets/svg/slider-right.svg?react";
 
 const SliderButton = ({ direction, onClick }) => {
   return (

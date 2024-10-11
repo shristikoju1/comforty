@@ -1,8 +1,26 @@
 import { CiCircleAlert } from "react-icons/ci";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import TickMark from "../../../assets/svg/tickmark.svg?react";
+import TickMark from "@/assets/svg/tickmark.svg?react";
+import ProfileSidebar from "../ProfileSidebar";
+import { useState } from "react";
 
 const NavbarOne = () => {
+
+  const [isAllCategoriesMenuOpen, setIsAllCategoriesMenuOpen] = useState(false);
+
+  const toggleCategoriesSidebar = () => {
+    setIsAllCategoriesMenuOpen(!isAllCategoriesMenuOpen);
+  };
+
+
+
+
+    const closeCategoriesSidebar = () => {
+      setIsAllCategoriesMenuOpen(false);
+    };
+  
+
+
   return (
     <section className="items-center text-white bg-blue h-[40px] py-2 lg:flex hidden justify-between">
       <div
@@ -28,7 +46,11 @@ const NavbarOne = () => {
               </ul>
             </div>
           </div>
-          <a href="#">Faqs</a>
+          <button onClick={toggleCategoriesSidebar}>
+          <p>Faqs</p>
+
+          </button>
+          <ProfileSidebar isOpen={isAllCategoriesMenuOpen} onClose={closeCategoriesSidebar}/>
           <div className="flex items-center gap-1">
             <CiCircleAlert />
             <p>Need help</p>

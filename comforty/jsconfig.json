@@ -2,14 +2,17 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "checkJs": true,
-    "jsx": "react",  // Enables JSX support for React
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "react-jsx",  // Enables JSX support for React
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": ["./src/*"]
+    },
   },
   "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
     "src/**/*.js",
     "src/**/*.jsx",   // Include JSX files
     "src/**/*.scss",  // Include SCSS files (optional, just for better file recognition in the editor)

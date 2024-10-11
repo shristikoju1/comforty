@@ -1,4 +1,4 @@
-import "./navbar.scss";
+import "@/styles/navbar.scss";
 import LangNavbar from "./LangNavbar";
 import CartNavbar from "./CartNavbar";
 import MainNavbar from "./MainNavbar";
@@ -12,8 +12,6 @@ const Navbar = () => {
       <LangNavbar/>
       <CartNavbar/>
       <MainNavbar/>
-
-      {/* Second Navbar with Scroll Effect */}
     </div>
   );
 };

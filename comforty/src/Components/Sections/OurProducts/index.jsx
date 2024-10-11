@@ -1,17 +1,17 @@
-import Product1 from '../../../assets/images/our_product1.png';
-import Product2 from '../../../assets/images/our_product2.png';
-import Product3 from '../../../assets/images/our_product3.png';
-import Product4 from '../../../assets/images/our_product4.png';
-import Product5 from '../../../assets/images/our_product5.png';
-import Product6 from '../../../assets/images/our_product6.png';
-import Product7 from '../../../assets/images/our_product7.png';
-import Product8 from '../../../assets/images/our_product8.png';
-import ProductCard from '../../Common/ProductCard';
+import Product1 from '@/assets/images/our_product1.png';
+import Product2 from '@/assets/images/our_product2.png';
+import Product3 from '@/assets/images/our_product3.png';
+import Product4 from '@/assets/images/our_product4.png';
+import Product5 from '@/assets/images/our_product5.png';
+import Product6 from '@/assets/images/our_product6.png';
+import Product7 from '@/assets/images/our_product7.png';
+import Product8 from '@/assets/images/our_product8.png';
+import ProductCard from '@/Common/ProductCard';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addItemToCart } from '../../../Store/cartSlice'; 
+import { addItemToCart } from '@/Store/cartSlice'; 
 
-import './ourproduct.scss';
+import '@/styles/ourproduct.scss';
 
 const productData = [
   {

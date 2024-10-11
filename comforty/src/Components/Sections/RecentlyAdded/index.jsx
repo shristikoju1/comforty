@@ -1,11 +1,11 @@
 import { useRef, useState, useEffect } from "react";
-import SectionHeader from "../../Common/SectionHeader";
-import ProductCard from "../../Common/ProductCard";
-import './recent.scss';
+import SectionHeader from "../../../Common/SectionHeader";
+import ProductCard from "../../../Common/ProductCard";
+import '@/styles/recent.scss';
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../../Store/cartSlice";
-import SimpleSlider from "../../Common/Slider";
-import InternetError from "../../Common/InternetError";
+import SimpleSlider from "../../../Common/Slider";
+import InternetError from "../../../Common/InternetError";
 
 const hoverColor = "#007580";
 

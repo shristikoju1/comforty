@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import Cart from "../../assets/svg/cart_featureproduct.svg?react";
-import Heart from "../../assets/svg/heart.svg?react";
-import { addItemToFav, removeItemFromFav } from "../../Store/favSlice";
+import Cart from "@/assets/svg/cart_featureproduct.svg?react";
+import Heart from "@/assets/svg/heart.svg?react";
+import { addItemToFav, removeItemFromFav } from "../Store/favSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product, index, hoverColor, onAddToCart, view }) => {

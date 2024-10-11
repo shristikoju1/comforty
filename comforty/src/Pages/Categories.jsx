@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import ProductCard from "../Components/Common/ProductCard";
+import ProductCard from "../Common/ProductCard";
 import { addItemToCart } from "../Store/cartSlice";
 import { useParams } from "react-router-dom";
 

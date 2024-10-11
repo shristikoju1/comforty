@@ -8,12 +8,12 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
 
-import HeroImg1 from "../../assets/images/heroimg1.png";
-import HeroImg2 from "../../assets/images/heroimg2.png";
-import HeroImg3 from "../../assets/images/our_product6.png";
-import RightArrow from "../../assets/svg/arrow-right.svg?react";
-import Discount from "../../assets/svg/discount.svg?react";
-import Circle from "../../assets/svg/circle.svg?react";
+import HeroImg1 from "@/assets/images/heroimg1.png";
+import HeroImg2 from "@/assets/images/heroimg2.png";
+import HeroImg3 from "@/assets/images/our_product6.png";
+import RightArrow from "@/assets/svg/arrow-right.svg?react";
+import Discount from "@/assets/svg/discount.svg?react";
+import Circle from "@/assets/svg/circle.svg?react";
 
 import './carousel.scss';
 

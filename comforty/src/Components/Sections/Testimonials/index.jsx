@@ -1,8 +1,8 @@
-import SectionHeader from "../../Common/SectionHeader";
+import SectionHeader from "../../../Common/SectionHeader";
 import Client1 from '@/assets/images/client1.png';
 import Client2 from '../../../assets/images/client2.png';
 import DoubleQuotes from '../../../assets/svg/double_quotes.svg';
-import SimpleSlider from "../../Common/Slider"; 
+import SimpleSlider from "../../../Common/Slider"; 
 import { useState, useRef } from "react";
 
 const Testimonials = () => {

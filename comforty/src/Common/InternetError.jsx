@@ -1,4 +1,4 @@
-import Error from '../../assets/gif/error.webp';
+import Error from '@/assets/gif/error.webp';
 
 const InternetError = () => {
   return (
