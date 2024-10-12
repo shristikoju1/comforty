@@ -1,41 +1,29 @@
-import { useState } from 'react';
+import { RxCross2 } from "react-icons/rx";
 
-const withSidebar = (WrappedComponent, position = 'left') => {
-  return function EnhancedComponent(props) {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+const withSidebar = (WrappedComponent) => {
+  return ({ isOpen, onClose, ...props }) => {
 
-    const toggleSidebar = () => {
-      setIsSidebarOpen(!isSidebarOpen);
-    };
-
-    const closeSidebar = () => {
-      setIsSidebarOpen(false);
+    // Close sidebar when clicking on unfocused blur background
+    const handleCloseSidebar = (e) => {
+      if (e.target.classList.contains('backdrop')) {
+        onClose();  
+      }
     };
 
     return (
       <div>
-        {/* Backdrop */}
-        {isSidebarOpen && (
-          <div
-            className="fixed inset-0 z-40 bg-black bg-opacity-50 backdrop-blur-sm"
-            onClick={closeSidebar}
-          ></div>
+        {isOpen && (
+          <div className="fixed inset-0 z-40 bg-black bg-opacity-50 backdrop-blur-sm backdrop" onClick={handleCloseSidebar}></div>
         )}
-
-        {/* Sidebar Container */}
         <div
-          className={`fixed top-0 h-full z-50 bg-white shadow-lg transform ${
-            position === 'left'
-              ? `${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`
-              : `${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`
-          } transition-transform duration-300 ease-in-out`}
-          style={{ width: '300px' }} // Adjust width as needed
+          className={`fixed right-0 top-0 h-full w-64 bg-white transform ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          } transition-transform duration-300 ease-in-out z-50`}
         >
-          <WrappedComponent
-            {...props}
-            isSidebarOpen={isSidebarOpen}
-            toggleSidebar={toggleSidebar}
-            closeSidebar={closeSidebar}
+          <WrappedComponent onClose={onClose} {...props} />
+          <RxCross2
+            className="absolute close-icon top-4 right-4"
+            onClick={onClose}
           />
         </div>
       </div>

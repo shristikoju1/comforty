@@ -6,14 +6,23 @@ import Profile from "@/assets/svg/profile.svg?react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-
+import ProfileSidebar from "../ProfileSidebar";
 
 const NavbarTwo = () => {
+  const [isAllCategoriesMenuOpen, setIsAllCategoriesMenuOpen] = useState(false);
+
+  const toggleCategoriesSidebar = () => {
+    setIsAllCategoriesMenuOpen(!isAllCategoriesMenuOpen);
+  };
+
+  const closeCategoriesSidebar = () => {
+    setIsAllCategoriesMenuOpen(false);
+  };
 
   const cartItems = useSelector((state) => state?.cart?.items);
   const totalCartItems = cartItems?.length;
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate(); // useNavigate from react-router-dom
 
   const handleSearchTerm = (event) => {
@@ -68,6 +77,11 @@ const NavbarTwo = () => {
                 <Profile />
               </div>
             </NavLink>
+            <button onClick={toggleCategoriesSidebar}>profile</button>
+            <ProfileSidebar
+              isOpen={isAllCategoriesMenuOpen}
+              onClose={closeCategoriesSidebar}
+            />
           </div>
         </div>
       </section>
