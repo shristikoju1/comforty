@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Heart from "../assets/svg/heart.svg?react";
 import { addItemToFav, removeItemFromFav } from "../Store/favSlice";
 import Cart from "../assets/svg/cart_featureproduct.svg?react";
+import Title from "@/Common/Title";
 
 const hoverColor = "#007580";
 
@@ -23,11 +24,8 @@ const Favourite = ({ onAddToCart, index }) => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-between text-center">
-      <div className="flex items-center justify-center my-10">
-        <h2 className="mr-4 text-4xl font-bold">Your Favorites</h2>
-        <Heart fill="red" className="h-[55px] w-[55px] text-red-500" />
-      </div>
+    <div className="flex flex-col items-center justify-between py-5 text-center">
+      <Title title="Your Favourites"/>
       <div className="flex flex-wrap justify-center">
         {favItems.length > 0 ? (
           favItems.map((item) => (

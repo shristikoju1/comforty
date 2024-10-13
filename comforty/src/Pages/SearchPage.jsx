@@ -6,6 +6,7 @@ import ProductCard from "../Common/ProductCard";
 import FilterView from "../Components/FilterView";
 import * as constants from '../constants/constants';
 import Loader from "../Common/Loader";
+import Title from '@/Common/Title';
 
 const SearchPage = () => {
   const { searchKey } = useParams();
@@ -67,10 +68,7 @@ const SearchPage = () => {
     <main className="bg-secondary max-width">
       <div className="container">
         <div className="py-5 sc-wrapper">
-          <div className="sc-title text-center">
-            <h3>Your search results</h3>
-          </div>
-          <br />
+          <Title title='Your Search Results'/>
           {searchLoading ? (
             <Loader />
           ) : (
@@ -91,7 +89,7 @@ const SearchPage = () => {
                     />
                   ))
                 ) : (
-                  <div className="flex justify-center text-center items-center ">
+                  <div className="flex items-center justify-center text-center ">
                     <FaHourglassEnd />
                     <span className="px-2 text-center">No products found!</span>
                   </div>
