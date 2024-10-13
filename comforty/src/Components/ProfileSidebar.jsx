@@ -5,9 +5,14 @@ import Cart from "@/assets/svg/cart_featureproduct.svg?react";
 import Heart from "@/assets/svg/heart.svg?react";
 import { IoMdLogOut } from "react-icons/io";
 import { useAuth } from "@/hooks/useAuth";
+import { useSelector } from "react-redux";
 
-const ProfileSidebarContent = ({ onClose, userData }) => {
+const ProfileSidebarContent = ({ onClose }) => {
   const { logout } = useAuth();
+
+  // Access the username and email from the Redux state
+  const username = useSelector((state) => state.profile.username);
+  const email = useSelector((state) => state.profile.email);
 
   return (
     <div className="m-8 ">
@@ -17,8 +22,8 @@ const ProfileSidebarContent = ({ onClose, userData }) => {
             <img src={Profile} alt="profile-img" />
           </div>
           <div className="flex flex-col">
-            <h2 className="text-lg font-semibold ">{userData?.name}</h2>{" "}
-            <p className="">{userData?.email}</p> 
+            <h2 className="text-lg font-semibold ">{username}</h2>{" "}
+            <p className="">{email}</p> 
           </div>
         </div>
         <li className="py-2 border-b border-blue hover:bg-green hover:text-white hover:border-hover-color hover:py-2">

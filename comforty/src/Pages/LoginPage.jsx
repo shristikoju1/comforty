@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import ProfileSidebar from "@/Components/ProfileSidebar";
 import { jwtDecode } from "jwt-decode";
+import { useDispatch } from 'react-redux';
+import { displayUsername, displayEmail } from '@/Store/profileSlice'; // Ensure this import is correct
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +16,8 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [userData, setUserData] = useState(null);
+  const dispatch = useDispatch();
+
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -82,6 +86,9 @@ const LoginPage = () => {
           localStorage.setItem("accessToken", accessToken);
           localStorage.setItem("username", decodedUserData.username);
           localStorage.setItem("email", decodedUserData.email);
+
+          dispatch(displayUsername(decodedUserData.username));
+          dispatch(displayEmail(decodedUserData.email));
 
           setUserData(decodedUserData);
           setIsSidebarOpen(true);
