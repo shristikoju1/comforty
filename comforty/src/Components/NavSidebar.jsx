@@ -1,13 +1,9 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import withSidebar from './withSidebar';
 
-
-const NavSidebar = ({isMenuOpen, toggleMenu}) => {
+const NavSidebarContent = () => {
   return (
-    <div
-      className={`${
-        isMenuOpen ? "block" : "hidden"
-      } lg:hidden sidebar absolute z-50 top-[178px] left-0 w-full bg-white shadow-md`}
-    >
+    <div className="sidebar-content">
       <ul className="p-5">
         <li className="mx-4 my-6 cursor-pointer lg:my-0 li-style">
           <Link
@@ -17,7 +13,6 @@ const NavSidebar = ({isMenuOpen, toggleMenu}) => {
             offset={-70}
             duration={500}
             className="text-lg duration-500 hover:text-cyan-500"
-            onClick={toggleMenu}
           >
             Home
           </Link>
@@ -30,7 +25,6 @@ const NavSidebar = ({isMenuOpen, toggleMenu}) => {
             offset={-70}
             duration={500}
             className="text-lg duration-500 hover:text-cyan-500"
-            onClick={toggleMenu}
           >
             Shop
           </Link>
@@ -43,7 +37,6 @@ const NavSidebar = ({isMenuOpen, toggleMenu}) => {
             offset={-70}
             duration={500}
             className="text-lg duration-500 hover:text-cyan-500"
-            onClick={toggleMenu}
           >
             Product
           </Link>
@@ -56,7 +49,6 @@ const NavSidebar = ({isMenuOpen, toggleMenu}) => {
             offset={40}
             duration={500}
             className="text-lg duration-500 hover:text-cyan-500"
-            onClick={toggleMenu}
           >
             Pages
           </Link>
@@ -65,14 +57,15 @@ const NavSidebar = ({isMenuOpen, toggleMenu}) => {
           <Link
             to={"/map"}
             className="text-lg duration-500 hover:text-cyan-500"
-            onClick={toggleMenu}
           >
             About
           </Link>
         </li>
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default NavSidebar
+const NavSidebar = withSidebar(NavSidebarContent);
+
+export default NavSidebar;

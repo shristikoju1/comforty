@@ -24,9 +24,9 @@ const Favourite = ({ onAddToCart, index }) => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-between py-5 text-center">
+    <div className="flex flex-col items-center justify-between py-5 text-center max-width">
       <Title title="Your Favourites"/>
-      <div className="flex flex-wrap justify-center">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {favItems.length > 0 ? (
           favItems.map((item) => (
             <div key={item.id} className="relative p-4">

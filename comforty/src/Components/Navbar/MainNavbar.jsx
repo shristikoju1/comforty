@@ -60,6 +60,7 @@ const NavbarThree = () => {
         <CategorySidebar
           isOpen={isAllCategoriesMenuOpen}
           onClose={closeCategoriesSidebar}
+          isLeft={true}
         />
         <button
           className="block mx-2 text-xl cursor-pointer lg:hidden"
@@ -73,7 +74,7 @@ const NavbarThree = () => {
       </div>
 
       {/* Sidebar */}
-      <NavSidebar isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      <NavSidebar isOpen={isMenuOpen} onClose={toggleMenu} withOffset={true} />
       {/* Desktop Menu */}
       <ul className="hidden lg:flex lg:items-center lg:opacity-100">
         <li className="mx-4 my-4 cursor-pointer lg:my-0 li-style">

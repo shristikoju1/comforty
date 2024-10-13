@@ -1,21 +1,20 @@
-import { FaCircleUser } from "react-icons/fa6";
 import { NavLink } from 'react-router-dom';
 import withSidebar from './withSidebar'; 
+import { RxCross2 } from "react-icons/rx";
+import { CgMoreVerticalO } from "react-icons/cg";
+
 
 const CategorySidebarContent = ({ onClose }) => {
   return (
     <div>
-      {/* Sidebar Header */}
-      <div className="sidebar-header">
-        <div className="flex-center">
-          <NavLink to={'/signup'}>
-            <FaCircleUser className="w-8 h-8" />
-          </NavLink>
-          <h3 className="text-lg font-semibold">Hello, Sign in</h3>
+      <div className="sidebar-header sidebar-content">
+        <div className="flex items-center justify-center gap-2">
+          <h3 className="text-lg font-semibold text-center ">Explore More</h3>
+          <CgMoreVerticalO  className="w-6 h-6" />
+
         </div>
       </div>
 
-      {/* Categories Section */}
       <div className="sidebar-content">
         <ul className="space-y-2">
           <li className="sidebar-list-item" onClick={onClose}><NavLink to={"/categories/1"}>Clothes</NavLink></li>
@@ -25,6 +24,11 @@ const CategorySidebarContent = ({ onClose }) => {
           <li className="sidebar-list-item" onClick={onClose}><NavLink to={"/categories/5"}>Miscellaneous</NavLink></li>
         </ul>
       </div>
+      <RxCross2
+            className={`absolute close-icon top-4 right-4`}
+            onClick={onClose}
+          />
+
     </div>
   );
 };
