@@ -35,6 +35,17 @@ const NavbarTwo = () => {
       navigate(`/search/${searchTerm}`); // Navigate to search results page
     }
   };
+  
+  const isAuthenticated = useSelector((state) => state.auth?.isAuthenticated);
+
+  const handleProfileClick = () => {
+    if (isAuthenticated) {
+      toggleCategoriesSidebar();
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <div>
       <section className="bg-secondary-white">
@@ -72,12 +83,16 @@ const NavbarTwo = () => {
                 <Heart />
               </div>
             </NavLink>
-            <NavLink to="/login">
+           
+           
+            <button onClick={handleProfileClick}>
               <div className="p-2 bg-white rounded-lg cart-bg">
                 <Profile />
               </div>
-            </NavLink>
-            <button onClick={toggleCategoriesSidebar}>profile</button>
+            </button>
+           
+           
+            {/* <button onClick={toggleCategoriesSidebar}>profile</button> */}
             <ProfileSidebar
               isOpen={isAllCategoriesMenuOpen}
               onClose={closeCategoriesSidebar}

@@ -7,6 +7,7 @@ import ProfileSidebar from "@/Components/ProfileSidebar";
 import { jwtDecode } from "jwt-decode";
 import { useDispatch } from 'react-redux';
 import { displayUsername, displayEmail } from '@/Store/profileSlice'; // Ensure this import is correct
+import Arrow from "../assets/svg/arrow_short.svg?react";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -109,6 +110,21 @@ const LoginPage = () => {
         <ProfileSidebar userData={userData} />
       ) : (
         <section className="flex flex-col items-center justify-center mb-20 max-w-[1200px] mx-auto">
+                <div className="w-full mb-20 rounded-b-xl bg-secondary-white">
+        <div className="mx-auto max-width">
+          <div className="flex items-center mt-[50px] gap-4">
+            <span className="flex items-center text-[#636270]">Home </span>
+            <Arrow className="text-black" />
+            <span className="flex items-center text-[#636270]">Account</span>
+            <Arrow className="text-black" />
+            <span>Log In</span>
+          </div>
+          <h2 className="text-2xl font-semibold font-inter mt-[14px] mb-[50px]">
+            Log In
+          </h2>
+        </div>
+      </div>
+
           {/* Login form */}
           <div className="shadow-custom w-[600px] h-[auto]">
             <div className="text-center">

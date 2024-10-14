@@ -1,21 +1,23 @@
-import '../styles/SearchPage.scss'
+import "../styles/SearchPage.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FaHourglassEnd } from "react-icons/fa";
 import ProductCard from "../Common/ProductCard";
 import FilterView from "../Components/FilterView";
-import * as constants from '../constants/constants';
+import * as constants from "../constants/constants";
 import Loader from "../Common/Loader";
-import Title from '@/Common/Title';
+import Title from "@/Common/Title";
 
 const SearchPage = () => {
   const { searchKey } = useParams();
   const [searchResult, setSearchResult] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
   const [sortOption, setSortOption] = useState(constants.BEST_MATCH); // Default to Best Match
-  const [view, setView] = useState('grid');
+  const [view, setView] = useState("grid");
 
   useEffect(() => {
+    console.log("Sort option updated in useEffect:", sortOption);
+
     const getSearchProducts = async () => {
       setSearchLoading(true);
 
@@ -30,11 +32,14 @@ const SearchPage = () => {
 
         if (Array.isArray(data.products)) {
           // Filter products based on the searchKey
-          const filteredResults = data.products.filter((product) =>
-            product.title?.toLowerCase().includes(searchKey.toLowerCase()) ||
-            product.description?.toLowerCase().includes(searchKey.toLowerCase()) ||
-            product.brand?.toLowerCase().includes(searchKey.toLowerCase()) ||
-            product.category?.toLowerCase().includes(searchKey.toLowerCase())
+          const filteredResults = data.products.filter(
+            (product) =>
+              product.title?.toLowerCase().includes(searchKey.toLowerCase()) ||
+              product.description
+                ?.toLowerCase()
+                .includes(searchKey.toLowerCase()) ||
+              product.brand?.toLowerCase().includes(searchKey.toLowerCase()) ||
+              product.category?.toLowerCase().includes(searchKey.toLowerCase())
           );
 
           // Sort the filtered results based on the sortOption
@@ -64,17 +69,25 @@ const SearchPage = () => {
     }
   }, [searchKey, sortOption]); // Re-run when sortOption changes
 
+  console.log(`sort option: ${sortOption}, view: ${view}`);
+
   return (
     <main className="bg-secondary max-width">
       <div className="container">
         <div className="py-5 sc-wrapper">
-          <Title title='Your Search Results'/>
+          <Title title="Your Search Results" />
           {searchLoading ? (
             <Loader />
           ) : (
             <div>
               <FilterView setSortOption={setSortOption} setView={setView} />
-              <div className={view === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4' : 'list'}>
+              <div
+                className={
+                  view === "grid"
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+                    : "list"
+                }
+              >
                 {searchResult.length > 0 ? (
                   searchResult.map((product) => (
                     <ProductCard
