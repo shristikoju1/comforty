@@ -1,8 +1,18 @@
 .list {
         display: grid;
         grid-template-columns: repeat(
+            auto-fit,
+            minmax(min(24rem, 100%), 1fr)
+     
+        );
+        // grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+}  
+.list-responsive {
+        display: grid;
+        grid-template-columns: repeat(
             2,
-            minmax(min(14rem, 100%), 1fr)
+            minmax(min(7rem, 100%), 1fr)
      
         );
         // grid-template-columns: repeat(2, 1fr);

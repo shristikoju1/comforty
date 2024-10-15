@@ -8,7 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const ProductCard = ({ product, index, hoverColor, onAddToCart, view }) => {
   const dispatch = useDispatch();
 
-
+console.log('view:', view)
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -51,17 +51,15 @@ const ProductCard = ({ product, index, hoverColor, onAddToCart, view }) => {
   return (
 <div
   key={product.id}
-  className={`hover:p-2 hover:shadow-md hover:translate-y-1 transition-all 0.3s ease-in-out cursor-pointer shadow-md rounded-lg p-2 ${
-    view === 'grid' ? 'grid-class' : 'list-class'
-  }`}
+  className={`hover:p-2 hover:shadow-md hover:translate-y-1 transition-all 0.3s ease-in-out cursor-pointer shadow-md rounded-lg p-2 ${view}`}
 >
       <div className="relative">
         <div onClick={handleClick}>
           <img
             src={product.image}
             alt={product.title}
-            width={300}
-            height={300}
+            // width={300}
+            // height={300}
             style={{
               border: "1px solid #ddd",
               borderRadius: "10px",

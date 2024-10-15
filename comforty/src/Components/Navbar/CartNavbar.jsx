@@ -23,7 +23,7 @@ const NavbarTwo = () => {
   const totalCartItems = cartItems?.length;
 
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate(); // useNavigate from react-router-dom
+  const navigate = useNavigate(); 
 
   const handleSearchTerm = (event) => {
     setSearchTerm(event.target.value);
@@ -32,7 +32,7 @@ const NavbarTwo = () => {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     if (searchTerm.trim()) {
-      navigate(`/search/${searchTerm}`); // Navigate to search results page
+      navigate(`/search/${searchTerm}`); 
     }
   };
   

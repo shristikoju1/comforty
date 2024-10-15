@@ -4,13 +4,13 @@ import * as constants from "../constants/constants";
 
 const FilterView = ({ setSortOption, setView }) => {
   const handleSortChange = (sortBy) => {
-    console.log("Sort option selected:", sortBy);
+    // console.log("Sort option selected:", sortBy);
     setSortOption(sortBy);
   };
 
   const handleViewChange = (view) => {
     setView(view);
-  }; // Add closing brace here
+  }; 
 
   return (
     <div className="mb-20 filter-top">
@@ -20,7 +20,9 @@ const FilterView = ({ setSortOption, setView }) => {
             <p className="fs-13 text-dark">Sort By:</p>
             <select
               className="mx-2 fs-13 filter-select"
-              onChange={(event) => handleSortChange(event.target.value)}
+              // value={}
+              onChange={(event) => {handleSortChange(event.target.value) 
+              }}
             >
               <option value={constants.BEST_MATCH}>Best Match</option>
               <option value={constants.LOW_TO_HIGH}>Price low to high</option>
