@@ -24,7 +24,7 @@ const Favourite = ({ onAddToCart, index }) => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-between py-5 text-center max-width">
+    <div className="flex flex-col items-center justify-between py-5 max-width">
       <Title title="Your Favourites"/>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {favItems.length > 0 ? (
@@ -48,7 +48,7 @@ const Favourite = ({ onAddToCart, index }) => {
                 <Heart fill="red" className="text-red-500" />
               </button>
 
-              <div className="flex justify-between w-full mt-3">
+              <div className="flex justify-between w-full gap-4 mt-3">
                 <div className="flex flex-col items-start">
                   <p
                     className="font-normal text-[15px] leading-[20.8px] font-inter"

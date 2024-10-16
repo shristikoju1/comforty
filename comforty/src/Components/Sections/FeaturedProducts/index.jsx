@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { addItemToCart } from "@/Store/cartSlice";
 import { useEffect, useRef, useState } from "react";
 import SimpleSlider from "../../../Common/Slider";
-import { RotatingLines } from "react-loader-spinner";
 import InternetError from "../../../Common/InternetError";
 import { toast } from "react-toastify";
 import Loader from "@/Common/Loader";
@@ -64,7 +63,7 @@ const FeaturedProducts = () => {
 
   if (loading) {
     return (
-        <Loader/>
+      <Loader/>
     );
   }
 

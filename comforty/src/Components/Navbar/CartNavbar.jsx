@@ -39,11 +39,11 @@ const NavbarTwo = () => {
   const isAuthenticated = useSelector((state) => state.auth?.isAuthenticated);
 
   const handleProfileClick = () => {
-    if (isAuthenticated) {
+    // if (isAuthenticated) {
       toggleCategoriesSidebar();
-    } else {
-      navigate("/login");
-    }
+    // } else {
+    //   navigate("/login");
+    // }
   };
 
   return (
@@ -92,7 +92,7 @@ const NavbarTwo = () => {
             </button>
            
            
-            <button onClick={toggleCategoriesSidebar}>profile</button>
+            {/* <button onClick={toggleCategoriesSidebar}>profile</button> */}
             <ProfileSidebar
               isOpen={isAllCategoriesMenuOpen}
               onClose={closeCategoriesSidebar}
