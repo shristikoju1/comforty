@@ -17,6 +17,8 @@ const Cart = () => {
     }, 0);
   };
 
+  const cartTotal = getTotalCartAmount();
+
   const handleRemoveFromCart = (index) => {
     dispatch(removeItemFromCart(index));
   };
@@ -87,22 +89,25 @@ const Cart = () => {
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>${getTotalCartAmount()}</p>
+              <p>${cartTotal}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
+              <p>${cartTotal === 0 ? 0 : 2}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
               <b>
-                ${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}
+                ${cartTotal === 0 ? 0 : cartTotal + 2}
               </b>
             </div>
           </div>
-          <button onClick={handleProceedToCheckout}>PROCEED TO CHECKOUT</button>
+          <button 
+            onClick={handleProceedToCheckout}
+            disabled={cartItems.length === 0}
+            >PROCEED TO CHECKOUT</button>
         </div>
 
         <div className="cart-promocode">
@@ -115,9 +120,6 @@ const Cart = () => {
           </div>
         </div>
       </div>
-
-      {/* ToastContainer must be rendered */}
-      {/* <ToastContainer /> */}
     </div>
   );
 };

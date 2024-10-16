@@ -5,6 +5,7 @@ import ProductCard from "../Common/ProductCard";
 import { addItemToCart } from "../Store/cartSlice";
 import { useParams, useLocation } from "react-router-dom";
 import Title from "@/Common/Title";
+import { toast } from "react-toastify";
 
 const hoverColor = "#007580";
 
@@ -46,6 +47,7 @@ const Categories = () => {
   const addToCart = (idx) => {
     const selectedProduct = categories[idx];
     dispatch(addItemToCart(selectedProduct));
+    toast.success(`Added to cart!`);
   };
 
   const getDisplayedProducts = () => {
@@ -62,7 +64,6 @@ const Categories = () => {
   return (
     <div className="mt-10 max-width">
       <Title title={categoryName}/>
-      {/* <h1 className="my-12 text-5xl font-bold text-center">{categoryName}</h1> */}
       <div className="featuredProducts">
         {categories.length === 0 ? (
           <p className="text-center">No products found in this category.</p>

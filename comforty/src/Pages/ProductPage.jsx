@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import { addItemToCart } from "../Store/cartSlice";
 
 const ProductPage = () => {
-  const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -19,7 +18,6 @@ const ProductPage = () => {
   const [mainImage, setMainImage] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const { state } = useLocation();
   const apiUrl = state?.apiUrl;
@@ -27,13 +25,13 @@ const ProductPage = () => {
     const fetchProductDetails = async () => {
       try {
         setLoading(true);
-        const response = await fetch(apiUrl); // Use the passed apiUrl
+        const response = await fetch(apiUrl); 
         const data = await response.json();
         setProduct(data);
         setRating(data.rating);
         setLoading(false);
       } catch (err) {
-        setError("Failed to load product details");
+        setError("Failed to load product details", err);
         setLoading(false);
       }
     };
@@ -52,14 +50,14 @@ const ProductPage = () => {
 
   const handleBuyNow = () => {
     navigate("/login");
-    toast.error("Login is required to proceed.");
+    toast.error("Login is required.");
   };
 
   const handleAddToCart = () => {
     if (product) {
       // Dispatch the addItemToCart action with product details and quantity
       dispatch(addItemToCart({ ...product, quantity }));
-      toast.success(`${product.title} has been added to your cart!`);
+      toast.success(`Added to cart!`);
     }
   };
 
@@ -147,7 +145,7 @@ const ProductPage = () => {
             </p>
 
             <div className="flex items-center gap-2 my-2 text-normal">
-              Quantity:
+              Quantity:{''}
               <button
                 onClick={() => handleQuantityChange("decrement")}
                 className="px-2 border"
@@ -227,7 +225,7 @@ const ProductPage = () => {
                 and{" "}
                 <a href="/warranty" className="underline">
                   warranty
-                </a>
+                </a>{''}
                 .
               </p>
             </div>

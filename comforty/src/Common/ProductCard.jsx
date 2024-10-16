@@ -4,11 +4,11 @@ import Cart from "@/assets/svg/cart_featureproduct.svg?react";
 import Heart from "@/assets/svg/heart.svg?react";
 import { addItemToFav, removeItemFromFav } from "../Store/favSlice";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ product, index, hoverColor, onAddToCart, view }) => {
   const dispatch = useDispatch();
 
-console.log('view:', view)
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,12 +30,10 @@ console.log('view:', view)
     window.scrollTo(0, 0);
   };
 
-  // added to favourite check
   const isFavorited = useSelector((state) =>
     state.fav.items.some((item) => item.id === product.id)
   );
 
-  // added to cart check
   const isInCart = useSelector((state) =>
     state.cart.items.some((item) => item.id === product.id)
   );
@@ -43,8 +41,10 @@ console.log('view:', view)
   const toggleLike = () => {
     if (isFavorited) {
       dispatch(removeItemFromFav(product));
+
     } else {
       dispatch(addItemToFav(product));
+      toast.success(`Added to favorite!`);
     }
   };
 

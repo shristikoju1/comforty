@@ -92,7 +92,7 @@ const NavbarTwo = () => {
             </button>
            
            
-            {/* <button onClick={toggleCategoriesSidebar}>profile</button> */}
+            <button onClick={toggleCategoriesSidebar}>profile</button>
             <ProfileSidebar
               isOpen={isAllCategoriesMenuOpen}
               onClose={closeCategoriesSidebar}

@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../../Store/cartSlice";
 import SimpleSlider from "../../../Common/Slider";
 import InternetError from "../../../Common/InternetError";
+import { toast } from "react-toastify";
+import Loader from "@/Common/Loader";
 
 const hoverColor = "#007580";
 
@@ -45,6 +47,7 @@ const RecentlyAdded = () => {
     const product = productData[index];
     console.log("Adding to cart:", product); 
     dispatch(addItemToCart(product));
+    toast.success(`Added to cart!`);
   };
 
   const getDisplayedProducts = () => {
@@ -57,7 +60,7 @@ const RecentlyAdded = () => {
   };
 
   if (loading) {
-    return <div>Loading products...</div>;
+    return <Loader/> ;
   }
 
   if (error) {

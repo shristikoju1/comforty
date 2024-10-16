@@ -7,6 +7,9 @@ import FilterView from "../Components/FilterView";
 import * as constants from "../constants/constants";
 import Loader from "../Common/Loader";
 import Title from "@/Common/Title";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "@/Store/cartSlice";
 
 const SearchPage = () => {
   const { searchKey } = useParams();
@@ -14,9 +17,11 @@ const SearchPage = () => {
   const [searchLoading, setSearchLoading] = useState(false);
   const [sortOption, setSortOption] = useState(constants.BEST_MATCH);
   const [view, setView] = useState('grid');
+  const dispatch = useDispatch();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
 
   useEffect(() => {
-    // console.log("Sort option updated in useEffect:", sortOption);
 
     const getSearchProducts = async () => {
       setSearchLoading(true);
@@ -31,7 +36,7 @@ const SearchPage = () => {
         const data = await response.json();
 
         if (Array.isArray(data.products)) {
-          // Filter products based on the searchKey
+
           const filteredResults = data.products.filter(
             (product) =>
               product.title?.toLowerCase().includes(searchKey.toLowerCase()) ||
@@ -67,9 +72,13 @@ const SearchPage = () => {
     if (searchKey) {
       getSearchProducts();
     }
-  }, [searchKey, sortOption]); // Re-run when sortOption changes
+  }, [searchKey, sortOption]);
 
-  // console.log(`sort option: ${sortOption}, view: ${view}`);
+  const addToCart = (index) => {
+    const product = searchResult[index];
+    dispatch(addItemToCart(product));
+    toast.success(`Added to cart!`);
+  };
 
   return (
     <main className="bg-secondary max-width">
@@ -89,7 +98,7 @@ const SearchPage = () => {
                 }
               >
                 {searchResult.length > 0 ? (
-                  searchResult.map((product) => (
+                  searchResult.map((product, index) => (
                     <ProductCard
                       view={`${view === 'list' ? 'list-responsive' : ''}`}
                       key={product.id}
@@ -99,7 +108,7 @@ const SearchPage = () => {
                         title: product.title,
                         price: product.price,
                       }}
-                    // Pass additional props if needed for styling in list view
+                      onAddToCart={() => addToCart(currentIndex + index)}
                     />
                   ))
                 ) : (

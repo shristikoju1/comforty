@@ -2,11 +2,13 @@ import SectionHeader from "../../../Common/SectionHeader";
 import ProductCard from "../../../Common/ProductCard";
 import "@/styles/featuredProducts.scss";
 import { useDispatch } from "react-redux";
-import { addItemToCart } from "../../../Store/cartSlice";
+import { addItemToCart } from "@/Store/cartSlice";
 import { useEffect, useRef, useState } from "react";
 import SimpleSlider from "../../../Common/Slider";
 import { RotatingLines } from "react-loader-spinner";
 import InternetError from "../../../Common/InternetError";
+import { toast } from "react-toastify";
+import Loader from "@/Common/Loader";
 
 const hoverColor = "#007580";
 
@@ -47,6 +49,7 @@ const FeaturedProducts = () => {
   const addToCart = (index) => {
     const product = productData[index];
     dispatch(addItemToCart(product));
+    toast.success(`Added to cart!`);
   };
 
   const getDisplayedProducts = () => {
@@ -61,19 +64,7 @@ const FeaturedProducts = () => {
 
   if (loading) {
     return (
-      <div className="items-center justify-center max-width ">
-        <RotatingLines
-          visible={true}
-          height="96"
-          width="96"
-          color="#029FAE"
-          strokeWidth="5"
-          animationDuration="2"
-          ariaLabel="rotating-lines-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-        />
-      </div>
+        <Loader/>
     );
   }
 
@@ -92,10 +83,9 @@ const FeaturedProducts = () => {
               key={product.id}
               product={{
                 ...product,
-                image: product.thumbnail, // thumbnail as image source
+                image: product.thumbnail, 
                 title: product.title,
                 price: product.price,
-                // source: product.brand || "Unknown source", // Adding a source property, example using 'brand'
               }}
               index={index}
               hoverColor={hoverColor}
