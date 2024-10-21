@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import ProfileSidebar from "@/Components/ProfileSidebar";
 import { jwtDecode } from "jwt-decode";
 import { useDispatch } from 'react-redux';
-import { displayUsername, displayEmail } from '@/Store/profileSlice'; // Ensure this import is correct
+import { displayUsername, displayEmail } from '@/Store/profileSlice'; 
 import Arrow from "../assets/svg/arrow_short.svg?react";
 
 const LoginPage = () => {
@@ -61,7 +61,7 @@ const LoginPage = () => {
     if (isValid()) {
       try {
         const res = await fetch(
-          "https://katydid-neutral-reasonably.ngrok-free.app/api/login",
+          "http://127.0.0.1:9000/api/login",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

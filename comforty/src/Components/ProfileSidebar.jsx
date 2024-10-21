@@ -20,8 +20,9 @@ const ProfileSidebarContent = ({ onClose }) => {
     if (isAuthenticated) {
       logout();  
     } else {
-      window.location.reload();
       navigate("/login");  
+            window.location.reload();
+
     }
   };
 
@@ -64,7 +65,7 @@ const ProfileSidebarContent = ({ onClose }) => {
 
           <button onClick={handleAuthAction} className="flex gap-2">
             <IoMdLogOut className="w-6 h-6" />
-            {isAuthenticated ? "Logout" : "Login"}
+            {isAuthenticated ? "Logout" : "Loginn"}
           </button>
         </li>
       </ul>
