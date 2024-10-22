@@ -72,7 +72,7 @@ const SignupForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isValid()) {
-      fetch("http://127.0.0.1:9000/api/users", {
+      fetch("http://127.0.0.1:9000/api/user", {
         method: "POST",
         // mode: 'no-cors',
         headers: { "Content-Type": "application/json" },

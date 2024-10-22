@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useSelector } from "react-redux";
 
 const ProfileSidebarContent = ({ onClose }) => {
-  const { logout } = useAuth();
+  const { handleLogout } = useAuth();
   const navigate = useNavigate();
 
   // Access the username and email from the Redux state
@@ -18,13 +18,15 @@ const ProfileSidebarContent = ({ onClose }) => {
 
   const handleAuthAction = () => {
     if (isAuthenticated) {
-      logout();  
+      handleLogout();  
     } else {
       navigate("/login");  
-            window.location.reload();
+            // window.location.reload();
 
     }
   };
+  console.log('username:', username);
+  console.log('authentication:', isAuthenticated);
 
   return (
     <div className="m-8 ">
@@ -36,7 +38,7 @@ const ProfileSidebarContent = ({ onClose }) => {
           <div className="flex flex-col">
 
             <h2 className="text-lg font-semibold">
-              {isAuthenticated ? `Hello,${username}` : "Hello, Sign In"}
+              {isAuthenticated ? `Hello,${username}` : "Hello, Log In"}
             </h2>{" "}
 
             <p className="">
@@ -47,7 +49,7 @@ const ProfileSidebarContent = ({ onClose }) => {
           </div>
         </div>
 
-        <li className="py-2 border-b border-blue hover:bg-green hover:text-white hover:border-hover-color hover:py-2">
+        {/* <li className="py-2 border-b border-blue hover:bg-green hover:text-white hover:border-hover-color hover:py-2">
           <NavLink to="/cart" onClick={onClose} className="flex gap-2">
             <Cart />
             My Cart
@@ -59,13 +61,13 @@ const ProfileSidebarContent = ({ onClose }) => {
             <Heart />
             Saved Items
           </NavLink>
-        </li>
+        </li> */}
 
         <li className="py-2 border-b border-blue hover:bg-green hover:text-white hover:border-hover-color">
 
           <button onClick={handleAuthAction} className="flex gap-2">
             <IoMdLogOut className="w-6 h-6" />
-            {isAuthenticated ? "Logout" : "Loginn"}
+            {isAuthenticated ? "Logout" : "Login"}
           </button>
         </li>
       </ul>

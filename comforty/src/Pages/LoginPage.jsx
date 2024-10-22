@@ -8,6 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import { useDispatch } from 'react-redux';
 import { displayUsername, displayEmail } from '@/Store/profileSlice'; 
 import Arrow from "../assets/svg/arrow_short.svg?react";
+import { login } from '@/Store/authSlice'; 
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,6 @@ const LoginPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [userData, setUserData] = useState(null);
   const dispatch = useDispatch();
-
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -88,8 +88,12 @@ const LoginPage = () => {
           localStorage.setItem("username", decodedUserData.username);
           localStorage.setItem("email", decodedUserData.email);
 
+          // Dispatch Redux actions to store user data
           dispatch(displayUsername(decodedUserData.username));
           dispatch(displayEmail(decodedUserData.email));
+
+          // Dispatch login action to update authentication state
+          dispatch(login(decodedUserData)); 
 
           setUserData(decodedUserData);
           setIsSidebarOpen(true);
@@ -103,7 +107,18 @@ const LoginPage = () => {
       }
     }
   };
-  
+
+  // const handleLogout = () => {
+  //   localStorage.removeItem("accessToken");
+  //   localStorage.removeItem("username");
+  //   localStorage.removeItem("email");
+
+  //   dispatch(logout());
+  //   setUserData(null);
+  //   setIsSidebarOpen(false);
+  //   toast.success("Logout Successful!");
+  // };
+
   return (
     <>
       {isSidebarOpen && userData ? (

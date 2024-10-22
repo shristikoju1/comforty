@@ -1,18 +1,23 @@
-// src/hooks/useAuth.js
 import { useNavigate } from 'react-router-dom';
-import { removeTokens } from '../utils/tokenUtils';
 import { toast } from 'react-toastify';
+import { useDispatch} from 'react-redux';
+import { logout as logoutAction } from '@/Store/authslice';
 
 export const useAuth = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const logout = () => {
+  const handleLogout = () => {
     localStorage.removeItem('accessToken');
-    removeTokens(); 
-    window.location.reload();
-    navigate('/login');
-    toast.info('Logged out successfully.');
-  };
+    localStorage.removeItem('email');
+    localStorage.removeItem('username');
+    dispatch(logoutAction());
+    toast.success("Logout Successful!");
 
-  return { logout };
+    setTimeout(() => {
+      navigate('/login');
+      // window.location.reload(); 
+    }, 1000);  };
+
+  return { handleLogout };
 };
