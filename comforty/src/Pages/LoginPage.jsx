@@ -62,20 +62,8 @@ const LoginPage = () => {
     if (isValid()) {
       try {
         const res = await axiosInstance.post("api/login",formData )
-        // const res = await fetch(
-        //   "http://127.0.0.1:9000/api/login",
-        //   {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify(formData),
-        //   }
-        // );
   
-        if (res.ok) {
-          const data = await res.json();
-          console.log("API response:", data); // Log the API response
-  
-          const { accessToken } = data.data;
+          const { accessToken } = res.data.data;
           console.log("Access Token:", accessToken);
   
           if (!accessToken) {
@@ -86,9 +74,9 @@ const LoginPage = () => {
           console.log(decodedUserData);
 
           // Save accessToken, username, and email in localStorage
-          localStorage.setItem("accessToken", accessToken);
-          localStorage.setItem("username", decodedUserData.username);
-          localStorage.setItem("email", decodedUserData.email);
+          // localStorage.setItem("accessToken", accessToken);
+          // localStorage.setItem("username", decodedUserData.username);
+          // localStorage.setItem("email", decodedUserData.email);
 
           // Dispatch Redux actions to store user data
           dispatch(displayUsername(decodedUserData.username));
@@ -100,12 +88,9 @@ const LoginPage = () => {
           setUserData(decodedUserData);
           setIsSidebarOpen(true);
           toast.success("Login Successful!");
-        } else {
-          const errData = await res.json();
-          throw new Error(errData.message);
-        }
-      } catch (err) {
-        toast.error("Login Failed: " + err.message);
+        
+      } catch (error) {
+        toast.error("Login Failed: " + error.message);
       }
     }
   };

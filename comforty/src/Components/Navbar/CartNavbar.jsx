@@ -10,6 +10,10 @@ import ProfileSidebar from "../ProfileSidebar";
 
 const NavbarTwo = () => {
   const [isAllCategoriesMenuOpen, setIsAllCategoriesMenuOpen] = useState(false);
+  const cartItems = useSelector((state) => state?.cart?.items);
+  const totalCartItems = cartItems?.length;
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate(); 
 
   const toggleCategoriesSidebar = () => {
     setIsAllCategoriesMenuOpen(!isAllCategoriesMenuOpen);
@@ -18,12 +22,6 @@ const NavbarTwo = () => {
   const closeCategoriesSidebar = () => {
     setIsAllCategoriesMenuOpen(false);
   };
-
-  const cartItems = useSelector((state) => state?.cart?.items);
-  const totalCartItems = cartItems?.length;
-
-  const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate(); 
 
   const handleSearchTerm = (event) => {
     setSearchTerm(event.target.value);
@@ -36,14 +34,9 @@ const NavbarTwo = () => {
     }
   };
   
-  const isAuthenticated = useSelector((state) => state.auth?.isAuthenticated);
 
   const handleProfileClick = () => {
-    // if (isAuthenticated) {
       toggleCategoriesSidebar();
-    // } else {
-    //   navigate("/login");
-    // }
   };
 
   return (
@@ -91,8 +84,6 @@ const NavbarTwo = () => {
               </div>
             </button>
            
-           
-            {/* <button onClick={toggleCategoriesSidebar}>profile</button> */}
             <ProfileSidebar
               isOpen={isAllCategoriesMenuOpen}
               onClose={closeCategoriesSidebar}
