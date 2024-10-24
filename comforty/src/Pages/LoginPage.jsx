@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { displayUsername, displayEmail } from '@/Store/profileSlice'; 
 import Arrow from "../assets/svg/arrow_short.svg?react";
 import { login } from '@/Store/authSlice'; 
+import axiosInstance from "@/utils/http.utils";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -60,14 +61,15 @@ const LoginPage = () => {
     e.preventDefault();
     if (isValid()) {
       try {
-        const res = await fetch(
-          "http://127.0.0.1:9000/api/login",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
-          }
-        );
+        const res = await axiosInstance.post("api/login",formData )
+        // const res = await fetch(
+        //   "http://127.0.0.1:9000/api/login",
+        //   {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify(formData),
+        //   }
+        // );
   
         if (res.ok) {
           const data = await res.json();

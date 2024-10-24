@@ -4,6 +4,7 @@ import Arrow from "../assets/svg/arrow_short.svg?react";
 import Eye from "../assets/svg/eye.svg?react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import axiosInstance from "@/utils/http.utils";
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
@@ -69,36 +70,28 @@ const SignupForm = () => {
     return isProceed;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isValid()) {
-      fetch("http://127.0.0.1:9000/api/user", {
-        method: "POST",
-        // mode: 'no-cors',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+    if(isValid()){
+      try {
+        const response = await axiosInstance.post('/api/users', {
           username: formData.username,
           email: formData.email,
           password: formData.password,
           passwordConfirm: formData.passwordConfirm,
-        }),
-      })
-        .then((res) => {
-          if (res.ok) {
-            toast.success("Registered Successfully!");
-            navigate("/login");
-          } else {
-            return res.json().then((err) => {
-              throw new Error(err.message);
-            });
-          }
-        })
-        .catch((err) => {
-          toast.error("Failed: " + err.message);
-          console.log(err);
         });
+        if (response.status === 200 | 201) {
+          const data = response.data;
+          console.log('API response:', data);
+          toast.success('User registered successfully!');
+          navigate('/login');
+        }
+      } catch (error) {
+        console.error('Error:', error.response?.data?.message || error.message);
+        toast.error('Registration failed: ' + (error.response?.data?.message || error.message));
+      }
     }
-  };
+  }
 
   return (
     <section className="flex flex-col items-center justify-center mb-20 max-w-[1200px] mx-auto">
