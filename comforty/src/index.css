@@ -106,12 +106,12 @@
  
 
 .slick-slide{
-  padding:0 10px !important;
+  padding:0 20px 0 0 !important;
 }
 
-.slick-slider .slick-list{
+/* .slick-slider .slick-list{
   padding: 0 10px 10px !important;
-}
+} */
 
 .custom-rating {
   display: inline-flex; 

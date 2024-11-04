@@ -5,8 +5,17 @@
             minmax(min(24rem, 100%), 1fr)
      
         );
-        // grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        gap: 50px;
+
+        .list-child{
+            border: 1px solid grey;
+            // max-height: 250px;
+
+            // img{
+            //     width: auto;
+            //     height: 100px;
+            // }
+        }
 }  
 .list-responsive {
         display: grid;
@@ -15,8 +24,7 @@
             minmax(min(7rem, 100%), 1fr)
      
         );
-        // grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        gap: 100px;
 }  
   
 //   .list .product-card {

@@ -3,78 +3,40 @@ import Heart from "../assets/svg/heart.svg?react";
 import { addItemToFav, removeItemFromFav } from "../Store/favSlice";
 import Cart from "../assets/svg/cart_featureproduct.svg?react";
 import Title from "@/Common/Title";
+import ProductCard from "../Common/ProductCard";
+import { toast } from "react-toastify";
+import { addItemToCart } from "../Store/cartSlice";
 
 const hoverColor = "#007580";
 
-const Favourite = ({ onAddToCart, index }) => {
+const Favourite = () => {
   const favItems = useSelector((state) => state.fav?.items || []);
-
   const dispatch = useDispatch();
 
-  const toggleLike = (item) => {
-    if (favItems.some((favItem) => favItem.id === item.id)) {
-      dispatch(removeItemFromFav(item));
-    } else {
-      dispatch(addItemToFav(item));
-    }
+  const addToCart = (selectedProduct) => {
+    dispatch(addItemToCart(selectedProduct));
+    toast.success(`Added to cart!`);
   };
-
-  const isInCart = useSelector((state) =>
-    state.cart.items.some((item) => item.id === item.id)
-  );
 
   return (
     <div className="flex flex-col items-center justify-between py-5 max-width">
-      <Title title="Your Favourites"/>
+      <Title title="Your Favourites" />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {favItems.length > 0 ? (
-          favItems.map((item) => (
-            <div key={item.id} className="relative p-4">
-              <img
-                src={item?.image || item?.thumbnail || item?.category.image}
-                alt={item.title}
-                width={300}
-                height={300}
-                style={{
-                  border: "1px solid #ddd",
-                  borderRadius: "10px",
-                }}
-              />
-
-              <button
-                className="absolute p-2 cursor-pointer right-6 top-6"
-                onClick={() => toggleLike(item)}
-              >
-                <Heart fill="red" className="text-red-500" />
-              </button>
-
-              <div className="flex justify-between w-full gap-4 mt-3">
-                <div className="flex flex-col items-start">
-                  <p
-                    className="font-normal text-[15px] leading-[20.8px] font-inter"
-                    style={{
-                    color: isInCart ? hoverColor : 'black',
-                    }}
-                  >
-                    {item.title}
-                  </p>
-                  <span className="font-semibold text-medium font-inter">
-                    ${item.price}
-                  </span>
-                </div>
-
-                <button
-                  className={`cursor-pointer ${
-                    isInCart ? "bg-hover-color text-white" : "white"
-                  } cart-bg`}
-                  onClick={() => !isInCart && onAddToCart(index)}
-                  disabled={isInCart}
-                >
-                  <Cart />
-                </button>
-              </div>
-
-            </div>
+          favItems.map((item, idx) => (
+            <ProductCard
+              key={item.id}
+              product={{
+                ...item,
+                image: item.image,
+                title: item.title,
+                price: item.price,
+                apiSource: item.apiSource,
+              }}
+              index={idx}
+              hoverColor={hoverColor}
+              onAddToCart={() => addToCart(item)} // Pass the entire product item
+            />
           ))
         ) : (
           <div className="flex flex-col items-center">

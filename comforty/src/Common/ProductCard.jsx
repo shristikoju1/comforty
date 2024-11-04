@@ -51,7 +51,7 @@ const ProductCard = ({ product, index, hoverColor, onAddToCart, view }) => {
   return (
 <div
   key={product.id}
-  className={`hover:p-2 hover:shadow-md hover:translate-y-1 transition-all 0.3s ease-in-out cursor-pointer shadow-md rounded-lg p-2 ${view}`}
+  className={`hover:p-2 hover:shadow-md hover:translate-y-1 transition-all 0.3s ease-in-out cursor-pointer  p-2 rounded-lg ${view} list-child`}
 >
       <div className="relative">
         <div onClick={handleClick}>
@@ -114,7 +114,6 @@ const ProductCard = ({ product, index, hoverColor, onAddToCart, view }) => {
 ProductCard.propTypes = {
   product: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
-  activeProductIndex: PropTypes.number,
   hoverColor: PropTypes.string.isRequired,
   onAddToCart: PropTypes.func.isRequired,
 };
