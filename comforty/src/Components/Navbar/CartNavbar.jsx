@@ -42,10 +42,10 @@ const NavbarTwo = () => {
   return (
     <div>
       <section className="bg-secondary-white">
-        <div className="flex items-center justify-between max-width py-2 h-[68px] mx-auto">
+        <div className="flex items-center justify-between max-width py-2 h-[68px] mx-auto gap-4">
           <LogoStyle />
-          <form onSubmit={handleSearchSubmit}>
-            <div className="relative hidden lg:block w-[300px]">
+          <form onSubmit={handleSearchSubmit} className="basis-[350px]">
+            <div className="relative w-full">
               <input
                 type="text"
                 placeholder="Search here..."

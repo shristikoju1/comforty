@@ -10,8 +10,9 @@ import ProductCard from '@/Common/ProductCard';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from '@/Store/cartSlice'; 
-
 import '@/styles/ourproduct.scss';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const productData = [
   {
@@ -74,6 +75,7 @@ const OurProducts = () => {
     setActiveProductIndex(index);
     const product = productData[index];
     dispatch(addItemToCart(product));
+    toast.success('Added to cart!')
   };
   
   return (
@@ -83,11 +85,11 @@ const OurProducts = () => {
           Our Products
         </h1>
         <ul className="flex gap-4 mt-4" id="product-list">
-          <li><a href="#">ALL</a></li>
-          <li><a href="#">NEWEST</a></li>
-          <li><a href="#">TRENDING</a></li>
-          <li><a href="#">BEST SELLERS</a></li>
-          <li><a href="#">FEATURED</a></li>
+          <li><Link to="all">ALL</Link></li>
+          <li><Link to="new">NEWEST</Link></li>
+          <li><Link to="trend">TRENDING</Link></li>
+          <li><Link to="best-sell">BEST SELLERS</Link></li>
+          <li><Link to="featured">FEATURED</Link></li>
         </ul>
       </div>
       <div className="ourProducts">

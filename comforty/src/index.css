@@ -92,26 +92,11 @@
 
 .slick-prev, .slick-next {
   color: black !important;
-}
-
- /* .slick-track{
-    display: grid !important;
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(min(14rem, 100%), 1fr)
- 
-    );s
-    gap: 24px; */
-/* } */
- 
+} 
 
 .slick-slide{
-  padding:0 20px 0 0 !important;
+  padding:0 20px 0 1px !important;
 }
-
-/* .slick-slider .slick-list{
-  padding: 0 10px 10px !important;
-} */
 
 .custom-rating {
   display: inline-flex; 

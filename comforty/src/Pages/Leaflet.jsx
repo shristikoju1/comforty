@@ -131,7 +131,7 @@ const LocationMarker = () => {
 
 
   return (
-    <div className="my-10 max-width">
+    <div className="relative my-10 max-width -z-10">
       <h1 className="text-xl text-center md:text-start md:mb-4">
         Comforty is now available in <b className="text-[#014d54]">3</b> cities:
       </h1>

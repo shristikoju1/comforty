@@ -51,15 +51,13 @@ const ProductCard = ({ product, index, hoverColor, onAddToCart, view }) => {
   return (
 <div
   key={product.id}
-  className={`hover:p-2 hover:shadow-md hover:translate-y-1 transition-all 0.3s ease-in-out cursor-pointer  p-2 rounded-lg ${view} list-child`}
+  className={`hover:p-2 hover:shadow-md hover:translate-y-1 transition-all 0.3s ease-in-out cursor-pointer px-2 py-3 rounded-lg ${view} list-child`}
 >
       <div className="relative">
         <div onClick={handleClick}>
           <img
             src={product.image}
             alt={product.title}
-            // width={300}
-            // height={300}
             style={{
               border: "1px solid #ddd",
               borderRadius: "10px",
