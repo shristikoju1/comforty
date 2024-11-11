@@ -131,7 +131,7 @@ const LocationMarker = () => {
 
 
   return (
-    <div className="relative my-10 max-width -z-10">
+    <div className="relative my-10 max-width ">
       <h1 className="text-xl text-center md:text-start md:mb-4">
         Comforty is now available in <b className="text-[#014d54]">3</b> cities:
       </h1>
@@ -165,7 +165,7 @@ const LocationMarker = () => {
           ))}
         </div>
 
-        <div className="my-1 right-section">
+        <div className="relative z-0 my-1 right-section">
           <MapContainer
             center={[27.7172, 85.324]}
             zoom={10}
