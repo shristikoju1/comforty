@@ -109,31 +109,31 @@ const Leaflet = () => {
       </h1>
       <div className="leaflet-container">
         <div className="flex flex-col gap-4 overflow-y-scroll h-[70vh] py-2 px-1 custom-scrollbar">
-        {markers.map((marker) => (
-  <div key={marker.id} className="cursor-pointer left-section">
-    <div
-      onClick={() => {
-        flyToLocation(marker.geocode);
-      }}
-    >
-      <h2>{marker.name}</h2>
-      <p>{marker.name} P.O.Box 8207 Kathmandu, Nepal</p>
-      <p>+977 987654321, +977 984567832</p>
-      <p>
-        <span>comforty@{marker.name.toLowerCase()}.np</span>
-      </p>
-    </div>
-    <button
-      className="px-4 py-2 font-bold text-white rounded-md text-md bg-green"
-      onClick={(e) => {
-        e.stopPropagation();
-        getDirection(marker);
-      }}
-    >
-      Get Location
-    </button>
-  </div>
-))}
+          {markers.map((marker) => (
+            <div key={marker.id} className="cursor-pointer left-section">
+              <div
+                onClick={() => {
+                  flyToLocation(marker.geocode);
+                }}
+              >
+                <h2>{marker.name}</h2>
+                <p>{marker.name} P.O.Box 8207 Kathmandu, Nepal</p>
+                <p>+977 987654321, +977 984567832</p>
+                <p>
+                  <span>comforty@{marker.name.toLowerCase()}.np</span>
+                </p>
+              </div>
+              <button
+                className="px-4 py-2 font-bold text-white rounded-md text-md bg-green"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  getDirection(marker);
+                }}
+              >
+                Get Location
+              </button>
+            </div>
+          ))}
         </div>
 
         <div className="relative z-0 my-1 right-section">

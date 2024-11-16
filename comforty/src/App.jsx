@@ -1,18 +1,16 @@
 import './App.scss';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MainLayout from "./Layout/MainLayout";
-import HomePage from "./Pages/HomePage";
-import SignupPage from "./Pages/SignupPage";
-import Cart from "./Pages/AddToCart";
-import Favourite from "./Pages/Favorite";
-import ProductPage from "./Pages/ProductPage";
-import LoginPage from "./Pages/LoginPage";
-import Leaflet from "./Pages/leaflet";
-import NotFound from "./Pages/NotFound";
-import Categories from "./Pages/Categories";
-import SearchPage from "./Pages/SearchPage";
-// import ProfileSidebar from './Components/ProfileSidebar';
-// import Dashboard from './Pages/Dashboard';
+import MainLayout from "@/Layout/MainLayout";
+import HomePage from "@/Pages/HomePage";
+import SignupPage from "@/Pages/SignupPage";
+import Cart from "@/Pages/AddToCart";
+import Favourite from "@/Pages/Favorite";
+import ProductPage from "@/Pages/ProductPage";
+import LoginPage from "@/Pages/LoginPage";
+import Leaflet from "@/Pages/Leaflet";
+import NotFound from "@/Pages/NotFound";
+import Categories from "@/Pages/Categories";
+import SearchPage from "@/Pages/SearchPage";
 
 function App() {
   return (
@@ -29,7 +27,6 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/map" element={<Leaflet />} />
             <Route path="/categories/:id" element={<Categories/>}/>
-            {/* <Route path="/profile" element={<ProfileSidebar/>}/> */}
             <Route path = "search/:searchKey" element = {<SearchPage />} />
 
             <Route path="*" element={<NotFound />} />
