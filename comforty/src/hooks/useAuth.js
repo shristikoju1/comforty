@@ -16,7 +16,6 @@ export const useAuth = () => {
 
     setTimeout(() => {
       navigate('/login');
-      // window.location.reload(); 
     }, 1000);  };
 
   return { handleLogout };

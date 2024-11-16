@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { FaLocationDot } from "react-icons/fa6";
 import { CiDeliveryTruck } from "react-icons/ci";
@@ -105,7 +105,7 @@ const ProductPage = () => {
             </div>
             <div className="flex items-center justify-center gap-1 cursor-pointer ">
               {product?.images?.map((image, index) => (
-                <div key={index}>
+                <div key={image.id || index}>
                   <button
                     onClick={() => setMainImage(image)}
                     className="h-[70px] w-[70px]"

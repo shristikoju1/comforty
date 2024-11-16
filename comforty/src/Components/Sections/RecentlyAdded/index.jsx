@@ -13,7 +13,6 @@ const hoverColor = "#007580";
 
 const RecentlyAdded = () => {
   const [productData, setProductData] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [activeProductIndex, setActiveProductIndex] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -53,6 +52,7 @@ const RecentlyAdded = () => {
   const getDisplayedProducts = () => {
     const displayedProducts = [];
     for (let i = 0; i < productsPerPage; i++) {
+      let currentIndex = 0;
       const productIndex = (currentIndex + i) % productData.length;
       displayedProducts.push(productData[productIndex]);
     }

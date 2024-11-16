@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeItemFromCart, updateItemQuantity } from "../../Store/cartSlice";
-import "./Cart.scss";
+import { removeItemFromCart, updateItemQuantity } from "@/Store/cartSlice";
+import "@/styles/Cart.scss";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -49,7 +49,7 @@ const Cart = () => {
           </thead>
           <tbody>
             {cartItems.map((item, index) => (
-              <tr key={index}>
+              <tr key={item.id || index}>
                 <td>
                   <img
                     src={item.thumbnail || item.image || item.category.image}
@@ -66,16 +66,18 @@ const Cart = () => {
                     value={item.quantity}
                     className="border border-[#ccc] p-1.5 rounded w-20"
                     onChange={(e) =>
-                      handleQuantityChange(index, parseInt(e.target.value))
+                      handleQuantityChange(index, parseInt(e.target.value) || 1)
                     }
                   />
                 </td>
                 <td>${(parseFloat(item.price) * item.quantity).toFixed(2)}</td>
-                <td
-                  onClick={() => handleRemoveFromCart(index)}
-                  className="cross"
-                >
-                  x
+                <td>
+                  <button
+                    onClick={() => handleRemoveFromCart(index)}
+                    className="cross"
+                  >
+                    x
+                  </button>
                 </td>
               </tr>
             ))}
@@ -99,15 +101,15 @@ const Cart = () => {
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>
-                ${cartTotal === 0 ? 0 : cartTotal + 2}
-              </b>
+              <b>${cartTotal === 0 ? 0 : cartTotal + 2}</b>
             </div>
           </div>
-          <button 
+          <button
             onClick={handleProceedToCheckout}
             disabled={cartItems.length === 0}
-            >PROCEED TO CHECKOUT</button>
+          >
+            PROCEED TO CHECKOUT
+          </button>
         </div>
 
         <div className="cart-promocode">

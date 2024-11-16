@@ -6,7 +6,7 @@ import Profile from "@/assets/svg/profile.svg?react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import ProfileSidebar from "../ProfileSidebar";
+import ProfileSidebar from "../../hoc/ProfileSidebar";
 
 const NavbarTwo = () => {
   const [isAllCategoriesMenuOpen, setIsAllCategoriesMenuOpen] = useState(false);

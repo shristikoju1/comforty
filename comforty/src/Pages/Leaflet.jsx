@@ -1,15 +1,10 @@
-import React, { useRef, useState, useMemo, useEffect } from "react";
-import {
-  MapContainer,
-  Marker,
-  TileLayer,
-  Popup,
-  useMapEvents,
-} from "react-leaflet";
+import { useRef, useState, useMemo } from "react";
+import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import CustomMarkerIcon from "../assets/images/pin.png";
 import UserCustomMarkerIcon from "../assets/images/pin-user.png";
+import LocationMarker from "./LocationMarker";
 
 const Leaflet = () => {
   const mapRef = useRef(null); // UseRef to store map instance
@@ -88,33 +83,12 @@ const Leaflet = () => {
     []
   );
 
- // Get user's current location and add a marker for it
-const LocationMarker = () => {
-  const map = useMapEvents({
-    locationfound(e) {
-      setUserLocation(e.latlng); // Set the user's location when found
-      map.flyTo(e.latlng, map.getZoom()); // Fly to the user's location
-    },
-  });
-
-  // When the component mounts, trigger the map's `locate` function to get the user's location
-  useEffect(() => {
-    map.locate();
-  }, [map]);
-
-  return userLocation === null ? null : (
-    <Marker position={userLocation} icon={userCustomIcons}>
-      <Popup>You are here</Popup>
-    </Marker>
-  );
-};
-
   // Fly to the clicked location
   const flyToLocation = (geocode) => {
     if (mapInitialized && mapRef?.current) {
       mapRef.current.flyTo(geocode, 13);
     }
-    console.log("mapRef", mapRef.current)
+    console.log("mapRef", mapRef.current);
   };
 
   // Function to get direction using Google Maps
@@ -127,8 +101,6 @@ const LocationMarker = () => {
     const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${destination.geocode[0]},${destination.geocode[1]}`;
     window.open(googleMapsUrl, "_blank");
   };
-  // console.log(mapInitialized)
-
 
   return (
     <div className="relative my-10 max-width ">
@@ -137,32 +109,31 @@ const LocationMarker = () => {
       </h1>
       <div className="leaflet-container">
         <div className="flex flex-col gap-4 overflow-y-scroll h-[70vh] py-2 px-1 custom-scrollbar">
-          {markers.map((marker) => (
-            <div
-              key={marker.id}
-              className="cursor-pointer left-section"
-          onClick={() => {
-            flyToLocation(marker.geocode)
-            console.log("marker", marker.geocode);
-          }}
-            >
-              <h2>{marker.name}</h2>
-              <p>{marker.name} P.O.Box 8207 Kathmandu, Nepal</p>
-              <p>+977 987654321, +977 984567832</p>
-              <p>
-                <span>comforty@{marker.name.toLowerCase()}.np</span>
-              </p>
-              <button
-                className="px-4 py-2 font-bold text-white rounded-md text-md bg-green"
-                onClick={(e) => {
-                  e.stopPropagation(); 
-                  getDirection(marker);
-                }}
-              >
-                Get Location
-              </button>
-            </div>
-          ))}
+        {markers.map((marker) => (
+  <div key={marker.id} className="cursor-pointer left-section">
+    <div
+      onClick={() => {
+        flyToLocation(marker.geocode);
+      }}
+    >
+      <h2>{marker.name}</h2>
+      <p>{marker.name} P.O.Box 8207 Kathmandu, Nepal</p>
+      <p>+977 987654321, +977 984567832</p>
+      <p>
+        <span>comforty@{marker.name.toLowerCase()}.np</span>
+      </p>
+    </div>
+    <button
+      className="px-4 py-2 font-bold text-white rounded-md text-md bg-green"
+      onClick={(e) => {
+        e.stopPropagation();
+        getDirection(marker);
+      }}
+    >
+      Get Location
+    </button>
+  </div>
+))}
         </div>
 
         <div className="relative z-0 my-1 right-section">
@@ -175,14 +146,17 @@ const LocationMarker = () => {
             }}
             style={{ height: "100%", width: "100%" }}
           >
-            
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
             {/* User's current location */}
-            <LocationMarker />
+            <LocationMarker
+              setUserLocation={setUserLocation}
+              userLocation={userLocation}
+              userCustomIcons={userCustomIcons}
+            />
 
             {/* Displaying markers from the array */}
             {markers.map((marker) => (

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import withSidebar from './withSidebar';
+import withSidebar from '../hoc/withSidebar';
 
 const NavSidebarContent = ({onClose}) => {
   return (

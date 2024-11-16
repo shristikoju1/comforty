@@ -4,8 +4,8 @@ import { IonIcon } from "@ionic/react";
 import { menuOutline, closeOutline } from "ionicons/icons";
 import { Link, scroller } from "react-scroll";
 import { useEffect, useState } from "react";
-import CategorySidebar from "../CategorySidebar";
-import NavSidebar from "../NavSidebar";
+import CategorySidebar from "@/hoc/CategorySidebar";
+import NavSidebar from "@/hoc/NavSidebar";
 
 const scrollToSection = (section, offset = -40) => {
   scroller.scrollTo(section, {

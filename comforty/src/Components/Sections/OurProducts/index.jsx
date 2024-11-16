@@ -95,7 +95,7 @@ const OurProducts = () => {
       <div className="ourProducts">
         {productData.map((product, index) => (
           <ProductCard
-            key={index}
+            key={product.id ||  index}
             product={product}
             index={index}
             activeProductIndex={activeProductIndex}

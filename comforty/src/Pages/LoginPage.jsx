@@ -3,12 +3,12 @@ import NextArrow from "../assets/svg/arrow-right.svg?react";
 import Eye from "../assets/svg/eye.svg?react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import ProfileSidebar from "@/Components/ProfileSidebar";
+import ProfileSidebar from "@/hoc/ProfileSidebar";
 import { jwtDecode } from "jwt-decode";
-import { useDispatch } from 'react-redux';
-import { displayUsername, displayEmail } from '@/Store/profileSlice'; 
+import { useDispatch } from "react-redux";
+import { displayUsername, displayEmail } from "@/Store/profileSlice";
 import Arrow from "../assets/svg/arrow_short.svg?react";
-import { login } from '@/Store/authSlice'; 
+import { login } from "@/Store/authSlice";
 import axiosInstance from "@/utils/http.utils";
 
 const LoginPage = () => {
@@ -28,30 +28,31 @@ const LoginPage = () => {
   const isValid = () => {
     let isProceed = true;
     let errMsg = "Please enter the value in";
-
-    if (formData.email === "") {
+  
+    // Check for missing email and password values
+    if (!formData.email) {
       isProceed = false;
       errMsg += " Email";
     }
-
-    if (formData.password === "") {
+    if (!formData.password) {
       isProceed = false;
-      errMsg += " Password";
+      errMsg += formData.email ? " and Password" : " Password"; // Improved formatting
     }
-
+  
+    // Show warning if either email or password is missing
     if (!isProceed) {
       toast.warning(errMsg);
     } else {
-      // Email validation
+      // Validate email format if email is provided
       if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)) {
         isProceed = false;
         toast.warning("Please enter a valid email");
       }
     }
-
+  
     return isProceed;
   };
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -61,50 +62,33 @@ const LoginPage = () => {
     e.preventDefault();
     if (isValid()) {
       try {
-        const res = await axiosInstance.post("api/login",formData )
-  
-          const { accessToken } = res.data.data;
-          console.log("Access Token:", accessToken);
-  
-          if (!accessToken) {
-            throw new Error("No access token received from the server.");
-          }
-  
-          const decodedUserData = jwtDecode(accessToken);
-          console.log(decodedUserData);
+        const res = await axiosInstance.post("api/login", formData);
 
-          // Save accessToken, username, and email in localStorage
-          // localStorage.setItem("accessToken", accessToken);
-          // localStorage.setItem("username", decodedUserData.username);
-          // localStorage.setItem("email", decodedUserData.email);
+        const { accessToken } = res.data.data;
+        console.log("Access Token:", accessToken);
 
-          // Dispatch Redux actions to store user data
-          dispatch(displayUsername(decodedUserData.username));
-          dispatch(displayEmail(decodedUserData.email));
+        if (!accessToken) {
+          throw new Error("No access token received from the server.");
+        }
 
-          // Dispatch login action to update authentication state
-          dispatch(login(decodedUserData)); 
+        const decodedUserData = jwtDecode(accessToken);
+        console.log(decodedUserData);
 
-          setUserData(decodedUserData);
-          setIsSidebarOpen(true);
-          toast.success("Login Successful!");
-        
+        // Dispatch Redux actions to store user data
+        dispatch(displayUsername(decodedUserData.username));
+        dispatch(displayEmail(decodedUserData.email));
+
+        // Dispatch login action to update authentication state
+        dispatch(login(decodedUserData));
+
+        setUserData(decodedUserData);
+        setIsSidebarOpen(true);
+        toast.success("Login Successful!");
       } catch (error) {
         toast.error("Login Failed: " + error.message);
       }
     }
   };
-
-  // const handleLogout = () => {
-  //   localStorage.removeItem("accessToken");
-  //   localStorage.removeItem("username");
-  //   localStorage.removeItem("email");
-
-  //   dispatch(logout());
-  //   setUserData(null);
-  //   setIsSidebarOpen(false);
-  //   toast.success("Logout Successful!");
-  // };
 
   return (
     <>
@@ -112,20 +96,22 @@ const LoginPage = () => {
         <ProfileSidebar userData={userData} />
       ) : (
         <section className="flex flex-col items-center justify-center mb-20 max-w-[1200px] mx-auto">
-                <div className="w-full mb-20 rounded-b-xl bg-secondary-white">
-        <div className="mx-auto max-width">
-          <div className="flex items-center mt-[50px] gap-4">
-            <span className="flex items-center text-[#636270]">Home </span>
-            <Arrow className="text-black" />
-            <span className="flex items-center text-[#636270]">Account</span>
-            <Arrow className="text-black" />
-            <span>Log In</span>
+          <div className="w-full mb-20 rounded-b-xl bg-secondary-white">
+            <div className="mx-auto max-width">
+              <div className="flex items-center mt-[50px] gap-4">
+                <span className="flex items-center text-[#636270]">Home </span>
+                <Arrow className="text-black" />
+                <span className="flex items-center text-[#636270]">
+                  Account
+                </span>
+                <Arrow className="text-black" />
+                <span>Log In</span>
+              </div>
+              <h2 className="text-2xl font-semibold font-inter mt-[14px] mb-[50px]">
+                Log In
+              </h2>
+            </div>
           </div>
-          <h2 className="text-2xl font-semibold font-inter mt-[14px] mb-[50px]">
-            Log In
-          </h2>
-        </div>
-      </div>
 
           {/* Login form */}
           <div className="shadow-custom w-[600px] h-[auto]">
@@ -191,7 +177,7 @@ const LoginPage = () => {
               </div>
 
               <div className="flex items-center justify-center pb-6">
-                <p className="mb-0 mr-1 text-blue">Don't Have an Account?</p>
+                <p className="mb-0 mr-1 text-blue">Don&apos;t Have an Account?</p>
                 <Link to={"/signup"}>
                   <button
                     type="button"

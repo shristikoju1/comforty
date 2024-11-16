@@ -14,7 +14,6 @@ const hoverColor = "#007580";
 const FeaturedProducts = () => {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   let sliderRef = useRef(null);
@@ -54,6 +53,7 @@ const FeaturedProducts = () => {
   const getDisplayedProducts = () => {
     const displayedProducts = [];
     for (let i = 0; i < productData.length; i++) {
+      let currentIndex = 0;
       const productIndex = (currentIndex + i) % productData.length;
       displayedProducts.push(productData[productIndex]);
     }
@@ -88,7 +88,7 @@ const FeaturedProducts = () => {
               }}
               index={index}
               hoverColor={hoverColor}
-              onAddToCart={() => addToCart(currentIndex + index)}
+              onAddToCart={() => addToCart(index)}
             />
           ))}
           </SimpleSlider>

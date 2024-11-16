@@ -13,7 +13,6 @@ const Categories = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [categories, setCategories] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   // Function to extract the category name from the URL query parameters
   const useQuery = () => {
@@ -52,6 +51,7 @@ const Categories = () => {
 
   const getDisplayedProducts = () => {
     const displayedProducts = [];
+    let currentIndex = 0;
     if (categories.length > 0) {
       for (let i = 0; i < categories.length; i++) {
         const categoriesIndex = (currentIndex + i) % categories.length;
@@ -80,7 +80,7 @@ const Categories = () => {
               }}
               index={idx}
               hoverColor={hoverColor}
-              onAddToCart={() => addToCart(currentIndex + idx)}
+              onAddToCart={() => addToCart(idx + 1)}
             />
           ))
         )}

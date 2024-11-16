@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
-import withSidebar from './withSidebar'; 
+import { NavLink } from "react-router-dom";
+import withSidebar from "../hoc/withSidebar";
 import { RxCross2 } from "react-icons/rx";
 import { CgMoreVerticalO } from "react-icons/cg";
 
@@ -24,15 +24,22 @@ const CategorySidebarContent = ({ onClose }) => {
       <div className="sidebar-content">
         <ul className="space-y-2">
           {categories.map((category) => (
-            <li key={category.id} className="sidebar-list-item" onClick={onClose}>
-              <NavLink to={`/categories/${category.id}?name=${category.name}`}>
-                {category.name}
-              </NavLink>
+            <li key={category.id} className="sidebar-list-item">
+              <button onClick={onClose}>
+                <NavLink
+                  to={`/categories/${category.id}?name=${category.name}`}
+                >
+                  {category.name}
+                </NavLink>
+              </button>
             </li>
           ))}
         </ul>
       </div>
-      <RxCross2 className="absolute close-icon top-4 right-4" onClick={onClose} />
+      <RxCross2
+        className="absolute close-icon top-4 right-4"
+        onClick={onClose}
+      />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FaHourglassEnd } from "react-icons/fa";
 import ProductCard from "../Common/ProductCard";
-import FilterView from "../Components/FilterView";
+import FilterView from "./FilterView";
 import * as constants from "../constants/constants";
 import Loader from "../Common/Loader";
 import Title from "@/Common/Title";
@@ -16,13 +16,11 @@ const SearchPage = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
   const [sortOption, setSortOption] = useState(constants.BEST_MATCH);
-  const [view, setView] = useState('grid');
+  const [view, setView] = useState("grid");
   const dispatch = useDispatch();
-  const [currentIndex, setCurrentIndex] = useState(0);
-
+  let currentIndex = 0;
 
   useEffect(() => {
-
     const getSearchProducts = async () => {
       setSearchLoading(true);
 
@@ -36,7 +34,6 @@ const SearchPage = () => {
         const data = await response.json();
 
         if (Array.isArray(data.products)) {
-
           const filteredResults = data.products.filter(
             (product) =>
               product.title?.toLowerCase().includes(searchKey.toLowerCase()) ||
@@ -92,15 +89,16 @@ const SearchPage = () => {
           ) : (
             <div>
               <div
-                className={
-                  `${view === 'grid' ?
-                    'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4' : 'list'}`
-                }
+                className={`${
+                  view === "grid"
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+                    : "list"
+                }`}
               >
                 {searchResult.length > 0 ? (
                   searchResult.map((product, index) => (
                     <ProductCard
-                      view={`${view === 'list' ? 'list-responsive' : ''}`}
+                      view={`${view === "list" ? "list-responsive" : ""}`}
                       key={product.id}
                       product={{
                         ...product,
