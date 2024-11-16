@@ -4,7 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import cartReducer from './cartSlice';
 import favReducer from './favSlice';
 import profileReducer from './profileSlice';
-import authReducer from './authSlice';
+import authReducer from './authslice';
 
 // Redux Persist config
 const persistConfig = {

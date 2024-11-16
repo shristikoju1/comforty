@@ -8,7 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { displayUsername, displayEmail } from "@/Store/profileSlice";
 import Arrow from "../assets/svg/arrow_short.svg?react";
-import { login } from "@/Store/authSlice";
+import { login } from "@/Store/authslice";
 import axiosInstance from "@/utils/http.utils";
 
 const LoginPage = () => {
