@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch} from 'react-redux';
-import { logout as logoutAction } from '@/Store/authslice';
+import { logout as logoutAction } from '@/Store/authSlice';
 
 export const useAuth = () => {
   const navigate = useNavigate();
