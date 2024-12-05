@@ -7,7 +7,11 @@ import { useEffect, useState } from "react";
 import CategorySidebar from "@/hoc/CategorySidebar";
 import NavSidebar from "@/hoc/NavSidebar";
 
-const scrollToSection = (section, offset = -40) => {
+type NavigationNavbarProps = {
+  // Define any additional props if needed, e.g., for customization
+};
+
+const scrollToSection = (section:string, offset = -40): void => {
   scroller.scrollTo(section, {
     duration: 500,
     smooth: true,
@@ -15,10 +19,10 @@ const scrollToSection = (section, offset = -40) => {
   });
 };
 
-const NavbarThree = () => {
+const NavigationNavbar: React.FC<NavigationNavbarProps> = () => {
   const location = useLocation();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isAllCategoriesMenuOpen, setIsAllCategoriesMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isAllCategoriesMenuOpen, setIsAllCategoriesMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
     // Check for pathname change and scroll to section
@@ -32,15 +36,15 @@ const NavbarThree = () => {
 
   const isHomePage = location.pathname === "/";
 
-  const toggleMenu = () => {
+  const toggleMenu = (): void => {
     setIsMenuOpen((prev) => !prev);
     console.log("Menu toggled:", !isMenuOpen);
   };
 
-  const toggleCategoriesSidebar = () => {
+  const toggleCategoriesSidebar = (): void => {
     setIsAllCategoriesMenuOpen(!isAllCategoriesMenuOpen);
   };
-  const closeCategoriesSidebar = () => {
+  const closeCategoriesSidebar = (): void => {
     setIsAllCategoriesMenuOpen(false);
   };
 
@@ -183,4 +187,4 @@ const NavbarThree = () => {
   );
 };
 
-export default NavbarThree;
+export default NavigationNavbar;

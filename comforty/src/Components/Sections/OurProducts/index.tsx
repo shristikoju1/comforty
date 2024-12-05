@@ -7,14 +7,21 @@ import Product6 from '@/assets/images/our_product6.png';
 import Product7 from '@/assets/images/our_product7.png';
 import Product8 from '@/assets/images/our_product8.png';
 import ProductCard from '@/Common/ProductCard';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from '@/Store/cartSlice'; 
 import '@/styles/ourproduct.scss';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const productData = [
+interface ProductData {
+  id: number;
+  image: string;
+  title: string;
+  price: number;
+}
+
+const productData: ProductData[] = [
   {
     id: 101,
     image: Product1,
@@ -67,11 +74,11 @@ const productData = [
 
 const hoverColor = '#007580';
 
-const OurProducts = () => {
+const OurProducts: React.FC = () => {
   const dispatch = useDispatch();
-  const [activeProductIndex, setActiveProductIndex] = useState(null);
+  const [activeProductIndex, setActiveProductIndex] = useState<number | null>(null);
 
-  const addToCart = (index) => {
+  const addToCart = (index: number) => {
     setActiveProductIndex(index);
     const product = productData[index];
     dispatch(addItemToCart(product));

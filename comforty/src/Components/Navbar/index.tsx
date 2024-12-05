@@ -1,17 +1,14 @@
 import "@/styles/navbar.scss";
-import LangNavbar from "./LangNavbar";
+import LanguageNavbar from "./LanguageNavbar";
 import CartNavbar from "./CartNavbar";
-import MainNavbar from "./MainNavbar";
+import NavigationNavbar from "./NavigationNavbar";
 
-
-const Navbar = () => {
-
-
+const Navbar: React.FC = () => {
   return (
     <div id="home" className="scroll-smooth">
-      <LangNavbar/>
-      <CartNavbar/>
-      <MainNavbar/>
+      <LanguageNavbar />
+      <CartNavbar />
+      <NavigationNavbar />
     </div>
   );
 };

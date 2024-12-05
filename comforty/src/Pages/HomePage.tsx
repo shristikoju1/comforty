@@ -5,7 +5,7 @@ import OurProducts from '@/Components/Sections/OurProducts'
 import Testimonials from '@/Components/Sections/Testimonials'
 import RecentlyAdded from '@/Components/Sections/RecentlyAdded'
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <>
         <Hero/>

@@ -5,14 +5,21 @@ import Heart from "@/assets/svg/heart.svg?react";
 import Profile from "@/assets/svg/profile.svg?react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useState } from "react";
-import ProfileSidebar from "../../hoc/ProfileSidebar";
+import React, { useState } from "react";
+import ProfileSidebar from "@/hoc/ProfileSidebar";
 
-const NavbarTwo = () => {
-  const [isAllCategoriesMenuOpen, setIsAllCategoriesMenuOpen] = useState(false);
-  const cartItems = useSelector((state) => state?.cart?.items);
+//Define types for Redux state
+interface RootState {
+  cart: {
+    items: any[];
+  }
+}
+
+const CartNavbar: React.FC = () => {
+  const [isAllCategoriesMenuOpen, setIsAllCategoriesMenuOpen] = useState<boolean>(false);
+  const cartItems = useSelector((state:RootState) => state?.cart?.items);
   const totalCartItems = cartItems?.length;
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const navigate = useNavigate(); 
 
   const toggleCategoriesSidebar = () => {
@@ -23,11 +30,11 @@ const NavbarTwo = () => {
     setIsAllCategoriesMenuOpen(false);
   };
 
-  const handleSearchTerm = (event) => {
-    setSearchTerm(event.target.value);
+  const handleSearchTerm = (event:React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event?.target?.value);
   };
 
-  const handleSearchSubmit = (event) => {
+  const handleSearchSubmit = (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (searchTerm.trim()) {
       navigate(`/search/${searchTerm}`); 
@@ -95,4 +102,4 @@ const NavbarTwo = () => {
   );
 };
 
-export default NavbarTwo;
+export default CartNavbar;

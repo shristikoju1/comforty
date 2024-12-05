@@ -3,13 +3,13 @@ import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import path from 'path';
 
-// Vite configuration
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
   css: {
-    postcss: './postcss.config.ts', // Specify the PostCSS configuration path
+    postcss: './postcss.config.ts',
   },
 });

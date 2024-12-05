@@ -1,13 +1,18 @@
-import DiscountIcon from "../../../assets/svg/feature1.svg?react";
-import DeliveryIcon from "../../../assets/svg/feature2.svg?react";
-import TimeIcon from "../../../assets/svg/feature3.svg?react";
-import ShieldIcon from "../../../assets/svg/feature4.svg?react";
+import DiscountIcon from "@/assets/svg/feature1.svg?react";
+import DeliveryIcon from "@/assets/svg/feature2.svg?react";
+import TimeIcon from "@/assets/svg/feature3.svg?react";
+import ShieldIcon from "@/assets/svg/feature4.svg?react";
 import "@/styles/hero.scss";
 import "@/styles/feature.scss";
-import Swiper from "../../carousel";
+import Swiper from "./carousel";
 
+interface FeatureData {
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  title: string;
+  description: string;
+}
 
-const featuresData = [
+const featuresData: FeatureData[] = [
   {
     icon: DiscountIcon,
     title: "Discount",
@@ -30,7 +35,7 @@ const featuresData = [
   },
 ];
 
-const hero = () => {
+const hero: React.FC = () => {
   return (
     <>
       <div className='mx-5'>

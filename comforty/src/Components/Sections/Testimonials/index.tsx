@@ -1,14 +1,21 @@
 import SectionHeader from "../../../Common/SectionHeader";
 import Client1 from '@/assets/images/client1.png';
 import Client2 from '../../../assets/images/client2.png';
-import DoubleQuotes from '../../../assets/svg/double_quotes.svg';
+import DoubleQuotes from '../../../assets/svg/double_quotes.svg?react';
 import SimpleSlider from "../../../Common/Slider"; 
 import { useState, useRef } from "react";
 
-const Testimonials = () => {
-  const sliderRef = useRef(null);
+interface TestimonialsData {
+  description: string;
+  clientImage: string;
+  clientName: string;
+  clientTitle: string;
+}
+
+const Testimonials: React.FC = () => {
+  const sliderRef = useRef<HTMLDivElement | null>(null);
   
-  const [testimonialsData] = useState([
+  const [testimonialsData] = useState<TestimonialsData[]>([
     {
       description: "I recently purchased a sectional sofa from Comforty, and I couldn't be happier! The design is sleek, the fabric is incredibly soft, and the level of comfort is unmatched. It's the perfect addition to my living room. The delivery was smooth, and the customer service team was very responsive. Highly recommend Comforty for anyone looking to upgrade their home furniture!",
       clientImage: Client1,
@@ -23,7 +30,7 @@ const Testimonials = () => {
     },
   ]);
 
-  const sliderSettings = {
+  const sliderSettings: Record<string, unknown> = {
     slidesToShow: 2,  
     slidesToScroll: 1,
     responsive: [

@@ -1,22 +1,34 @@
-import SectionHeader from "../../../Common/SectionHeader";
-import ProductCard from "../../../Common/ProductCard";
-import "@/styles/featuredProducts.scss";
-import { useDispatch } from "react-redux";
-import { addItemToCart } from "@/Store/cartSlice";
 import { useEffect, useRef, useState } from "react";
-import SimpleSlider from "../../../Common/Slider";
-import InternetError from "../../../Common/InternetError";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+
+import SectionHeader from "@/Common/SectionHeader";
+import ProductCard from "@/Common/ProductCard";
+import SimpleSlider from "@/Common/Slider";
+import InternetError from "@/Common/InternetError";
 import Loader from "@/Common/Loader";
+
+import { addItemToCart } from "@/Store/cartSlice";
+
+import "@/styles/featuredProducts.scss";
+
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  thumbnail: string;
+  apiSource: string;
+  [key: string]: any; // To accommodate any additional properties from the API
+}
 
 const hoverColor = "#007580";
 
-const FeaturedProducts = () => {
-  const [productData, setProductData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const FeaturedProducts: React.FC = () => {
+  const [productData, setProductData] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<JSX.Element | null>(null);
   const dispatch = useDispatch();
-  let sliderRef = useRef(null);
+  const sliderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,7 +40,7 @@ const FeaturedProducts = () => {
         const data = await response.json();
 
         // Adding apiSource to each product
-        const productsWithSource = data.products.map(product => ({
+        const productsWithSource = data.products.map((product: any) => ({
           ...product,
           apiSource: "DummyJSON"
         }));
@@ -44,7 +56,7 @@ const FeaturedProducts = () => {
     fetchProducts();
   }, []);
 
-  const addToCart = (index) => {
+  const addToCart = (index: number) => {
     const product = productData[index];
     dispatch(addItemToCart(product));
     toast.success(`Added to cart!`);

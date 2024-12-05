@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import SectionHeader from "../../../Common/SectionHeader";
 import ProductCard from "../../../Common/ProductCard";
 import '@/styles/recent.scss';
@@ -11,15 +11,25 @@ import Loader from "@/Common/Loader";
 
 const hoverColor = "#007580";
 
-const RecentlyAdded = () => {
-  const [productData, setProductData] = useState([]);
-  const [activeProductIndex, setActiveProductIndex] = useState(null);
-  const [loading, setLoading] = useState(true);
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  thumbnail: string;
+  apiSource: string;
+  [key: string]: any; // To accommodate any additional properties from the API
+}
+
+
+const RecentlyAdded: React.FC = () => {
+  const [productData, setProductData] = useState<Product[]>([]);
+  const [activeProductIndex, setActiveProductIndex] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState(null);
   const productsPerPage = 4;
   
   const dispatch = useDispatch();
-  let sliderRef = useRef(null);
+  let sliderRef = useRef<HTMLDivElement | null>(null);
 
   // Fetch product data from the DummyJSON furniture category
   useEffect(() => {
@@ -29,19 +39,19 @@ const RecentlyAdded = () => {
         const response = await fetch("https://dummyjson.com/products/category/furniture");
         const data = await response.json();
         setProductData(data.products); 
-        setLoading(false);
       } catch (err) {
         console.error("Error fetching products:", err);
+        setLoading(false);
+      } finally {
         setError(
           <InternetError/>
         );
-        setLoading(false);
       }
     };
     fetchProducts();
   }, []);
 
-  const addToCart = (index) => {
+  const addToCart = (index: number) => {
     setActiveProductIndex(index);
     const product = productData[index];
     console.log("Adding to cart:", product); 
@@ -49,8 +59,8 @@ const RecentlyAdded = () => {
     toast.success(`Added to cart!`);
   };
 
-  const getDisplayedProducts = () => {
-    const displayedProducts = [];
+  const getDisplayedProducts = (): Product[] => {
+    const displayedProducts: Product[] = [];
     for (let i = 0; i < productsPerPage; i++) {
       let currentIndex = 0;
       const productIndex = (currentIndex + i) % productData.length;
