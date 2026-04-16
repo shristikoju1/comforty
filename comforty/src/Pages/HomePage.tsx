@@ -8,12 +8,12 @@ import RecentlyAdded from '@/Components/Sections/RecentlyAdded'
 const HomePage: React.FC = () => {
   return (
     <>
-        <Hero/>
-        <FeaturedProducts/>
-        <TopCategories/>
-        <OurProducts/>
-        <Testimonials/>
-        <RecentlyAdded/>
+      <Hero />
+      <FeaturedProducts />
+      <TopCategories />
+      <OurProducts />
+      <Testimonials />
+      <RecentlyAdded />
     </>
   )
 }
